@@ -7,49 +7,46 @@
 
 ## 🗓️ DIÁRIO DE BORDO
 
-### 🚀 Fase 1: A Fundação do Império (Setup)
-- **Inicialização:** Criação do projeto Next.js com TypeScript e App Router.
-- **Identidade Visual (Ouro & Preto):**
-    - Definição das cores `rich-black`, `rich-gray` e a paleta `gold` no `tailwind.config.ts`.
-    - Configuração das fontes de luxo: **Cinzel** (Títulos) e **Montserrat** (Textos) no arquivo `src/app/fonts.ts`.
-    - Aplicação das fontes e estilos globais no `src/app/layout.tsx`.
-
-### 🧭 Fase 2: A Estrutura de Navegação
-- **Header de Vidro (Glassmorphism):**
-    - Criação do componente `Header.tsx` com efeito de desfoque ao rolar, menu responsivo e animações suaves.
-    - Correção de importação no layout principal para garantir que o cabeçalho apareça em todas as páginas.
-- **Rodapé Institucional:**
-    - Criação do `Footer.tsx` com links rápidos, contato e copyright, fechando o site com elegância.
-
-### 🏗️ Fase 3: Construção das Seções (O Corpo)
-- **Hero Section (Primeira Impressão):**
-    - `Hero.tsx`: Título de impacto "Defesa Estratégica", animação de entrada e espaço reservado para a foto da Dra. Mariana com recorte moderno.
-- **Sobre a Dra. (Autoridade):**
-    - `About.tsx`: Layout de colunas com foto e texto, destacando a experiência e a abordagem humanizada.
-- **Áreas de Atuação (Serviços):**
-    - `PracticeAreas.tsx`: Cards interativos para Família, Civil e Trabalhista, com destaque visual para o carro-chefe (Família).
-- **Depoimentos (Prova Social):**
-    - `Testimonials.tsx`: Design com aspas gigantes e estrelas douradas para transmitir confiança.
-- **Chamada para Ação (Contato):**
-    - `Contact.tsx`: Seção final antes do rodapé com senso de urgência e botões claros de contato.
-
-### 💬 Fase 4: Funcionalidades de Conversão
-- **Botão Flutuante:**
-    - `WhatsAppButton.tsx`: Ícone do WhatsApp fixo no canto da tela, garantindo contato rápido em qualquer momento da navegação.
-
-### ⚔️ Fase 5: Deploy e Ajustes Críticos (A Batalha Final)
-- **Integração:** Montagem de todas as seções no arquivo `src/app/page.tsx`.
-- **Deploy na Vercel:** Conexão do repositório GitHub com a plataforma Vercel.
-- **Correção do Tailwind v4 (O Grande Desafio):**
-    - Identificação do conflito entre a configuração da v3 e o motor da v4 (Site aparecia sem CSS).
-    - **Solução:**
-        1. Limpeza do `tailwind.config.ts` (remoção de tipos conflitantes).
-        2. Atualização do `src/app/globals.css` para usar a sintaxe moderna `@import "tailwindcss";`.
-    - **Resultado:** Site no ar com design perfeito.
+### 🚀 Fase 1 a 5 (Concluídas)
+- **Setup & Identidade:** Next.js, Tailwind v4, Fontes Cinzel/Montserrat, Cores Dark & Gold.
+- **Estrutura:** Header Glassmorphism, Footer, Hero, Sobre, Áreas, Depoimentos, Contato.
+- **Deploy:** Vercel configurada e correções de compatibilidade Tailwind v4 aplicadas.
 
 ---
 
-## 🎯 PRÓXIMOS PASSOS (Roadmap)
-- [ ] Refinamento Visual (Pixel Perfect).
-- [ ] Substituição das imagens (Placeholders -> Reais).
-- [ ] Otimização de SEO.
+## 💎 Fase 6: Refinamento Visual (Pixel Perfect & Funcionalidade)
+**Status:** 🚧 Em Andamento
+**Objetivo:** Polimento estético de alto nível, ajuste de contrastes e correção de comportamentos de interface para padrão "High Ticket".
+
+### 🧭 Navegação (Header)
+- [ ] **Fixação da Borda:** Garantir que a borda inferior da NavBar seja visível e fixa também no topo (evitar que suma na posição inicial), criando separação constante do Hero.
+- [ ] **Efeito Hover Ultra-Moderno:** Adicionar animação de sublinhado elegante (underline) nos itens do menu ao passar o mouse.
+- [ ] **Botão "Falar com a Advogada":** Finalizar estilização, adicionar sombra/hover correto e tornar clicável (com número fictício) abrindo em nova aba.
+
+### 🎬 Hero Section
+- [ ] **Imagem Principal:** Substituir o placeholder simulativo por uma foto realista de advogada (ou da Dra. Mariana) para elevar a autoridade imediata.
+
+### ⚖️ Seção Sobre (Perfil Profissional)
+- [ ] **Alinhamento Vertical:** Ajustar a altura da linha/conteúdo de texto para alinhar visualmente com o topo da margem do card de foto ao lado.
+- [ ] **Contraste de Divisórias:** Aumentar a visibilidade da linha que separa o parágrafo da lista de especialidades ("Especialista em Família", etc.), escolhendo uma cor harmônica.
+
+### 🏛️ Áreas de Atuação (Cards)
+- [ ] **Bordas Visíveis:** Aumentar a visibilidade das bordas dos cards, mantendo a harmonia com o restante (evitar que fiquem apagadas).
+- [ ] **Interação Hover (Correção):** Destravar o efeito de destaque (atualmente fixo no 1º card) para que funcione dinamicamente ao passar o mouse em cada card individualmente.
+
+### 💬 Prova Social (Depoimentos)
+- [ ] **Padronização de Bordas:** Aumentar a visibilidade das bordas dos cards de feedback, seguindo a mesma cor/espessura "Social Chique" definida para os outros cards.
+
+### 🦶 Rodapé (Footer)
+- [ ] **Links de Navegação:** Linkar a lista de direitos na coluna "Áreas" para rolar suavemente até os cards correspondentes na seção de Atuação (Ancoragem).
+- [ ] **Bordas:** Aumentar a visibilidade das linhas divisórias do rodapé.
+
+### ⚡ Funcionalidades Globais & UI
+- [ ] **Funcionalidade dos Botões:** Garantir que **TODOS** os botões do site tenham links (mesmo que fictícios por enquanto) e abram em abas secundárias (`target="_blank"`).
+- [ ] **WhatsApp Flutuante 2.0:** Substituir o botão atual por uma versão mais moderna e profissional (padrão de mercado atual), com animação de pulso ou label.
+
+---
+
+## 🎯 PRÓXIMOS PASSOS (Roadmap Futuro)
+- [ ] Otimização de SEO (Metadados avançados).
+- [ ] Testes de performance (Lighthouse).
