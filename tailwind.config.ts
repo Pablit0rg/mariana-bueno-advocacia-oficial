@@ -8,14 +8,14 @@ const config = {
     extend: {
       colors: {
         rich: {
-          black: "#050505",      // Fundo Absoluto
-          gray: "#121212",       // Fundo Secundário
-          surface: "#1E1E1E",    // Superfícies
+          black: "#050505",
+          gray: "#121212",
+          surface: "#1E1E1E",
         },
         gold: {
-          primary: "#D4AF37",    // Ouro Metálico Principal
-          light: "#F4C430",      // Ouro Brilhante
-          dark: "#AA771C",       // Ouro Escuro
+          primary: "#D4AF37",
+          light: "#F4C430",
+          dark: "#AA771C",
         }
       },
       fontFamily: {
