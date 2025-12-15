@@ -25,7 +25,6 @@ export function Testimonials() {
   return (
     <section id="depoimentos" className="py-24 bg-rich-gray relative overflow-hidden">
       
-      {/* Elemento Decorativo de Fundo */}
       <div className="absolute right-0 bottom-0 opacity-5 pointer-events-none">
         <Quote size={400} className="text-gold-primary rotate-180" />
       </div>
@@ -54,12 +53,11 @@ export function Testimonials() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2 }}
-              className="bg-rich-black/50 p-8 rounded-xl border border-white/5 relative hover:border-gold-primary/30 transition-colors group"
+              // Borda mais visível: border-white/10
+              className="bg-rich-black/50 p-8 rounded-xl border border-white/10 relative hover:border-gold-primary/40 transition-colors group shadow-lg"
             >
-              {/* Aspas no topo do card */}
               <Quote className="text-gold-primary mb-6 opacity-50 group-hover:opacity-100 transition-opacity" size={40} />
               
-              {/* Estrelas */}
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={14} className="fill-gold-primary text-gold-primary" />

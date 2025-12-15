@@ -15,38 +15,39 @@
 ---
 
 ## 💎 Fase 6: Refinamento Visual (Pixel Perfect & Funcionalidade)
-**Status:** 🚧 Em Andamento
+**Status:** ✅ Concluída
 **Objetivo:** Polimento estético de alto nível, ajuste de contrastes e correção de comportamentos de interface para padrão "High Ticket".
 
 ### 🧭 Navegação (Header)
-- [ ] **Fixação da Borda:** Garantir que a borda inferior da NavBar seja visível e fixa também no topo (evitar que suma na posição inicial), criando separação constante do Hero.
-- [ ] **Efeito Hover Ultra-Moderno:** Adicionar animação de sublinhado elegante (underline) nos itens do menu ao passar o mouse.
-- [ ] **Botão "Falar com a Advogada":** Finalizar estilização, adicionar sombra/hover correto e tornar clicável (com número fictício) abrindo em nova aba.
+- [x] **Fixação da Borda:** Garantir que a borda inferior da NavBar seja visível e fixa também no topo (evitar que suma na posição inicial), criando separação constante do Hero.
+- [x] **Efeito Hover Ultra-Moderno:** Adicionar animação de sublinhado elegante (underline) nos itens do menu ao passar o mouse.
+- [x] **Botão "Falar com a Advogada":** Finalizar estilização, adicionar sombra/hover correto e tornar clicável (com número fictício) abrindo em nova aba.
 
 ### 🎬 Hero Section
-- [ ] **Imagem Principal:** Substituir o placeholder simulativo por uma foto realista de advogada (ou da Dra. Mariana) para elevar a autoridade imediata.
+- [x] **Imagem Principal:** Substituir o placeholder simulativo por uma foto realista de advogada (via link externo Pexels para teste).
 
 ### ⚖️ Seção Sobre (Perfil Profissional)
-- [ ] **Alinhamento Vertical:** Ajustar a altura da linha/conteúdo de texto para alinhar visualmente com o topo da margem do card de foto ao lado.
-- [ ] **Contraste de Divisórias:** Aumentar a visibilidade da linha que separa o parágrafo da lista de especialidades ("Especialista em Família", etc.), escolhendo uma cor harmônica.
+- [x] **Alinhamento Vertical:** Ajustar a altura da linha/conteúdo de texto para alinhar visualmente com o topo da margem do card de foto ao lado.
+- [x] **Contraste de Divisórias:** Aumentar a visibilidade da linha que separa o parágrafo da lista de especialidades ("Especialista em Família", etc.), escolhendo uma cor harmônica.
 
 ### 🏛️ Áreas de Atuação (Cards)
-- [ ] **Bordas Visíveis:** Aumentar a visibilidade das bordas dos cards, mantendo a harmonia com o restante (evitar que fiquem apagadas).
-- [ ] **Interação Hover (Correção):** Destravar o efeito de destaque (atualmente fixo no 1º card) para que funcione dinamicamente ao passar o mouse em cada card individualmente.
+- [x] **Bordas Visíveis:** Aumentar a visibilidade das bordas dos cards, mantendo a harmonia com o restante (evitar que fiquem apagadas).
+- [x] **Interação Hover (Correção):** Destravar o efeito de destaque (atualmente fixo no 1º card) para que funcione dinamicamente ao passar o mouse em cada card individualmente.
 
 ### 💬 Prova Social (Depoimentos)
-- [ ] **Padronização de Bordas:** Aumentar a visibilidade das bordas dos cards de feedback, seguindo a mesma cor/espessura "Social Chique" definida para os outros cards.
+- [x] **Padronização de Bordas:** Aumentar a visibilidade das bordas dos cards de feedback, seguindo a mesma cor/espessura "Social Chique" definida para os outros cards.
 
 ### 🦶 Rodapé (Footer)
-- [ ] **Links de Navegação:** Linkar a lista de direitos na coluna "Áreas" para rolar suavemente até os cards correspondentes na seção de Atuação (Ancoragem).
-- [ ] **Bordas:** Aumentar a visibilidade das linhas divisórias do rodapé.
+- [x] **Links de Navegação:** Linkar a lista de direitos na coluna "Áreas" para rolar suavemente até os cards correspondentes na seção de Atuação (Ancoragem).
+- [x] **Bordas:** Aumentar a visibilidade das linhas divisórias do rodapé.
 
 ### ⚡ Funcionalidades Globais & UI
-- [ ] **Funcionalidade dos Botões:** Garantir que **TODOS** os botões do site tenham links (mesmo que fictícios por enquanto) e abram em abas secundárias (`target="_blank"`).
-- [ ] **WhatsApp Flutuante 2.0:** Substituir o botão atual por uma versão mais moderna e profissional (padrão de mercado atual), com animação de pulso ou label.
+- [x] **Funcionalidade dos Botões:** Garantir que **TODOS** os botões do site tenham links (mesmo que fictícios por enquanto) e abram em abas secundárias (`target="_blank"`).
+- [x] **WhatsApp Flutuante 2.0:** Substituir o botão atual por uma versão mais moderna e profissional (padrão de mercado atual), com animação de pulso e tooltip.
 
 ---
 
 ## 🎯 PRÓXIMOS PASSOS (Roadmap Futuro)
-- [ ] Otimização de SEO (Metadados avançados).
-- [ ] Testes de performance (Lighthouse).
+- [ ] Otimização de SEO (Metadados avançados, Open Graph para redes sociais).
+- [ ] Testes de performance (Lighthouse e Core Web Vitals).
+- [ ] Substituição final das fotos (Quando a Dra. enviar as oficiais).

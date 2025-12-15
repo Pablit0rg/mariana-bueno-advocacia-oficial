@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck } from "lucide-react";
-import Image from "next/image";
+// import Image from "next/image"; // Não vamos usar agora pois são links externos
 
 export function Hero() {
   return (
@@ -39,34 +39,42 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="px-8 py-4 bg-gold-primary hover:bg-gold-light text-rich-black font-bold rounded text-sm uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:-translate-y-1 flex items-center justify-center gap-2">
+            <a 
+              href="https://wa.me/5541999999999"
+              target="_blank"
+              className="px-8 py-4 bg-gold-primary hover:bg-gold-light text-rich-black font-bold rounded text-sm uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer"
+            >
               Iniciar Atendimento
               <ArrowRight size={18} />
-            </button>
+            </a>
             
-            <button className="px-8 py-4 border border-white/20 hover:border-gold-primary text-white hover:text-gold-primary font-medium rounded text-sm uppercase tracking-widest transition-all flex items-center justify-center">
+            <a 
+              href="#sobre"
+              className="px-8 py-4 border border-white/20 hover:border-gold-primary text-white hover:text-gold-primary font-medium rounded text-sm uppercase tracking-widest transition-all flex items-center justify-center cursor-pointer"
+            >
               Conhecer a Dra.
-            </button>
+            </a>
           </div>
         </motion.div>
 
-        {/* LADO DIREITO: Foto Real (Exemplo visual) */}
+        {/* LADO DIREITO: Foto Real (Pexels) */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative h-[600px] w-full flex items-end justify-center"
         >
-          <div className="relative w-full h-full rounded-t-[100px] border border-white/10 overflow-hidden shadow-2xl">
-             {/* Usando uma imagem de banco de imagens para testar o visual */}
+          <div className="relative w-full h-full rounded-t-[100px] border border-white/10 overflow-hidden shadow-2xl group">
+             
+             {/* Usando a tag img padrão para link externo */}
              <img 
-               src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" 
-               alt="Advogada em ambiente corporativo"
-               className="object-cover w-full h-full opacity-80 hover:opacity-100 transition-opacity duration-700 hover:scale-105 transform"
+               src="https://images.pexels.com/photos/8111815/pexels-photo-8111815.jpeg" 
+               alt="Advogada especialista"
+               className="object-cover object-top w-full h-full opacity-90 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 transform"
              />
              
-             {/* Degradê na base para o texto não ficar ruim de ler se passar por cima */}
-             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-rich-black to-transparent" />
+             {/* Degradê na base */}
+             <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-rich-black via-rich-black/50 to-transparent" />
           </div>
         </motion.div>
 

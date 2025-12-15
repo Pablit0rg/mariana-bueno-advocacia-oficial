@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle, Mail, Clock, MapPin, ArrowRight } from "lucide-react";
+import { MessageCircle, Mail, Clock, MapPin, ArrowRight, ExternalLink } from "lucide-react";
 
 export function Contact() {
   return (
@@ -60,12 +60,12 @@ export function Contact() {
             {/* LADO DIREITO: Botões de Ação */}
             <div className="flex flex-col gap-4">
               <motion.a 
-                href="https://wa.me/5541999999999" // Link do WhatsApp (depois colocamos o real)
+                href="https://wa.me/5541999999999"
                 target="_blank"
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="group w-full py-6 bg-gold-primary hover:bg-gold-light text-rich-black rounded-lg flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-gold-primary/20 hover:-translate-y-1"
+                className="group w-full py-6 bg-gold-primary hover:bg-gold-light text-rich-black rounded-lg flex items-center justify-center gap-3 transition-all shadow-lg hover:shadow-gold-primary/20 hover:-translate-y-1 cursor-pointer"
               >
                 <MessageCircle size={24} strokeWidth={2.5} />
                 <div className="text-left">
@@ -76,15 +76,24 @@ export function Contact() {
               </motion.a>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="mailto:contato@advmarianabueno.com.br" className="py-4 px-6 border border-white/10 rounded-lg flex items-center gap-3 text-white hover:border-gold-primary/50 hover:bg-white/5 transition-colors">
+                <a 
+                  href="mailto:contato@advmarianabueno.com.br" 
+                  className="py-4 px-6 border border-white/10 rounded-lg flex items-center gap-3 text-white hover:border-gold-primary/50 hover:bg-white/5 transition-colors cursor-pointer"
+                >
                   <Mail className="text-gold-primary" size={20} />
                   <span className="text-sm font-medium">Enviar E-mail</span>
                 </a>
                 
-                <button className="py-4 px-6 border border-white/10 rounded-lg flex items-center gap-3 text-white hover:border-gold-primary/50 hover:bg-white/5 transition-colors">
-                  <span className="text-gold-primary font-bold border rounded px-1.5 text-xs">OAB</span>
+                <a 
+                  href="https://cna.oab.org.br/" // Link oficial de busca da OAB
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-4 px-6 border border-white/10 rounded-lg flex items-center gap-3 text-white hover:border-gold-primary/50 hover:bg-white/5 transition-colors cursor-pointer group"
+                >
+                  <span className="text-gold-primary font-bold border border-gold-primary/50 rounded px-1.5 text-xs group-hover:bg-gold-primary group-hover:text-rich-black transition-colors">OAB</span>
                   <span className="text-sm font-medium">Ver Cadastro</span>
-                </button>
+                  <ExternalLink size={14} className="opacity-50 group-hover:opacity-100" />
+                </a>
               </div>
             </div>
 
