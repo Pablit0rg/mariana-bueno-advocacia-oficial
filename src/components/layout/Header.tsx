@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react"; // Removi o useEffect pois não precisamos mais monitorar o scroll para mudar a cor
+import { useState } from "react";
 import Link from "next/link";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -21,7 +21,7 @@ export function Header() {
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* LOGO / NOME */}
-        <Link href="/" className="group">
+        <Link href="/" className="group" aria-label="Ir para a página inicial">
           <h1 className="font-serif text-xl md:text-2xl font-bold text-white tracking-wider group-hover:text-gold-primary transition-colors">
             MARIANA BUENO
             <span className="block text-[10px] md:text-xs font-sans text-gold-primary font-light tracking-[0.2em] uppercase">
@@ -31,7 +31,7 @@ export function Header() {
         </Link>
 
         {/* MENU DESKTOP */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-8" aria-label="Menu principal">
           {menuItems.map((item) => (
             <Link
               key={item.name}
@@ -39,20 +39,19 @@ export function Header() {
               className="relative group text-sm font-medium text-white/80 hover:text-gold-primary transition-colors uppercase tracking-wide"
             >
               {item.name}
-              {/* Efeito de Sublinhado Moderno */}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold-primary transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
           
-          {/* Botão Principal Funcional */}
           <a 
-            href="https://wa.me/5541999999999" // Link fictício
+            href="https://wa.me/5541999999999"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-gold-dark to-gold-primary text-rich-black font-bold rounded text-sm hover:brightness-110 transition-all shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] hover:-translate-y-0.5 cursor-pointer"
+            aria-label="Falar com a advogada no WhatsApp"
           >
             Falar com a Advogada
-            <ArrowRight size={16} />
+            <ArrowRight size={16} aria-hidden="true" />
           </a>
         </nav>
 
@@ -60,8 +59,10 @@ export function Header() {
         <button
           className="md:hidden text-white hover:text-gold-primary transition-colors"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Fechar menu" : "Abrir menu"} // <--- CORREÇÃO CRÍTICA
+          aria-expanded={isOpen}
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={28} aria-hidden="true" /> : <Menu size={28} aria-hidden="true" />}
         </button>
       </div>
 
