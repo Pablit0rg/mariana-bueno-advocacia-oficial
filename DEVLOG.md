@@ -64,6 +64,12 @@
     * **Barreira de Entrada:** Ao acessar a rota `/adm` (ou painel de login), o primeiro campo a ser preenchido será o "Token de Segurança".
     * **Liberação:** Somente após validar o Token correto, o formulário de E-mail/Senha do Firebase será liberado. Sem o token (que só o cadeado gera), a tela de login permanece bloqueada.
 
+### 📱 Blog & Integração Social (Instagram) [NOVO]
+- [ ] **Feed Dinâmico (Mosaico):**
+    * Criar seção "Atualizações Jurídicas" conectada ao perfil [@adv.marianabueno](https://www.instagram.com/adv.marianabueno/).
+    * *Formato:* Exibir os últimos Reels/Posts (temas: pensão, imóveis, etc.) em formato de mosaico elegante.
+    * *UX:* Design limpo, sem poluição visual, servindo como "isca" de conteúdo que ancora o usuário diretamente para o perfil profissional dela.
+
 ### 🚨 Performance & Acessibilidade (Lighthouse)
 - [ ] **Contraste:** Ajustar tons de dourado/cinza para leitura perfeita.
 - [ ] **Aria-Labels:** Adicionar nomes acessíveis nos links de ícones.
