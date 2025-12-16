@@ -10,21 +10,22 @@
 ### 🚀 Fase 1 a 6 (Concluídas)
 - **Base:** Next.js 16, Tailwind v4, Design System "Dark & Gold".
 - **Funcionalidades:** Header Glass, WhatsApp Pulsante, Cookies LGPD, Otimização de Imagens.
-- **SEO:** Metadados configurados e Open Graph (Link Preview) com logo oficial.
+- **SEO:** Metadados configurados, Open Graph com logo oficial e Cache Headers (1 ano).
+- **Performance:** Lazy Loading implementado nas seções pesadas (About, Areas, Contact).
 
 ---
 
 ## 💎 Fase Final: Polimento & Exclusividade (A Fazer)
 
 ### 🎨 Design & Marca (Solicitações Especiais)
-- [ ] **Refinamento da Logo:** Tratamento profissional da logo oficial (Dra. Mariana) para alta definição, fundo transparente e compressão máxima (Splash/TinyPNG).
-- [ ] **Redesign do Hero (Main):** Reorganizar a primeira seção para encaixar a Logo Oficial com destaque, mantendo o texto "Advocacia de Alta Performance" e a harmonia atual.
+- [ ] **Refinamento da Logo:** Tratamento profissional da logo oficial para alta definição e fundo transparente.
+- [ ] **Redesign do Hero (Main):** Reorganizar a primeira seção para encaixar a Logo Oficial com destaque.
+- [ ] **Scroll Mobile Dourado:** Forçar a estilização da barra de rolagem também em dispositivos móveis (atualmente nativa).
 
 ### 🏎️ Performance & Otimização
-- [ ] **Smooth Scroll & Rendering:** Refinar o código para eliminar "engasgos" na rolagem e garantir fluidez absoluta (120FPS).
-- [ ] **Cache Inteligente (PWA):** Implementar Service Workers para carregamento instantâneo nas visitas recorrentes.
-- [ ] **Lazy Loading Otimizado:** Ajustar o momento de aparição dos elementos.
+- [ ] **PWA (Instalável):** Criar o Manifesto para que o site possa ser instalado na tela inicial como um App.
+- [ ] **Sitemap & Robots:** Gerar os arquivos finais para indexação no Google.
 
 ### 📈 Expansão Futura
-- [ ] Testes de performance (Lighthouse e Core Web Vitals).
-- [ ] Substituição final das fotos (Quando houver fotos de estúdio oficiais).
+- [ ] Testes de performance (Lighthouse).
+- [ ] Substituição final das fotos (Oficiais da Dra.).
