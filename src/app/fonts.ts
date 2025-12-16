@@ -1,15 +1,8 @@
-import { Cinzel, Montserrat } from 'next/font/google';
+import { Inter } from "next/font/google";
 
-export const cinzel = Cinzel({
-  subsets: ['latin'],
-  variable: '--font-cinzel',
-  display: 'swap',
-  weight: ['400', '500', '600', '700'], 
-});
-
-export const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-montserrat',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
+// Fonte Padrão (Limpa, Moderna e Sem Serifa)
+export const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
 });
