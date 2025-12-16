@@ -8,10 +8,8 @@ export function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Verifica se já aceitou os cookies antes
     const consent = localStorage.getItem("cookie-consent");
     if (!consent) {
-      // Se não tem registro, mostra o banner depois de 2 segundos
       const timer = setTimeout(() => setIsVisible(true), 2000);
       return () => clearTimeout(timer);
     }
@@ -34,12 +32,11 @@ export function CookieBanner() {
         >
           <div className="bg-rich-gray/95 backdrop-blur-md border border-gold-primary/20 p-6 rounded-lg shadow-2xl flex flex-col gap-4 relative overflow-hidden">
             
-            {/* Brilho Dourado de Fundo */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-gold-primary/10 blur-[50px] rounded-full pointer-events-none" />
 
             <div className="flex items-start gap-4 z-10">
               <div className="bg-white/5 p-2 rounded text-gold-primary">
-                <Cookie size={24} />
+                <Cookie size={24} aria-hidden="true" /> {/* Ícone decorativo ignorado por leitores */}
               </div>
               <div>
                 <h4 className="text-white font-serif font-bold mb-1">Sua Privacidade</h4>
@@ -50,8 +47,9 @@ export function CookieBanner() {
               <button 
                 onClick={() => setIsVisible(false)} 
                 className="text-gray-500 hover:text-white transition-colors"
+                aria-label="Fechar aviso de cookies" // <--- CORREÇÃO AQUI
               >
-                <X size={18} />
+                <X size={18} aria-hidden="true" />
               </button>
             </div>
 
