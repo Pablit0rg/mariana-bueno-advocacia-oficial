@@ -1,4 +1,6 @@
-const config = {
+import type { Config } from "tailwindcss";
+
+export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,23 +9,22 @@ const config = {
   theme: {
     extend: {
       colors: {
-        rich: {
-          black: "#050505",
-          gray: "#121212",
-          surface: "#1E1E1E",
-        },
-        gold: {
-          primary: "#D4AF37",
-          light: "#F4C430",
-          dark: "#AA771C",
-        }
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        // Mantendo suas cores de luxo
+        "rich-black": "#050505",
+        "rich-gray": "#0a0a0a",
+        "gold-primary": "#D4AF37",
+        "gold-light": "#F4DF8D",
+        "gold-dark": "#AA8C2C",
       },
       fontFamily: {
-        serif: ['var(--font-cinzel)', 'serif'],
-        sans: ['var(--font-montserrat)', 'sans-serif'],
+        // Truque: Mapeamos AMBAS para a Inter. 
+        // Assim, os títulos (serif) ficam retos como você queria.
+        sans: ["var(--font-inter)", "sans-serif"],
+        serif: ["var(--font-inter)", "serif"], 
       },
     },
   },
   plugins: [],
-};
-export default config;
+} satisfies Config;
