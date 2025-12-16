@@ -1,38 +1,85 @@
 @import "tailwindcss";
 
-:root {
-  --background: #050505;
-  --foreground: #ededed;
+@theme {
+  /* Cores Personalizadas (Brand Colors) */
+  --color-rich-black: #050505;
+  --color-rich-gray: #0a0a0a;
+  --color-gold-primary: #D4AF37;
+  --color-gold-light: #F4DF8D;
+  --color-gold-dark: #AA8C2C;
+
+  /* Fontes Personalizadas */
+  --font-serif: var(--font-cinzel);
+  --font-sans: var(--font-montserrat);
+}
+
+/* =========================================
+   RESET E CONFIGURAÇÕES GLOBAIS
+   ========================================= */
+html {
+  scroll-behavior: smooth; /* Rolagem suave nativa */
+  -webkit-font-smoothing: antialiased; /* Fontes mais nítidas */
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
+  background-color: var(--color-rich-black);
+  color: white;
+  overflow-x: hidden; /* Evita rolagem lateral indesejada */
 }
 
-/* Utilitário para texto Dourado Metálico */
+/* =========================================
+   BARRA DE ROLAGEM PERSONALIZADA (LUXO)
+   ========================================= */
+/* Funciona em Chrome, Edge e Safari */
+::-webkit-scrollbar {
+  width: 8px; /* Largura fina e elegante */
+}
+
+::-webkit-scrollbar-track {
+  background: #050505; /* Fundo preto (funde com o site) */
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #AA8C2C, #D4AF37); /* Dourado */
+  border-radius: 4px; /* Arredondado */
+  border: 1px solid #050505; /* Borda para destacar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #F4DF8D; /* Fica mais claro ao passar o mouse */
+}
+
+/* =========================================
+   UTILITÁRIOS DE TEXTO (GRADIENTES)
+   ========================================= */
 .text-gold-gradient {
-  background: linear-gradient(
-    to right,
-    #AA771C 0%,
-    #D4AF37 25%,
-    #F4C430 50%,
-    #D4AF37 75%,
-    #AA771C 100%
-  );
+  background: linear-gradient(to right, #D4AF37, #F4DF8D, #D4AF37);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   background-size: 200% auto;
-  animation: shine 5s linear infinite;
+  animation: shine 5s linear infinite; /* Brilho sutil passando */
 }
 
 @keyframes shine {
   to {
     background-position: 200% center;
   }
+}
+
+/* =========================================
+   OTIMIZAÇÃO DE PERFORMANCE (GPU)
+   ========================================= */
+/* Classe para elementos pesados (Glassmorphism) não travarem */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Melhora a seleção de texto para combinar com o tema */
+::selection {
+  background-color: rgba(212, 175, 55, 0.3); /* Dourado transparente */
+  color: white;
 }
