@@ -8,58 +8,58 @@
   --color-gold-light: #F4DF8D;
   --color-gold-dark: #AA8C2C;
 
-  /* Fontes Personalizadas */
-  --font-serif: var(--font-cinzel);
-  --font-sans: var(--font-montserrat);
+  /* AGORA SIM: Mapeando tudo para a INTER */
+  /* Onde o site pedir "Serif" (Títulos), ele vai entregar Inter (Reta) */
+  --font-serif: var(--font-inter);
+  --font-sans: var(--font-inter);
 }
 
 /* =========================================
    RESET E CONFIGURAÇÕES GLOBAIS
    ========================================= */
 html {
-  scroll-behavior: smooth; /* Rolagem suave nativa */
-  -webkit-font-smoothing: antialiased; /* Fontes mais nítidas */
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background-color: var(--color-rich-black);
   color: white;
-  overflow-x: hidden; /* Evita rolagem lateral indesejada */
+  overflow-x: hidden;
+  font-family: var(--font-inter), sans-serif; /* Força bruta para garantir */
 }
+
+/* ... (Mantenha o resto do arquivo da barra de rolagem para baixo igual) ... */
 
 /* =========================================
    BARRA DE ROLAGEM PERSONALIZADA (LUXO)
    ========================================= */
-/* Funciona em Chrome, Edge e Safari */
 ::-webkit-scrollbar {
-  width: 8px; /* Largura fina e elegante */
+  width: 8px;
 }
-
+/* ... (pode manter o restante do código da barra de rolagem e animações) */
 ::-webkit-scrollbar-track {
-  background: #050505; /* Fundo preto (funde com o site) */
+  background: #050505;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #AA8C2C, #D4AF37); /* Dourado */
-  border-radius: 4px; /* Arredondado */
-  border: 1px solid #050505; /* Borda para destacar */
+  background: linear-gradient(to bottom, #AA8C2C, #D4AF37);
+  border-radius: 4px;
+  border: 1px solid #050505;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #F4DF8D; /* Fica mais claro ao passar o mouse */
+  background: #F4DF8D;
 }
 
-/* =========================================
-   UTILITÁRIOS DE TEXTO (GRADIENTES)
-   ========================================= */
 .text-gold-gradient {
   background: linear-gradient(to right, #D4AF37, #F4DF8D, #D4AF37);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   background-size: 200% auto;
-  animation: shine 5s linear infinite; /* Brilho sutil passando */
+  animation: shine 5s linear infinite;
 }
 
 @keyframes shine {
@@ -68,18 +68,13 @@ body {
   }
 }
 
-/* =========================================
-   OTIMIZAÇÃO DE PERFORMANCE (GPU)
-   ========================================= */
-/* Classe para elementos pesados (Glassmorphism) não travarem */
 .gpu-accelerated {
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
 }
 
-/* Melhora a seleção de texto para combinar com o tema */
 ::selection {
-  background-color: rgba(212, 175, 55, 0.3); /* Dourado transparente */
+  background-color: rgba(212, 175, 55, 0.3);
   color: white;
 }
