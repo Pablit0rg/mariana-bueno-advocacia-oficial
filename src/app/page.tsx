@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import Image from "next/image"; // Importei o componente de Imagem
+import Image from "next/image"; 
 import { ShieldCheck } from "lucide-react";
 
 // --- CÓDIGO DO SITE (MANTIDO IMPORTADO MAS COMENTADO NO RETURN) ---
@@ -36,10 +36,10 @@ export default function Home() {
                 descomente a parte do <Image /> e comente o <ShieldCheck />.
             */}
             
-            {/* Opção 1: Escudo (Ativo enquanto não temos a logo transparente) */}
+            {/* Opção 1: Escudo (Ativo) */}
             <ShieldCheck className="text-gold-primary w-16 h-16 md:w-20 md:h-20" strokeWidth={1} />
 
-            {/* Opção 2: Logo Oficial (Descomente abaixo quando tiver o arquivo) */}
+            {/* Opção 2: Logo Oficial (Aguardando arquivo) */}
             {/* <div className="relative w-32 h-32 md:w-40 md:h-40">
               <Image 
                 src="/logo.png" 
@@ -71,8 +71,8 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Rodapé da Manutenção (Atualizado) */}
-          <div className="absolute bottom-8 text-gray-600 text-[10px] md:text-xs uppercase tracking-widest opacity-60">
+          {/* Rodapé da Manutenção (Tamanho Original Restaurado) */}
+          <div className="absolute bottom-8 text-gray-600 text-xs text-center px-4">
             © 2025 Mariana Bueno Advocacia. Todos os direitos reservados.
           </div>
         </div>
