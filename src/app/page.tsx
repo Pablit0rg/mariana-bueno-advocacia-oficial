@@ -28,7 +28,8 @@ export default function Home() {
           {/* Efeito de Luz de Fundo */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold-primary/5 blur-[100px] rounded-full pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col items-center gap-6 animate-pulse">
+          {/* CONTEÚDO (Removido animate-pulse para ficar estático) */}
+          <div className="relative z-10 flex flex-col items-center gap-6">
             <ShieldCheck className="text-gold-primary w-16 h-16 md:w-20 md:h-20" strokeWidth={1} />
             
             <div className="space-y-2">
