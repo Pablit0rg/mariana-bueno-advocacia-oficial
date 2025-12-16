@@ -1,0 +1,27 @@
+{
+  "name": "Dra. Mariana Bueno | Advocacia de Alta Complexidade",
+  "short_name": "Dra. Mariana",
+  "description": "Escritório boutique especializado em Direito de Família e Sucessões.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/og-image.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/og-image.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
