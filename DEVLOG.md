@@ -37,15 +37,15 @@
 - [ ] **Nomes em Links (Aria-Labels):** Adicionar `aria-label="Instagram"` e `aria-label="WhatsApp"` nos botões de ícone do Rodapé (Footer) e Header, pois leitores de tela estão lendo apenas "link".
 
 #### 2. Performance (Rumo ao 100)
-- [ ] **Imagens Responsivas (`sizes`):** O Lighthouse apontou que estamos baixando imagens de 750px para exibir em espaços de 300px.
-    * *Ação:* Configurar a prop `sizes="(max-width: 768px) 100vw, 50vw"` no componente `next/image` do Hero e About para o navegador baixar a versão leve no celular.
-- [ ] **CLS (Layout Shift):** A animação `text-gold-gradient` está causando recálculos de layout.
-    * *Ação:* Otimizar o CSS da animação para usar apenas `transform` ou `opacity`, ou fixar dimensões.
+- [ ] **Imagens Responsivas (`sizes`):** Configurar a prop `sizes="(max-width: 768px) 100vw, 50vw"` no componente `next/image` do Hero e About para o celular baixar versões leves.
+- [ ] **CLS (Layout Shift):** Otimizar o CSS da animação `text-gold-gradient` para evitar recálculos de layout.
 
 ### 🎨 Design & Marca (Solicitações Especiais)
+- [ ] **Botão "Voltar ao Topo":** Alterar a cor padrão para **Dourado Fixo** (atualmente é preto e só fica dourado no hover). O objetivo é dar destaque imediato.
+    * *Nota:* Planejar nova animação de interação (hover) para o futuro.
 - [ ] **Refinamento da Logo:** Tratamento profissional da logo oficial (Dra. Mariana) para alta definição, fundo transparente e compressão WebP.
 - [ ] **Redesign do Hero (Main):** Reestruturar a primeira dobra para encaixar a Logo Oficial com destaque ao lado do texto.
-- [ ] **Scroll Mobile:** Investigar solução para forçar a barra de rolagem dourada também no Android/iOS (atualmente nativa).
+- [ ] **Scroll Mobile:** Investigar solução para forçar a barra de rolagem dourada também no Android/iOS.
 
 ### 📈 Expansão Futura
 - [ ] Substituição final das fotos (Quando a Dra. enviar as oficiais de estúdio).
