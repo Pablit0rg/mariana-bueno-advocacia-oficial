@@ -7,35 +7,24 @@
 
 ## 🗓️ DIÁRIO DE BORDO
 
-### 🚀 Fase 1 a 5 (Concluídas)
-- **Setup & Identidade:** Next.js, Tailwind v4, Fontes Cinzel/Montserrat, Cores Dark & Gold.
-- **Estrutura:** Header Glassmorphism, Footer, Hero, Sobre, Áreas, Depoimentos, Contato.
-- **Deploy:** Vercel configurada e correções de compatibilidade Tailwind v4 aplicadas.
-
-### 💎 Fase 6: Refinamento Visual (Concluída)
-**Status:** ✅ Concluída
-- [x] **Header:** Borda fixa no topo e sublinhado animado no menu.
-- [x] **Hero:** Foto realista implementada.
-- [x] **Sobre:** Alinhamento de texto e divisórias visíveis.
-- [x] **Áreas:** Hover dourado desbloqueado para todos os cards.
-- [x] **Depoimentos:** Bordas padronizadas "Social Chique".
-- [x] **Rodapé:** Links de navegação funcionais e bordas reforçadas.
-- [x] **Funcionalidade:** Botões com links externos e WhatsApp pulsante 2.0.
+### 🚀 Fase 1 a 6 (Concluídas)
+- **Base:** Next.js 16, Tailwind v4, Design System "Dark & Gold".
+- **Funcionalidades:** Header Glass, WhatsApp Pulsante, Cookies LGPD, Otimização de Imagens.
+- **SEO:** Metadados configurados e Open Graph (Link Preview) com logo oficial.
 
 ---
 
-## 🎯 PRÓXIMOS PASSOS (Roadmap Futuro)
+## 💎 Fase Final: Polimento & Exclusividade (A Fazer)
 
-### 🏎️ Performance & Otimização (A Prioridade)
-- [ ] **Smooth Scroll & Rendering:** Refinar o código para eliminar "engasgos" na rolagem (reduzir peso de blur/sombras em telas grandes).
-- [ ] **Cache Inteligente (PWA):** Implementar Service Workers para que o navegador "memorize" o site na primeira visita, carregando instantaneamente nas próximas.
-- [ ] **Lazy Loading Otimizado:** Ajustar o momento em que os conteúdos aparecem para ser mais harmônico e menos "demorado".
+### 🎨 Design & Marca (Solicitações Especiais)
+- [ ] **Refinamento da Logo:** Tratamento profissional da logo oficial (Dra. Mariana) para alta definição, fundo transparente e compressão máxima (Splash/TinyPNG).
+- [ ] **Redesign do Hero (Main):** Reorganizar a primeira seção para encaixar a Logo Oficial com destaque, mantendo o texto "Advocacia de Alta Performance" e a harmonia atual.
 
-### ⚖️ Legal & Compliance
-- [ ] **Cookie Banner Premium:** Criar um banner de consentimento de cookies estilizado (Dark & Gold) que combine com o site e respeite a LGPD.
+### 🏎️ Performance & Otimização
+- [ ] **Smooth Scroll & Rendering:** Refinar o código para eliminar "engasgos" na rolagem e garantir fluidez absoluta (120FPS).
+- [ ] **Cache Inteligente (PWA):** Implementar Service Workers para carregamento instantâneo nas visitas recorrentes.
+- [ ] **Lazy Loading Otimizado:** Ajustar o momento de aparição dos elementos.
 
-### 📈 Expansão
-- [ ] Otimização de SEO (Metadados avançados, Open Graph).
+### 📈 Expansão Futura
 - [ ] Testes de performance (Lighthouse e Core Web Vitals).
-- [ ] Substituição final das fotos (Oficiais da Dra.).
-- [ ] 
+- [ ] Substituição final das fotos (Quando houver fotos de estúdio oficiais).
