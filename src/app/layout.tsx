@@ -6,17 +6,18 @@ import { WhatsAppButton } from "../components/ui/WhatsAppButton";
 import { CookieBanner } from "../components/ui/CookieBanner";
 import "./globals.css";
 
-// Configuração de Viewport (Zoom e Escala em celulares)
+// Configuração de Viewport
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#050505", // A cor da barra do navegador no celular (Fica preto chique)
+  themeColor: "#050505",
 };
 
 // Configuração Completa de SEO (Metadados)
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mariana-bueno-advocacia.vercel.app"), // URL do seu site (ajustaremos se mudar)
+  // CORREÇÃO AQUI: Adicionado "-oficial" para bater com a URL real da Vercel
+  metadataBase: new URL("https://mariana-bueno-advocacia-oficial.vercel.app"),
   
   title: {
     default: "Dra. Mariana Bueno | Advocacia de Alta Complexidade",
@@ -38,17 +39,18 @@ export const metadata: Metadata = {
   authors: [{ name: "Dra. Mariana Bueno" }],
   creator: "Pablo Rosa Gomes (Full-Stack Developer)",
   
-  // Como aparece no Facebook / WhatsApp (Open Graph)
+  // Open Graph (WhatsApp / Facebook)
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://mariana-bueno-advocacia.vercel.app",
+    // CORREÇÃO AQUI TAMBÉM
+    url: "https://mariana-bueno-advocacia-oficial.vercel.app",
     title: "Dra. Mariana Bueno | Advocacia Especializada",
     description: "Defesa estratégica em Direito de Família e Sucessões. Agende sua consulta.",
     siteName: "Mariana Bueno Advocacia",
     images: [
       {
-        url: "/og-image.jpg", // Vamos precisar criar essa imagem depois
+        url: "/og-image.jpg", // Agora vai funcionar porque a base está certa
         width: 1200,
         height: 630,
         alt: "Dra. Mariana Bueno - Escritório Digital",
@@ -56,7 +58,7 @@ export const metadata: Metadata = {
     ],
   },
 
-  // Como aparece no Twitter
+  // Twitter
   twitter: {
     card: "summary_large_image",
     title: "Dra. Mariana Bueno | Advocacia Premium",
@@ -64,13 +66,11 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
 
-  // Ícones (Favicon)
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
 
-  // Instruções para Robôs (Google)
   robots: {
     index: true,
     follow: true,
@@ -93,9 +93,7 @@ export default function RootLayout({
     <html lang="pt-br" className="scroll-smooth">
       <body className={`${cinzel.variable} ${montserrat.variable} font-sans bg-rich-black text-white antialiased selection:bg-gold-primary/30 selection:text-white`}>
         <Header />
-        
         {children}
-        
         <Footer />
         <WhatsAppButton />
         <CookieBanner />
