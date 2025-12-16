@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, ShieldCheck } from "lucide-react";
-// import Image from "next/image"; // Não vamos usar agora pois são links externos
+import Image from "next/image"; // <--- Import ativado
 
 export function Hero() {
   return (
@@ -57,7 +57,7 @@ export function Hero() {
           </div>
         </motion.div>
 
-        {/* LADO DIREITO: Foto Real (Pexels) */}
+        {/* LADO DIREITO: Foto Real Otimizada */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -66,15 +66,17 @@ export function Hero() {
         >
           <div className="relative w-full h-full rounded-t-[100px] border border-white/10 overflow-hidden shadow-2xl group">
              
-             {/* Usando a tag img padrão para link externo */}
-             <img 
+             {/* Componente Next/Image Otimizado */}
+             <Image 
                src="https://images.pexels.com/photos/8111815/pexels-photo-8111815.jpeg" 
                alt="Advogada especialista"
-               className="object-cover object-top w-full h-full opacity-90 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105 transform"
+               fill // Preenche o pai
+               priority // Carrega IMEDIATAMENTE (Capa)
+               className="object-cover object-top opacity-90 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
              />
              
              {/* Degradê na base */}
-             <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-rich-black via-rich-black/50 to-transparent" />
+             <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-rich-black via-rich-black/50 to-transparent z-10" />
           </div>
         </motion.div>
 
