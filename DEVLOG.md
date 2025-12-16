@@ -51,6 +51,8 @@
 - [ ] **WhatsApp Button 3.0:**
     * *Ícone:* Trocar pelo vetor do WhatsApp mais moderno/clean disponível.
     * *Radar:* Manter o efeito pulsante, mas alterar o intervalo para **5 segundos** (reduzir pressão visual no usuário).
+    * *Copywriting (Mensagem):* Configurar mensagem de saudação automática no link.
+        * *Requisito:* Linguagem simples, popular e direta, sem formalidade excessiva, mas ética. Deve passar tranquilidade e confiança para iniciar o atendimento (ex: "Olá Dra. Mariana, gostaria de agendar um atendimento.").
 - [ ] **Botão "Voltar ao Topo":**
     * Cor fixa Dourada (destaque imediato).
 
