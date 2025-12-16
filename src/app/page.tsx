@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image"; // Importei o componente de Imagem
 import { ShieldCheck } from "lucide-react";
 
 // --- CÓDIGO DO SITE (MANTIDO IMPORTADO MAS COMENTADO NO RETURN) ---
@@ -28,9 +29,27 @@ export default function Home() {
           {/* Efeito de Luz de Fundo */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold-primary/5 blur-[100px] rounded-full pointer-events-none" />
 
-          {/* CONTEÚDO (Removido animate-pulse para ficar estático) */}
           <div className="relative z-10 flex flex-col items-center gap-6">
+            
+            {/* --- ÁREA DA LOGO --- */}
+            {/* DICA DE OURO: Assim que subir o arquivo 'logo.png' na pasta public,
+                descomente a parte do <Image /> e comente o <ShieldCheck />.
+            */}
+            
+            {/* Opção 1: Escudo (Ativo enquanto não temos a logo transparente) */}
             <ShieldCheck className="text-gold-primary w-16 h-16 md:w-20 md:h-20" strokeWidth={1} />
+
+            {/* Opção 2: Logo Oficial (Descomente abaixo quando tiver o arquivo) */}
+            {/* <div className="relative w-32 h-32 md:w-40 md:h-40">
+              <Image 
+                src="/logo.png" 
+                alt="Logo Dra. Mariana Bueno" 
+                fill
+                className="object-contain"
+                priority
+              />
+            </div> 
+            */}
             
             <div className="space-y-2">
               <h1 className="font-serif text-3xl md:text-5xl text-white font-bold tracking-wide">
@@ -52,9 +71,9 @@ export default function Home() {
             </span>
           </div>
 
-          {/* Rodapé da Manutenção */}
-          <div className="absolute bottom-8 text-gray-600 text-xs">
-            © 2025 Mariana Bueno Advocacia
+          {/* Rodapé da Manutenção (Atualizado) */}
+          <div className="absolute bottom-8 text-gray-600 text-[10px] md:text-xs uppercase tracking-widest opacity-60">
+            © 2025 Mariana Bueno Advocacia. Todos os direitos reservados.
           </div>
         </div>
       </main>
