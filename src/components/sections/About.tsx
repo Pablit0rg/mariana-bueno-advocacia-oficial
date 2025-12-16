@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CheckCircle2, Award, Scale } from "lucide-react";
+import Image from "next/image"; // <--- Import Novo
 
 export function About() {
   
@@ -18,10 +19,9 @@ export function About() {
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-gold-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8">
-        {/* Mudei items-center para items-start para alinhar pelo topo */}
         <div className="grid md:grid-cols-2 gap-16 items-start">
           
-          {/* LADO ESQUERDO: A Imagem */}
+          {/* LADO ESQUERDO: A Imagem Otimizada */}
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -32,17 +32,18 @@ export function About() {
             {/* Moldura Dourada */}
             <div className="absolute -inset-4 border-2 border-gold-primary/30 rounded-lg translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-500" />
             
+            {/* Container da Foto */}
             <div className="relative h-[500px] bg-rich-black rounded-lg border border-white/10 overflow-hidden shadow-2xl z-10">
-              <img 
+              <Image 
                src="https://images.pexels.com/photos/34207045/pexels-photo-34207045.png"
                alt="Dra. Mariana Bueno - Perfil Profissional"
-               className="object-cover w-full h-full grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+               fill // Ocupa todo o container pai
+               className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
              />
             </div>
           </motion.div>
 
           {/* LADO DIREITO: O Texto */}
-          {/* Adicionei pt-4 para um ajuste fino no alinhamento com a moldura da foto */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -67,7 +68,6 @@ export function About() {
             </p>
 
             {/* Cards de Destaque */}
-            {/* Aumentei o contraste da borda aqui: border-gold-primary/30 */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-gold-primary/30 pt-8">
               {stats.map((stat, index) => (
                 <div key={index} className="flex flex-col items-center sm:items-start gap-2">
