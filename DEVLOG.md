@@ -78,6 +78,7 @@
 - [ ] **Imagens Responsivas:** Configurar `sizes` para baixar versões leves no mobile.
 - [ ] **CLS:** Otimizar animações de texto para evitar trocas de layout.
 
-### 🖌️ Branding (Identidade)
-- [ ] **Refinamento da Logo:** Tratamento da logo oficial para alta definição e fundo transparente.
-- [ ] **Redesign do Hero:** Reestruturar a dobra principal para encaixar a Logo Oficial ao lado da headline.
+### 🖌️ Branding (Identidade Visual Dupla) [ATUALIZADO]
+- [ ] **Refinamento da Logo Oficial:** Tratamento para alta definição e fundo transparente.
+- [ ] **Aplicação 1 - Navbar (Institucional):** Substituir o título em texto do Header pela Logo Oficial (tamanho controlado) para marcar presença em todas as páginas.
+- [ ] **Aplicação 2 - Hero (Artística):** Fundir a Logo Oficial (em versão grande/3D/Metálica) com a headline principal "Defesa Estratégica", criando uma composição de impacto estilo "Assinatura Visual".
