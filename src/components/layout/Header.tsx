@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image"; // Import necessário para a Logo
+// import Image from "next/image"; // Descomente amanhã para a logo
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -10,10 +10,10 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Efeito de scroll para mudar o fundo do menu
+  // Efeito de scroll para mudar o fundo (Glassmorphism)
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -30,16 +30,19 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
         scrolled 
-          ? "bg-rich-black/90 backdrop-blur-md border-gold-primary/20 py-4 shadow-xl" 
-          : "bg-transparent border-transparent py-6"
-      }`}
+          ? "bg-rich-black/90 backdrop-blur-md py-3 shadow-xl" 
+          : "bg-transparent py-5"
+      } 
+      /* AQUI ESTÁ A CORREÇÃO DA LINHA: */
+      /* Ela agora é fixa (border-gold-primary/10) independente do scroll */
+      border-gold-primary/10`}
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         
         {/* --- LOGO / BRANDING --- */}
         <Link href="/" className="group relative z-50" aria-label="Ir para página inicial">
           
-          {/* OPÇÃO 1: TEXTO (Ativo por enquanto) */}
+          {/* OPÇÃO 1: TEXTO (Ativo) */}
           <div className="flex flex-col">
             <h1 className="font-serif text-xl md:text-2xl font-bold text-white tracking-wider group-hover:text-gold-primary transition-colors">
               MARIANA BUENO
@@ -49,18 +52,10 @@ export function Header() {
             </span>
           </div>
 
-          {/* OPÇÃO 2: LOGO IMAGEM (Descomente amanhã quando tiver o arquivo 'logo-header.png') 
-              Sugestão: Usar uma versão horizontal da logo se tiver.
-          */}
+          {/* OPÇÃO 2: LOGO IMAGEM (Para amanhã) */}
           {/* <div className="relative w-48 h-12 hidden md:block">
-            <Image 
-              src="/logo-header.png" 
-              alt="Mariana Bueno Advocacia" 
-              fill 
-              className="object-contain object-left" 
-            />
-          </div>
-          */}
+            <Image src="/logo-header.png" alt="Mariana Bueno Advocacia" fill className="object-contain object-left" />
+          </div> */}
         </Link>
 
         {/* --- MENU DESKTOP --- */}
@@ -76,21 +71,22 @@ export function Header() {
             </Link>
           ))}
           
-          {/* BOTÃO PREMIUM (SHIMMER EFFECT) */}
+          {/* BOTÃO PREMIUM (PADRÃO SOLID GOLD) */}
+          {/* Antes era transparente, agora é Dourado Fixo */}
           <a 
             href="https://wa.me/5541999999999"
             target="_blank"
             rel="noopener noreferrer"
-            className="relative inline-flex items-center gap-2 px-6 py-2 bg-transparent border border-gold-primary/50 text-gold-primary rounded overflow-hidden group hover:border-gold-primary transition-colors"
+            className="relative inline-flex items-center gap-2 px-6 py-3 bg-gold-primary text-rich-black rounded overflow-hidden group hover:bg-white transition-colors shadow-[0_0_15px_rgba(212,175,55,0.2)]"
             aria-label="Falar com a advogada no WhatsApp"
           >
-            {/* O Brilho Dourado que passa */}
-            <div className="absolute inset-0 bg-gold-primary translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 ease-out -z-10" />
+            {/* Efeito Shimmer (Reflexo Branco passando) */}
+            <div className="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out skew-x-12" />
             
-            <span className="text-xs font-bold uppercase tracking-widest group-hover:text-rich-black transition-colors relative z-10">
+            <span className="text-xs font-bold uppercase tracking-widest relative z-10">
               Falar com a Advogada
             </span>
-            <ArrowRight size={14} className="group-hover:text-rich-black transition-colors relative z-10" />
+            <ArrowRight size={14} className="relative z-10 group-hover:translate-x-1 transition-transform" />
           </a>
         </nav>
 
@@ -132,6 +128,7 @@ export function Header() {
 
             <div className="w-16 h-[1px] bg-white/10 my-4" />
 
+            {/* Botão Mobile também Solid Gold */}
             <a 
               href="https://wa.me/5541999999999"
               target="_blank"
