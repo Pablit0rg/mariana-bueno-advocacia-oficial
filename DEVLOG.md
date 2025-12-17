@@ -30,55 +30,43 @@
 
 ## 💎 Fase Final: Refinamento "High Ticket" (Backlog Prioritário)
 
-### 🎨 UI & Layout (Ajustes Visuais)
-- [ ] **Cookie Banner (Full Width):**
-    * *Desktop:* Esticar a barra de ponta a ponta (100% width).
-    * *Conteúdo:* Ajustar o texto harmonicamente para preencher o espaço (avaliar texto padrão LGPD mais longo se necessário para o equilíbrio visual).
-- [ ] **Imagens (Dra. Mariana):**
-    * *Estilo:* Definir padrão de bordas (com ou sem linha fina branca) para consistência entre Hero e Sobre.
-    * *Performance/Sobriedade:* **Remover** o efeito de zoom/movimento no hover. Manter estático para aliviar a memória do browser e passar mais seriedade profissional.
-- [ ] **Perfil Profissional (Mini-Cards):**
-    * Transformar os itens (Especialista, 4 Anos, OAB) em "Mini-cards".
-    * *Estilo:* Seguir padrão de "Áreas de Atuação" (borda fina, hover com destaque dourado e leve movimento).
-- [ ] **Footer (Matemática Visual):**
-    * Manter todo o conteúdo atual inalterado.
-    * *Ajuste:* Aplicar espaçamento matematicamente perfeito entre as colunas (Navegação, Áreas, Contato) para valorizar o "respiro" (whitespace) do layout.
+### 🎨 UI & Layout (Correções Visuais)
+- [ ] **Navbar (Linha Fixa):**
+    * *Problema:* A linha inferior (borda) desaparece quando o site está no topo (0px).
+    * *Ação:* Fixar a borda `border-gold-primary` para ser visível permanentemente, independente do scroll.
+- [ ] **Seção Contato (Alinhamento & Harmonia):**
+    * *Problema:* Os cards da esquerda (Telefone, Email, Endereço) e o formulário da direita não estão alinhados verticalmente.
+    * *Ação:* Ajustar o layout para que o topo do primeiro card e o fundo do último card fiquem na mesma "linha invisível" do formulário, criando um bloco sólido e organizado.
+- [ ] **Botão "Voltar ao Topo" (Resgate):**
+    * *Problema:* O botão sumiu da tela (possível erro de `z-index` ou lógica).
+    * *Ação:* Trazer o botão de volta, garantindo que funcione e fique visível acima do rodapé.
 
-### ✨ Interatividade & Efeitos (UX)
-- [ ] **Botões (Novo Efeito Hover):**
-    * **Remover:** O efeito de "subir" (translate-y).
-    * **Adicionar:** Efeito de "Reflexo Dourado" (Shimmer/Brilho) passando pelo botão, valorizando a cor sem mover o elemento.
+### ✨ Interatividade & Branding (UX)
+- [ ] **Padrão CTA "Solid Gold" (Dourado Fixo):**
+    * *Regra:* Padronizar todos os botões de ação ("Falar com Advogada", etc.) com a cor **Dourada Fixa** (`bg-gold-primary`).
+    * *Ajuste:* Remover estilos transparentes ou outline do botão do Header e outros CTAs.
+- [ ] **Botão Instagram (Cores Oficiais):**
+    * *Ação:* Alterar o botão "Siga no Instagram" para usar as **Cores Oficiais** da rede social (Gradiente Roxo/Laranja) para modernizar e aumentar o reconhecimento, mantendo o texto do CTA.
+- [ ] **Efeito Shimmer (Reflexo):**
+    * Aplicar o efeito de brilho passando em todos os botões dourados.
 - [ ] **WhatsApp Button 3.0:**
-    * *Ícone:* Trocar pelo vetor do WhatsApp mais moderno/clean disponível.
-    * *Radar:* Manter o efeito pulsante, mas alterar o intervalo para **5 segundos** (reduzir pressão visual no usuário).
-    * *Copywriting (Mensagem):* Configurar mensagem de saudação automática no link.
-        * *Requisito:* Linguagem simples, popular e direta, sem formalidade excessiva, mas ética. Deve passar tranquilidade e confiança para iniciar o atendimento (ex: "Olá Dra. Mariana, gostaria de agendar um atendimento.").
-- [ ] **Botão "Voltar ao Topo":**
-    * Cor fixa Dourada (destaque imediato).
+    * Ícone vetorizado moderno + Radar 5s + Mensagem de saudação acolhedora.
 
-### 🔐 Funcionalidade & Credibilidade (Segurança Avançada)
+### 🔐 Funcionalidade & Credibilidade
 - [ ] **Selo de Segurança (Footer):**
-    * Substituir "Desenvolvido com Excelência" por selo/frase de segurança ("Site Seguro" ou similar).
-    * *Ícone:* Adicionar Cadeado moderno ao lado.
+    * Texto "Site Seguro" + Cadeado Moderno.
 - [ ] **Protocolo de Login Oculto (Anti-Invasão):**
-    * **Gatilho:** O ícone do cadeado exigirá **Duplo Clique** para ativar.
-    * **Geração de Token:** Ao ativar, o sistema gera um código aleatório (Token temporário) e exibe para a Dra. (ex: num modal ou toast discreto).
-    * **Barreira de Entrada:** Ao acessar a rota `/adm` (ou painel de login), o primeiro campo a ser preenchido será o "Token de Segurança".
-    * **Liberação:** Somente após validar o Token correto, o formulário de E-mail/Senha do Firebase será liberado. Sem o token (que só o cadeado gera), a tela de login permanece bloqueada.
+    * Duplo clique no cadeado -> Token Aleatório -> Liberação da rota `/adm`.
 
-### 📱 Blog & Integração Social (Instagram) [NOVO]
-- [ ] **Feed Dinâmico (Mosaico):**
-    * Criar seção "Atualizações Jurídicas" conectada ao perfil [@adv.marianabueno](https://www.instagram.com/adv.marianabueno/).
-    * *Formato:* Exibir os últimos Reels/Posts (temas: pensão, imóveis, etc.) em formato de mosaico elegante.
-    * *UX:* Design limpo, sem poluição visual, servindo como "isca" de conteúdo que ancora o usuário diretamente para o perfil profissional dela.
+### 📱 Conteúdo & Expansão
+- [ ] **Blog (Feed Mosaico):**
+    * Seção estática com os principais posts do Instagram linkados.
+- [ ] **Cookie Banner (Full Width):**
+    * Barra estendida de ponta a ponta no Desktop.
+- [ ] **Imagens (Dra. Mariana):**
+    * Remover zoom no hover e padronizar bordas finas.
 
-### 🚨 Performance & Acessibilidade (Lighthouse)
-- [ ] **Contraste:** Ajustar tons de dourado/cinza para leitura perfeita.
-- [ ] **Aria-Labels:** Adicionar nomes acessíveis nos links de ícones.
-- [ ] **Imagens Responsivas:** Configurar `sizes` para baixar versões leves no mobile.
-- [ ] **CLS:** Otimizar animações de texto para evitar trocas de layout.
-
-### 🖌️ Branding (Identidade Visual Dupla) [ATUALIZADO]
+### 🖌️ Identidade Visual Dupla
 - [ ] **Refinamento da Logo Oficial:** Tratamento para alta definição e fundo transparente.
-- [ ] **Aplicação 1 - Navbar (Institucional):** Substituir o título em texto do Header pela Logo Oficial (tamanho controlado) para marcar presença em todas as páginas.
-- [ ] **Aplicação 2 - Hero (Artística):** Fundir a Logo Oficial (em versão grande/3D/Metálica) com a headline principal "Defesa Estratégica", criando uma composição de impacto estilo "Assinatura Visual".
+- [ ] **Aplicação 1 - Navbar:** Substituir texto pela Logo Oficial.
+- [ ] **Aplicação 2 - Hero:** Fundir a Logo Oficial (versão artística) com a headline.
