@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { Award, BookOpen, Scale, FileCheck } from "lucide-react"; // Ícones novos
+import { Award, BookOpen, Scale, FileCheck } from "lucide-react";
 
-// --- DADOS DOS MINI-CARDS (Informações Cruciais) ---
+// --- DADOS DOS MINI-CARDS (Mantidos) ---
 const HIGHLIGHTS = [
   {
     icon: Scale,
@@ -42,42 +42,44 @@ export function About() {
           {/* COLUNA 1: A FOTO (Estática e Elegante) */}
           <div className="relative group">
             <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg border border-white/10 shadow-2xl">
-              {/* Overlay suave para integrar com o fundo escuro */}
               <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-transparent to-transparent z-10 opacity-60" />
-              
               <Image
-                src="/marianabueno.png" // Certifique-se que o nome do arquivo está correto na pasta public
+                src="/marianabueno.png"
                 alt="Dra. Mariana Bueno"
                 fill
-                className="object-cover object-top" // Estático (sem hover zoom para performance)
+                className="object-cover object-top"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
               />
             </div>
-            
-            {/* Elemento decorativo atrás da foto (Moldura deslocada) */}
             <div className="absolute -bottom-4 -right-4 w-full h-full border border-gold-primary/30 rounded-lg -z-10 hidden md:block" />
           </div>
 
-          {/* COLUNA 2: O CONTEÚDO */}
+          {/* COLUNA 2: O CONTEÚDO (Texto Original Restaurado) */}
           <div className="space-y-8">
             
             <div className="space-y-4">
+              {/* Tag Superior */}
               <h2 className="text-gold-primary font-bold uppercase tracking-widest text-sm flex items-center gap-2">
                 <span className="w-8 h-[1px] bg-gold-primary"></span>
                 Perfil Profissional
               </h2>
-              <h3 className="font-serif text-3xl md:text-5xl text-white leading-tight">
-                Mariana Bueno
+              
+              {/* Título de Impacto (Restaurado) */}
+              <h3 className="font-serif text-3xl md:text-4xl text-white leading-tight">
+                Advocacia não é apenas leis. <br/>
+                <span className="text-gold-gradient">É sobre vidas.</span>
               </h3>
-              <p className="text-gray-400 text-lg leading-relaxed font-light">
-                Advogada especialista na resolução de conflitos familiares e sucessórios. 
-                Minha atuação é pautada pela <strong className="text-white font-medium">técnica jurídica refinada</strong> e pelo atendimento humanizado, 
-                buscando sempre a preservação do patrimônio e o bem-estar das relações familiares.
+              
+              {/* Parágrafo Humanizado (Restaurado) */}
+              <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light text-justify md:text-left">
+                Com foco absoluto em <strong className="text-white font-medium">Direito de Família</strong>, minha missão é conduzir processos delicados com a firmeza necessária e a humanidade indispensável.
+                <br /><br />
+                Atuo de forma estratégica para garantir que seus direitos sejam preservados, sem expor desnecessariamente a sua história. Uma advocacia moderna, ágil e livre de burocracias antigas.
               </p>
             </div>
 
-            {/* GRID DE MINI-CARDS (A Grande Mudança) */}
+            {/* GRID DE MINI-CARDS */}
             <div className="grid grid-cols-2 gap-4">
               {HIGHLIGHTS.map((item, index) => (
                 <div 
@@ -93,14 +95,11 @@ export function About() {
 
             {/* Botão de Ação */}
             <div className="pt-4">
-               {/* Note: Aqui removemos o translate-y e adicionamos o group para o shimmer */}
                <a 
                 href="#contato" 
                 className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border border-gold-primary text-gold-primary hover:bg-gold-primary hover:text-rich-black transition-all duration-300 rounded uppercase tracking-widest text-xs font-bold group relative overflow-hidden"
               >
                 <span className="relative z-10">Agendar Consultoria</span>
-                
-                {/* Efeito Shimmer (Brilho Passando) */}
                 <div className="absolute inset-0 h-full w-full scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 bg-gold-primary -z-0" />
               </a>
             </div>
