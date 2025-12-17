@@ -1,75 +1,70 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Cookie, X } from "lucide-react";
 
 export function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem("cookie-consent");
+    // Verifica se já aceitou (simulação simples via localStorage)
+    const consent = localStorage.getItem("cookie_consent");
     if (!consent) {
-      const timer = setTimeout(() => setIsVisible(true), 2000);
+      // Delay pequeno para não assustar o usuário assim que entra
+      const timer = setTimeout(() => setIsVisible(true), 1500);
       return () => clearTimeout(timer);
     }
   }, []);
 
-  const acceptCookies = () => {
-    localStorage.setItem("cookie-consent", "true");
+  const handleAccept = () => {
     setIsVisible(false);
+    localStorage.setItem("cookie_consent", "true");
   };
 
+  if (!isVisible) return null;
+
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          transition={{ duration: 0.5, type: "spring" }}
-          className="fixed bottom-4 left-4 right-4 md:left-8 md:bottom-8 z-50 md:max-w-md"
-        >
-          <div className="bg-rich-gray/95 backdrop-blur-md border border-gold-primary/20 p-6 rounded-lg shadow-2xl flex flex-col gap-4 relative overflow-hidden">
-            
-            <div className="absolute top-0 right-0 w-32 h-32 bg-gold-primary/10 blur-[50px] rounded-full pointer-events-none" />
-
-            <div className="flex items-start gap-4 z-10">
-              <div className="bg-white/5 p-2 rounded text-gold-primary">
-                <Cookie size={24} aria-hidden="true" /> {/* Ícone decorativo ignorado por leitores */}
-              </div>
-              <div>
-                <h4 className="text-white font-serif font-bold mb-1">Sua Privacidade</h4>
-                <p className="text-gray-400 text-xs leading-relaxed">
-                  Utilizamos cookies para garantir a melhor experiência e performance em nosso site, de acordo com a LGPD.
-                </p>
-              </div>
-              <button 
-                onClick={() => setIsVisible(false)} 
-                className="text-gray-500 hover:text-white transition-colors"
-                aria-label="Fechar aviso de cookies" // <--- CORREÇÃO AQUI
-              >
-                <X size={18} aria-hidden="true" />
-              </button>
+    // BARRA FULL-WIDTH (Estilo High Ticket)
+    // w-full = Ocupa toda a largura
+    // bottom-0 = Colado no chão
+    // z-50 = Acima de quase tudo (mas abaixo do modal de segurança se houver)
+    <div className="fixed bottom-0 left-0 w-full z-40 bg-rich-black/90 backdrop-blur-md border-t border-gold-primary/20 shadow-[0_-4px_20px_rgba(0,0,0,0.5)] animate-in slide-in-from-bottom duration-700">
+      
+      <div className="container mx-auto px-4 py-4 md:py-3">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
+          
+          {/* Ícone e Texto */}
+          <div className="flex items-center gap-4 text-center md:text-left">
+            <div className="p-2 bg-gold-primary/10 rounded-full hidden md:block">
+              <Cookie className="text-gold-primary" size={20} />
             </div>
-
-            <div className="flex gap-3 z-10">
-              <button
-                onClick={acceptCookies}
-                className="flex-1 bg-gold-primary hover:bg-gold-light text-rich-black font-bold py-2 rounded text-xs uppercase tracking-wider transition-all shadow-lg shadow-gold-primary/10"
-              >
-                Aceitar
-              </button>
-              <button
-                onClick={() => setIsVisible(false)}
-                className="flex-1 border border-white/10 hover:border-white/30 text-gray-300 hover:text-white font-medium py-2 rounded text-xs uppercase tracking-wider transition-all"
-              >
-                Recusar
-              </button>
-            </div>
+            <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-2xl">
+              Utilizamos cookies para garantir uma experiência de navegação segura e personalizada, em conformidade com a <span className="text-white font-medium">LGPD</span>. Ao continuar, você concorda com nossa política de privacidade.
+            </p>
           </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+
+          {/* Botões de Ação */}
+          <div className="flex items-center gap-3 w-full md:w-auto">
+            {/* Botão Aceitar (Destaque) */}
+            <button 
+              onClick={handleAccept}
+              className="flex-1 md:flex-none bg-gold-primary hover:bg-gold-light text-rich-black font-bold text-xs uppercase tracking-widest py-3 px-8 rounded transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
+            >
+              Concordar e Fechar
+            </button>
+            
+            {/* Botão Fechar (X discreto mobile) */}
+            <button 
+              onClick={() => setIsVisible(false)}
+              className="md:hidden text-gray-500 p-2"
+              aria-label="Fechar"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
   );
 }
