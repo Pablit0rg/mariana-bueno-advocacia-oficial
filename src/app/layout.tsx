@@ -1,49 +1,19 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { primaryFont, secondaryFont } from "./fonts"; // Vamos otimizar isso no passo 3
 import "./globals.css";
-import { Header } from "../components/layout/Header";
-import { Footer } from "../components/layout/Footer";
-import { WhatsAppButton } from "../components/ui/WhatsAppButton";
-import { CookieBanner } from "../components/ui/CookieBanner";
-import { ScrollToTop } from "../components/ui/ScrollToTop"; // <--- Importei o novo botão aqui
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
+import { CookieBanner } from "@/components/ui/CookieBanner";
+import { SchemaMarkup } from "@/components/seo/SchemaMarkup"; // <--- IMPORTADO AQUI
 
-// Configuração das Fontes
-// Serifada para Títulos (Elegância)
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-// Sans-serif para Textos (Leitura)
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-// Metadados Globais (SEO)
 export const metadata: Metadata = {
-  title: "Mariana Bueno | Advocacia de Alta Complexidade",
-  description: "Escritório boutique especializado em Direito de Família e Sucessões. Atendimento estratégico e sigiloso para proteção patrimonial e resolução de conflitos.",
-  keywords: ["advogada família", "divórcio empresarial", "sucessões", "inventário", "curitiba", "advocacia premium"],
+  title: "Mariana Bueno | Advocacia Especializada em Família e Sucessões",
+  description: "Advocacia de Alta Complexidade. Proteção patrimonial e resolução de conflitos familiares com discrição e estratégia técnica.",
+  keywords: ["Advogada Família Curitiba", "Divórcio", "Inventário", "Partilha de Bens", "Mariana Bueno"],
   authors: [{ name: "Mariana Bueno" }],
-  openGraph: {
-    type: "website",
-    locale: "pt_BR",
-    url: "https://advmarianabueno.com.br",
-    title: "Mariana Bueno | Advocacia Estratégica",
-    description: "Protegendo seu legado e sua família com técnica jurídica refinada.",
-    siteName: "Mariana Bueno Advocacia",
-    images: [
-      {
-        url: "/og-image.jpg", // Certifique-se de ter essa imagem na pasta public
-        width: 1200,
-        height: 630,
-        alt: "Mariana Bueno Advocacia",
-      },
-    ],
-  },
+  creator: "Pablo Rosa Gomes",
   icons: {
     icon: "/favicon.ico",
   },
@@ -55,23 +25,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
-      <body className="antialiased bg-rich-black text-gray-300 relative selection:bg-gold-primary/30 selection:text-white">
-        
-        {/* Header Fixo no Topo */}
+    <html lang="pt-BR" className="scroll-smooth">
+      <body
+        className={`${primaryFont.variable} ${secondaryFont.variable} font-sans antialiased bg-rich-black text-gray-300 selection:bg-gold-primary selection:text-rich-black overflow-x-hidden`}
+      >
+        {/* INJEÇÃO DO CÉREBRO SEO */}
+        <SchemaMarkup />
+
         <Header />
-        
-        {/* Conteúdo das Páginas */}
-        {children}
-        
-        {/* Rodapé Global */}
+        <main className="relative z-0">
+          {children}
+        </main>
         <Footer />
         
-        {/* Componentes Flutuantes de UI */}
+        {/* Elementos Flutuantes Globais */}
         <WhatsAppButton />
+        <ScrollToTop />
         <CookieBanner />
-        <ScrollToTop /> {/* <--- O Botão Voltar ao Topo entra aqui */}
-        
       </body>
     </html>
   );
