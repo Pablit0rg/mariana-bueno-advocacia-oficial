@@ -1,85 +1,71 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ArrowRight, ShieldCheck } from "lucide-react";
-import Image from "next/image"; // <--- Import ativado
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-rich-black">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       
-      {/* Efeito de Fundo (Luz Dourada Suave) */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gold-primary/10 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-gold-dark/5 blur-[100px] rounded-full pointer-events-none" />
+      {/* --- BACKGROUND DE LUXO (Mantido, mas focado no centro) --- */}
+      <div className="absolute inset-0 bg-rich-black z-0" />
+      
+      {/* Luzes Ambientais Suaves */}
+      <div className="absolute top-0 w-full h-[500px] bg-gradient-to-b from-gold-primary/5 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 w-full h-[300px] bg-gradient-to-t from-rich-black via-rich-black/80 to-transparent pointer-events-none" />
+      
+      {/* Textura Sutil */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none z-0" />
 
-      <div className="container mx-auto px-4 md:px-8 grid md:grid-cols-2 gap-12 items-center">
-        
-        {/* LADO ESQUERDO: Texto e CTA */}
-        <motion.div 
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="z-10"
-        >
-          <div className="flex items-center gap-2 mb-6">
-            <ShieldCheck className="text-gold-primary" size={20} />
-            <span className="text-gold-light/80 text-xs md:text-sm tracking-[0.2em] uppercase font-semibold">
-              Advocacia de Alta Performance
-            </span>
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="flex flex-col items-center text-center space-y-8 animate-in fade-in zoom-in duration-1000">
+          
+          {/* 1. A LOGO (Joia Central) */}
+          {/* Tamanho controlado: w-48 a w-64 para não ficar grotesco, mas imponente */}
+          <div className="relative w-48 h-48 md:w-64 md:h-64 drop-shadow-2xl">
+            <Image 
+              src="/logo-header.png-removebg-preview.png" 
+              alt="Logo Oficial Mariana Bueno" 
+              fill 
+              className="object-contain"
+              priority 
+            />
           </div>
 
-          <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-            Defesa <br />
-            <span className="text-gold-gradient">Estratégica</span> & <br />
-            Humanizada
-          </h1>
+          {/* 2. BLOCO DE TEXTO INSTITUCIONAL */}
+          <div className="space-y-4 max-w-4xl mx-auto">
+            
+            {/* O Nome (Marca) */}
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white tracking-wide uppercase">
+              Mariana Bueno
+            </h1>
 
-          <p className="text-gray-400 text-lg md:text-xl max-w-lg mb-10 font-light leading-relaxed">
-            Especialista em resolver conflitos familiares e cíveis com segurança jurídica e discrição absoluta.
-          </p>
+            {/* Linha Divisória Elegante */}
+            <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-gold-primary to-transparent mx-auto opacity-70" />
 
-          <div className="flex flex-col sm:flex-row gap-4">
+            {/* O Subtítulo (Serviço) */}
+            <p className="font-sans text-gold-primary text-xs md:text-sm tracking-[0.4em] uppercase font-light">
+              Advocacia & Consultoria Especializada
+            </p>
+
+          </div>
+
+          {/* 3. BOTÃO DE AÇÃO (CTA) */}
+          <div className="pt-8">
             <a 
               href="https://wa.me/5541999999999"
               target="_blank"
-              className="px-8 py-4 bg-gold-primary hover:bg-gold-light text-rich-black font-bold rounded text-sm uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:-translate-y-1 flex items-center justify-center gap-2 cursor-pointer"
+              rel="noopener noreferrer"
+              className="relative inline-flex items-center gap-3 px-10 py-4 bg-gold-primary text-rich-black rounded overflow-hidden group hover:bg-white transition-colors shadow-[0_0_20px_rgba(212,175,55,0.2)]"
             >
-              Iniciar Atendimento
-              <ArrowRight size={18} />
-            </a>
-            
-            <a 
-              href="#sobre"
-              className="px-8 py-4 border border-white/20 hover:border-gold-primary text-white hover:text-gold-primary font-medium rounded text-sm uppercase tracking-widest transition-all flex items-center justify-center cursor-pointer"
-            >
-              Conhecer a Dra.
+              <div className="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out skew-x-12" />
+              
+              <span className="text-xs font-bold uppercase tracking-widest relative z-10">
+                Iniciar Atendimento
+              </span>
+              <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
-        </motion.div>
 
-        {/* LADO DIREITO: Foto Real Otimizada */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative h-[600px] w-full flex items-end justify-center"
-        >
-          <div className="relative w-full h-full rounded-t-[100px] border border-white/10 overflow-hidden shadow-2xl group">
-             
-             {/* Componente Next/Image Otimizado */}
-             <Image 
-               src="https://images.pexels.com/photos/8111815/pexels-photo-8111815.jpeg" 
-               alt="Advogada especialista"
-               fill // Preenche o pai
-               priority // Carrega IMEDIATAMENTE (Capa)
-               className="object-cover object-top opacity-90 group-hover:opacity-100 transition-all duration-700 group-hover:scale-105"
-             />
-             
-             {/* Degradê na base */}
-             <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-rich-black via-rich-black/50 to-transparent z-10" />
-          </div>
-        </motion.div>
-
+        </div>
       </div>
     </section>
   );
