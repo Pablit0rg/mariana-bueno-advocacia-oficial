@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Instagram, ArrowUpRight, Calendar } from "lucide-react";
 
 // --- DADOS DOS POSTS (Simulação do Feed) ---
+// Amanhã no PC podemos trocar as imagens pelas capas reais dos vídeos dela.
 const POSTS = [
   {
     id: 1,
@@ -49,11 +50,13 @@ export function Blog() {
             </h3>
           </div>
 
+          {/* BOTÃO INSTAGRAM (Cores Oficiais Modernas) */}
           <a 
             href="https://www.instagram.com/adv.marianabueno/" 
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-gray-400 hover:text-gold-primary transition-colors group text-sm uppercase tracking-wider"
+            // bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737]: Gradiente Oficial do Instagram
+            className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white font-bold text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg group"
           >
             <Instagram size={18} />
             Siga no Instagram
@@ -69,7 +72,7 @@ export function Blog() {
               href={post.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block bg-white/5 border border-white/5 hover:border-gold-primary/30 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2"
+              className="group block bg-white/5 border border-white/5 hover:border-[#E1306C]/50 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2"
             >
               {/* Imagem do Post */}
               <div className="relative h-64 w-full overflow-hidden">
@@ -93,10 +96,12 @@ export function Blog() {
                   <Calendar size={12} />
                   {post.date}
                 </div>
-                <h4 className="text-white font-serif text-lg leading-snug group-hover:text-gold-primary transition-colors">
+                <h4 className="text-white font-serif text-lg leading-snug group-hover:text-[#E1306C] transition-colors">
                   {post.title}
                 </h4>
-                <div className="mt-4 flex items-center gap-2 text-gold-primary text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                
+                {/* Link "Ler no Instagram" também com cor oficial no hover */}
+                <div className="mt-4 flex items-center gap-2 text-[#E1306C] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 font-bold">
                   Ler no Instagram <ArrowUpRight size={12} />
                 </div>
               </div>
