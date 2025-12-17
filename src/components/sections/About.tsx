@@ -39,39 +39,48 @@ export function About() {
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           
-          {/* COLUNA 1: A FOTO (Estática e Elegante) */}
-          <div className="relative group">
-            <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg border border-white/10 shadow-2xl">
-              <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-transparent to-transparent z-10 opacity-60" />
-              <Image
-                src="/hero.webp"
-                alt="Dra. Mariana Bueno"
-                fill
-                className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
+          {/* COLUNA 1: A FOTO (Ajuste da Borda) */}
+          <div className="relative group max-w-md mx-auto md:max-w-full">
+            
+            {/* CONTAINER DA IMAGEM COM A BORDA PERFEITA */}
+            {/* Adicionei 'border border-gold-primary/30' aqui para ser a moldura exata */}
+            {/* Adicionei 'p-2' (padding) para criar um pequeno respiro elegante entre a foto e a borda (efeito quadro) */}
+            <div className="relative w-full aspect-[3/4] md:aspect-[4/5] rounded-lg border border-gold-primary/30 p-2">
+              
+              {/* O Container interno que segura a imagem e corta os cantos */}
+              <div className="relative w-full h-full overflow-hidden rounded-lg bg-rich-gray">
+                 {/* Overlay suave */}
+                 <div className="absolute inset-0 bg-gradient-to-t from-rich-black/60 via-transparent to-transparent z-10 opacity-40" />
+                 
+                 <Image
+                  src="/hero.webp" // <--- Sua imagem nova aqui
+                  alt="Dra. Mariana Bueno"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+              </div>
             </div>
-            <div className="absolute -bottom-4 -right-4 w-full h-full border border-gold-primary/30 rounded-lg -z-10 hidden md:block" />
+            
+            {/* Removi a div decorativa deslocada (-bottom-4 -right-4) que causava a desarmonia */}
+
           </div>
 
-          {/* COLUNA 2: O CONTEÚDO (Texto Original Restaurado) */}
+          {/* COLUNA 2: O CONTEÚDO (Mantido) */}
           <div className="space-y-8">
             
             <div className="space-y-4">
-              {/* Tag Superior */}
               <h2 className="text-gold-primary font-bold uppercase tracking-widest text-sm flex items-center gap-2">
                 <span className="w-8 h-[1px] bg-gold-primary"></span>
                 Perfil Profissional
               </h2>
               
-              {/* Título de Impacto (Restaurado) */}
               <h3 className="font-serif text-3xl md:text-4xl text-white leading-tight">
                 Advocacia não é apenas leis. <br/>
                 <span className="text-gold-gradient">É sobre vidas.</span>
               </h3>
               
-              {/* Parágrafo Humanizado (Restaurado) */}
               <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light text-justify md:text-left">
                 Com foco absoluto em <strong className="text-white font-medium">Direito de Família</strong>, minha missão é conduzir processos delicados com a firmeza necessária e a humanidade indispensável.
                 <br /><br />
