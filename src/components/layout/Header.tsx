@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image"; // <--- Importado e Ativado
+// import Image from "next/image"; // Descomente amanhã para a logo
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -10,6 +10,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Efeito de scroll APENAS para mudar a cor de fundo (Glassmorphism), não a borda
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -36,20 +37,22 @@ export function Header() {
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         
         {/* --- LOGO / BRANDING --- */}
-        <Link href="/" className="group relative z-50 flex items-center" aria-label="Ir para página inicial">
+        <Link href="/" className="group relative z-50" aria-label="Ir para página inicial">
           
-          {/* LOGO OFICIAL 3D (Substituindo o Texto) */}
-          {/* Ajustei o tamanho (w-48) para ficar imponente mas elegante */}
-          <div className="relative w-40 md:w-56 h-12 md:h-16">
-            <Image 
-              src="/logo-header.png-removebg-preview.png" // <--- ARQUIVO NOVO
-              alt="Mariana Bueno Advocacia" 
-              fill 
-              className="object-contain object-left" 
-              priority // Carrega instantaneamente
-            />
+          {/* OPÇÃO 1: TEXTO (Ativo) */}
+          <div className="flex flex-col">
+            <h1 className="font-serif text-xl md:text-2xl font-bold text-white tracking-wider group-hover:text-gold-primary transition-colors">
+              MARIANA BUENO
+            </h1>
+            <span className="text-[10px] md:text-xs font-sans text-gold-primary font-light tracking-[0.3em] uppercase">
+              Advocacia Especializada
+            </span>
           </div>
 
+          {/* OPÇÃO 2: LOGO IMAGEM (Para amanhã) */}
+          {/* <div className="relative w-48 h-12 hidden md:block">
+            <Image src="/logo-header.png" alt="Mariana Bueno Advocacia" fill className="object-contain object-left" />
+          </div> */}
         </Link>
 
         {/* --- MENU DESKTOP --- */}
@@ -65,14 +68,18 @@ export function Header() {
             </Link>
           ))}
           
-          {/* BOTÃO PREMIUM (SOLID GOLD) */}
+          {/* BOTÃO PREMIUM (PADRÃO SOLID GOLD - CORRIGIDO) */}
+          {/* Fundo bg-gold-primary fixo, sem outline */}
           <a 
             href="https://wa.me/5541999999999"
             target="_blank"
             rel="noopener noreferrer"
             className="relative inline-flex items-center gap-2 px-6 py-3 bg-gold-primary text-rich-black rounded overflow-hidden group hover:bg-white transition-colors shadow-[0_0_15px_rgba(212,175,55,0.2)]"
+            aria-label="Falar com a advogada no WhatsApp"
           >
+            {/* Efeito Shimmer (Reflexo Branco passando) */}
             <div className="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out skew-x-12" />
+            
             <span className="text-xs font-bold uppercase tracking-widest relative z-10">
               Falar com a Advogada
             </span>
@@ -80,16 +87,18 @@ export function Header() {
           </a>
         </nav>
 
-        {/* --- BOTÃO MOBILE --- */}
+        {/* --- BOTÃO MOBILE (HAMBURGUER) --- */}
         <button
           className="md:hidden text-white hover:text-gold-primary transition-colors relative z-50 p-2"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={isOpen}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* --- MENU MOBILE --- */}
+      {/* --- MENU MOBILE (FULL SCREEN) --- */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -99,17 +108,8 @@ export function Header() {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="fixed inset-0 bg-rich-black/98 backdrop-blur-xl z-40 md:hidden flex flex-col justify-center items-center gap-8"
           >
+            {/* Fundo Decorativo */}
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold-primary/10 blur-[100px] rounded-full pointer-events-none" />
-
-            {/* Logo no Menu Mobile também */}
-            <div className="relative w-48 h-16 mb-4 opacity-80">
-               <Image 
-                  src="/logo-header.png-removebg-preview.png"
-                  alt="Logo"
-                  fill
-                  className="object-contain"
-                />
-            </div>
 
             {menuItems.map((item) => (
               <Link
@@ -119,15 +119,17 @@ export function Header() {
                 className="text-2xl font-serif text-white hover:text-gold-primary transition-colors relative group"
               >
                 {item.name}
+                <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gold-primary group-hover:w-full transition-all duration-300" />
               </Link>
             ))}
 
             <div className="w-16 h-[1px] bg-white/10 my-4" />
 
+            {/* Botão Mobile também Solid Gold */}
             <a 
               href="https://wa.me/5541999999999"
               target="_blank"
-              className="px-8 py-4 bg-gold-primary text-rich-black font-bold rounded uppercase tracking-widest text-sm shadow-lg"
+              className="px-8 py-4 bg-gold-primary text-rich-black font-bold rounded uppercase tracking-widest text-sm shadow-lg hover:bg-white transition-colors"
             >
               Agendar Consulta
             </a>
