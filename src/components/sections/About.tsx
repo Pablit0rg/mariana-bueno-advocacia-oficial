@@ -44,7 +44,7 @@ export function About() {
             <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg border border-white/10 shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-transparent to-transparent z-10 opacity-60" />
               <Image
-                src="/marianabueno.png"
+                src="/hero.webp"
                 alt="Dra. Mariana Bueno"
                 fill
                 className="object-cover object-top"
