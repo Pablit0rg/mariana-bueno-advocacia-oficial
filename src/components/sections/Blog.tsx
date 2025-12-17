@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Instagram, ArrowUpRight, Calendar } from "lucide-react";
 
 // --- DADOS DOS POSTS (Simulação do Feed) ---
-// Amanhã no PC podemos trocar as imagens pelas capas reais dos vídeos dela.
 const POSTS = [
   {
     id: 1,
