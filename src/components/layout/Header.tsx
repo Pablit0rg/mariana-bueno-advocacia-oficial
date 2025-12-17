@@ -10,9 +10,9 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Efeito de scroll: Ativa quando desce mais de 100px (logo após o topo)
   useEffect(() => {
     const handleScroll = () => {
+      // Ativa a transição logo após sair do topo (100px)
       setScrolled(window.scrollY > 100);
     };
     window.addEventListener("scroll", handleScroll);
@@ -30,20 +30,21 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-gold-primary/20 ${
         scrolled 
-          ? "bg-rich-black/90 backdrop-blur-md py-2 shadow-xl" // Mais compacto ao rolar
-          : "bg-transparent py-6" // Mais espaçado no topo
+          ? "bg-rich-black/90 backdrop-blur-md py-2 shadow-xl" 
+          : "bg-transparent py-6"
       }`}
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         
-        {/* --- LOGO / BRANDING DINÂMICO --- */}
-        <Link href="/" className="group relative z-50 flex items-center" aria-label="Ir para página inicial">
+        {/* --- BRANDING DINÂMICO --- */}
+        <Link href="/" className="group relative z-50 flex items-center h-12" aria-label="Ir para página inicial">
           
-          {/* ESTADO 1: TEXTO (Aparece apenas quando NÃO está scrollado) */}
-          <div className={`flex flex-col transition-all duration-500 absolute left-0 ${
+          {/* ESTADO 1: TEXTO LIMPO (Aparece no Topo) */}
+          {/* Formatação original restaurada: Flex Column, alinhamento simples */}
+          <div className={`flex flex-col justify-center transition-all duration-500 absolute left-0 ${
             scrolled ? "opacity-0 -translate-y-4 pointer-events-none" : "opacity-100 translate-y-0"
           }`}>
-            <h1 className="font-serif text-xl md:text-2xl font-bold text-white tracking-wider group-hover:text-gold-primary transition-colors">
+            <h1 className="font-serif text-xl md:text-2xl font-bold text-white tracking-wider group-hover:text-gold-primary transition-colors uppercase whitespace-nowrap">
               MARIANA BUENO
             </h1>
             <span className="text-[10px] md:text-xs font-sans text-gold-primary font-light tracking-[0.3em] uppercase">
@@ -51,8 +52,8 @@ export function Header() {
             </span>
           </div>
 
-          {/* ESTADO 2: LOGO 3D (Aparece apenas QUANDO está scrollado) */}
-          <div className={`relative w-40 md:w-48 h-12 transition-all duration-500 ${
+          {/* ESTADO 2: LOGO 3D (Aparece no Scroll) */}
+          <div className={`relative w-40 md:w-48 h-full transition-all duration-500 ${
             scrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}>
             <Image 
@@ -115,7 +116,6 @@ export function Header() {
           >
             <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold-primary/10 blur-[100px] rounded-full pointer-events-none" />
 
-            {/* Logo no Menu Mobile */}
             <div className="relative w-48 h-16 mb-4 opacity-80">
                <Image 
                   src="/logo-header.png-removebg-preview.png"
