@@ -6,7 +6,7 @@ export function Contact() {
   return (
     <section id="contato" className="py-24 bg-rich-black relative overflow-hidden">
       
-      {/* Background Decorativo (Luz de fundo) */}
+      {/* Background Decorativo */}
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gold-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
@@ -22,46 +22,48 @@ export function Contact() {
             Agende sua Consulta
           </h3>
           <p className="text-gray-400 font-light">
-            Seu caso requer atenção especializada. Entre em contato para uma análise preliminar e agendamento.
+            Seu caso requer atenção especializada. Entre em contato para uma análise preliminar.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-24">
+        {/* O LAYOUT MÁGICO (GRID) */}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           
-          {/* COLUNA 1: Informações de Contato (Cards Elegantes) */}
-          <div className="space-y-6">
+          {/* COLUNA 1: Informações (Esquerda) */}
+          {/* 'flex flex-col justify-between' é o segredo para esticar e alinhar ponta a ponta */}
+          <div className="flex flex-col justify-between gap-6 h-full">
             
-            {/* Card Telefone */}
-            <div className="flex items-start gap-4 p-6 bg-white/5 border border-white/10 hover:border-gold-primary/30 transition-colors rounded-lg group">
-              <div className="p-3 bg-rich-black rounded-full border border-gold-primary/20 text-gold-primary group-hover:scale-110 transition-transform">
+            {/* Card 1: Telefone (Topo alinhado com o Form) */}
+            <div className="flex items-start gap-4 p-6 bg-white/5 border border-white/10 hover:border-gold-primary/30 transition-colors rounded-lg group flex-1">
+              <div className="p-3 bg-rich-black rounded-full border border-gold-primary/20 text-gold-primary group-hover:scale-110 transition-transform mt-1">
                 <Phone size={20} />
               </div>
               <div>
                 <h4 className="text-white font-serif text-lg">Telefone & WhatsApp</h4>
                 <p className="text-gray-400 text-sm mb-2">Atendimento ágil e direto.</p>
-                <a href="https://wa.me/5541999999999" target="_blank" className="text-white hover:text-gold-primary transition-colors font-medium">
+                <a href="https://wa.me/5541999999999" target="_blank" className="text-white hover:text-gold-primary transition-colors font-medium text-lg">
                   (41) 99999-9999
                 </a>
               </div>
             </div>
 
-            {/* Card E-mail */}
-            <div className="flex items-start gap-4 p-6 bg-white/5 border border-white/10 hover:border-gold-primary/30 transition-colors rounded-lg group">
-              <div className="p-3 bg-rich-black rounded-full border border-gold-primary/20 text-gold-primary group-hover:scale-110 transition-transform">
+            {/* Card 2: E-mail (Meio) */}
+            <div className="flex items-start gap-4 p-6 bg-white/5 border border-white/10 hover:border-gold-primary/30 transition-colors rounded-lg group flex-1">
+              <div className="p-3 bg-rich-black rounded-full border border-gold-primary/20 text-gold-primary group-hover:scale-110 transition-transform mt-1">
                 <Mail size={20} />
               </div>
               <div>
                 <h4 className="text-white font-serif text-lg">E-mail Corporativo</h4>
                 <p className="text-gray-400 text-sm mb-2">Para envio de documentos.</p>
-                <a href="mailto:contato@advmarianabueno.com.br" className="text-white hover:text-gold-primary transition-colors font-medium">
+                <a href="mailto:contato@advmarianabueno.com.br" className="text-white hover:text-gold-primary transition-colors font-medium break-all">
                   contato@advmarianabueno.com.br
                 </a>
               </div>
             </div>
 
-            {/* Card Endereço */}
-            <div className="flex items-start gap-4 p-6 bg-white/5 border border-white/10 hover:border-gold-primary/30 transition-colors rounded-lg group">
-              <div className="p-3 bg-rich-black rounded-full border border-gold-primary/20 text-gold-primary group-hover:scale-110 transition-transform">
+            {/* Card 3: Endereço (Fundo alinhado com o Form) */}
+            <div className="flex items-start gap-4 p-6 bg-white/5 border border-white/10 hover:border-gold-primary/30 transition-colors rounded-lg group flex-1">
+              <div className="p-3 bg-rich-black rounded-full border border-gold-primary/20 text-gold-primary group-hover:scale-110 transition-transform mt-1">
                 <MapPin size={20} />
               </div>
               <div>
@@ -75,13 +77,13 @@ export function Contact() {
 
           </div>
 
-          {/* COLUNA 2: Formulário Premium */}
-          <div className="bg-rich-gray/50 backdrop-blur-sm border border-white/5 p-8 md:p-10 rounded-2xl relative">
-            {/* Brilho decorativo no canto */}
+          {/* COLUNA 2: Formulário Premium (Direita) */}
+          <div className="bg-rich-gray/50 backdrop-blur-sm border border-white/5 p-8 md:p-10 rounded-2xl relative h-full flex flex-col justify-center">
+            {/* Brilho decorativo */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-gold-primary/10 blur-[40px] rounded-full pointer-events-none" />
             
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <form className="space-y-5">
+              <div className="grid md:grid-cols-2 gap-5">
                 <div className="space-y-2">
                   <label className="text-xs text-gold-primary uppercase tracking-widest font-bold ml-1">Nome Completo</label>
                   <input type="text" placeholder="Seu nome" className="w-full bg-rich-black border border-white/10 focus:border-gold-primary/50 text-white rounded-lg px-4 py-3 outline-none transition-all placeholder:text-gray-600" />
@@ -99,10 +101,11 @@ export function Contact() {
 
               <div className="space-y-2">
                 <label className="text-xs text-gold-primary uppercase tracking-widest font-bold ml-1">Relato Breve</label>
-                <textarea rows={4} placeholder="Descreva brevemente sua necessidade..." className="w-full bg-rich-black border border-white/10 focus:border-gold-primary/50 text-white rounded-lg px-4 py-3 outline-none transition-all placeholder:text-gray-600 resize-none" />
+                {/* Altura ajustada para garantir o alinhamento visual com a coluna da esquerda */}
+                <textarea rows={5} placeholder="Descreva brevemente sua necessidade..." className="w-full bg-rich-black border border-white/10 focus:border-gold-primary/50 text-white rounded-lg px-4 py-3 outline-none transition-all placeholder:text-gray-600 resize-none" />
               </div>
 
-              {/* Botão Shimmer (Igual ao do Hero e Header) */}
+              {/* Botão Shimmer (Solid Gold Fixado) */}
               <button 
                 type="submit"
                 className="w-full relative overflow-hidden group bg-gold-primary text-rich-black font-bold uppercase tracking-widest text-xs py-4 rounded-lg flex items-center justify-center gap-2 hover:bg-white transition-colors shadow-lg shadow-gold-primary/10"
@@ -110,13 +113,8 @@ export function Contact() {
                 <span className="relative z-10">Enviar Solicitação</span>
                 <Send size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
                 
-                {/* O Efeito de Brilho que passa */}
                 <div className="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 skew-x-12" />
               </button>
-
-              <p className="text-center text-gray-600 text-[10px]">
-                Seus dados estão protegidos pelo sigilo advogado-cliente desde o primeiro contato.
-              </p>
             </form>
           </div>
 
