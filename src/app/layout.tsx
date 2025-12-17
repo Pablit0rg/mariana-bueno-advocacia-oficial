@@ -1,85 +1,51 @@
-import type { Metadata, Viewport } from "next";
-import { inter } from "./fonts";
+import type { Metadata } from "next";
+import { Playfair_Display, Inter } from "next/font/google";
+import "./globals.css";
 import { Header } from "../components/layout/Header";
 import { Footer } from "../components/layout/Footer";
 import { WhatsAppButton } from "../components/ui/WhatsAppButton";
 import { CookieBanner } from "../components/ui/CookieBanner";
-import "./globals.css";
+import { ScrollToTop } from "../components/ui/ScrollToTop"; // <--- Importei o novo botão aqui
 
-// Configuração de Viewport
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 5,
-  themeColor: "#050505",
-};
+// Configuração das Fontes
+// Serifada para Títulos (Elegância)
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  display: "swap",
+});
 
-// Configuração Completa de SEO (Metadados)
+// Sans-serif para Textos (Leitura)
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Metadados Globais (SEO)
 export const metadata: Metadata = {
-  // PWA Manifest (O App)
-  manifest: "/manifest.json",
-
-  metadataBase: new URL("https://mariana-bueno-advocacia-oficial.vercel.app"),
-  
-  title: {
-    default: "Dra. Mariana Bueno | Advocacia de Alta Complexidade",
-    template: "%s | Dra. Mariana Bueno"
-  },
-  
-  description: "Escritório boutique especializado em Direito de Família e Sucessões. Atendimento estratégico, discreto e humanizado para casos de alta complexidade em Curitiba e todo Brasil.",
-  
-  keywords: [
-    "Advogada de Família", 
-    "Divórcio Empresarial", 
-    "Partilha de Bens", 
-    "Inventário Judicial", 
-    "Advocacia Premium Curitiba", 
-    "Direito Sucessório",
-    "Mariana Bueno"
-  ],
-
-  authors: [{ name: "Dra. Mariana Bueno" }],
-  creator: "Pablo Rosa Gomes (Full-Stack Developer)",
-  
+  title: "Mariana Bueno | Advocacia de Alta Complexidade",
+  description: "Escritório boutique especializado em Direito de Família e Sucessões. Atendimento estratégico e sigiloso para proteção patrimonial e resolução de conflitos.",
+  keywords: ["advogada família", "divórcio empresarial", "sucessões", "inventário", "curitiba", "advocacia premium"],
+  authors: [{ name: "Mariana Bueno" }],
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://mariana-bueno-advocacia-oficial.vercel.app",
-    title: "Dra. Mariana Bueno | Advocacia Especializada",
-    description: "Defesa estratégica em Direito de Família e Sucessões. Agende sua consulta.",
+    url: "https://advmarianabueno.com.br",
+    title: "Mariana Bueno | Advocacia Estratégica",
+    description: "Protegendo seu legado e sua família com técnica jurídica refinada.",
     siteName: "Mariana Bueno Advocacia",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.jpg", // Certifique-se de ter essa imagem na pasta public
         width: 1200,
         height: 630,
-        alt: "Dra. Mariana Bueno - Escritório Digital",
+        alt: "Mariana Bueno Advocacia",
       },
     ],
   },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Dra. Mariana Bueno | Advocacia Premium",
-    description: "Especialista em resolução de conflitos familiares complexos.",
-    images: ["/og-image.jpg"],
-  },
-
   icons: {
     icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
   },
 };
 
@@ -89,13 +55,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" className="scroll-smooth">
-      <body className={`${inter.variable} font-sans bg-rich-black text-white antialiased selection:bg-gold-primary/30 selection:text-white`}>
+    <html lang="pt-br" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
+      <body className="antialiased bg-rich-black text-gray-300 relative selection:bg-gold-primary/30 selection:text-white">
+        
+        {/* Header Fixo no Topo */}
         <Header />
+        
+        {/* Conteúdo das Páginas */}
         {children}
+        
+        {/* Rodapé Global */}
         <Footer />
+        
+        {/* Componentes Flutuantes de UI */}
         <WhatsAppButton />
         <CookieBanner />
+        <ScrollToTop /> {/* <--- O Botão Voltar ao Topo entra aqui */}
+        
       </body>
     </html>
   );
