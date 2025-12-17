@@ -30,20 +30,21 @@
 ## 💎 Fase Final: Refinamento "High Ticket" (Status Atual)
 
 ### 🎨 UI & Layout (Visual & Harmonia)
-- [x] **Header Dinâmico:** * Topo: Exibe apenas texto "MARIANA BUENO".
+- [x] **Header Dinâmico:**
+    * Topo: Exibe apenas texto "MARIANA BUENO" (Formatação Limpa).
     * Scroll: Exibe Logo 3D Oficial na Navbar.
     * Correção: Linha inferior (borda) fixa em todas as posições.
-- [x] **Hero Imponente (Totem):**
-    * Logo Centralizada (Tamanho Brasão).
-    * Nome da Dra. com efeito **Shimmer (Reflexo Dourado)**.
+- [x] **Hero Imponente:**
+    * Nome da Dra. com efeito **Shimmer (Reflexo Dourado)** isolado.
     * Botão "Iniciar Atendimento" sólido com sombra.
+    * Tamanhos originais preservados.
 - [x] **Seção Contato (Pixel Perfect):**
     * Alinhamento matemático entre cards da esquerda e formulário da direita (`flex stretch`).
 - [x] **Cookie Banner (Full Width):**
     * Barra estendida 100% no rodapé desktop.
 - [x] **Imagens (Dra. Mariana):**
     * Removido zoom no hover (estático e nítido).
-- [x] **Perfil Profissional:**
+- [x] **Perfil Profissional (Estrutura):**
     * Transformado em Mini-cards estruturados.
 - [x] **Footer:**
     * Espaçamento de colunas ajustado.
@@ -71,8 +72,17 @@
 
 ---
 
-## ⏳ PRÓXIMOS PASSOS (Reta Final)
+## ⏳ BACKLOG PRIORITÁRIO (Para Amanhã/Desktop)
 
-1.  **Lighthouse Final:** Rodar teste de performance com as novas imagens 3D.
+### 🛠️ Ajustes de Precisão Visual
+- [ ] **Seção Sobre (Moldura da Foto):**
+    * *Problema:* A borda fina atual está deslocada (design antigo) e o ajuste rápido "quebrou" a imagem.
+    * *Ação:* Refazer o CSS do container da imagem para que a borda fina (`border-gold-primary`) fique perfeitamente alinhada (encaixada) na foto, criando uma moldura simétrica.
+- [ ] **Seção Sobre (Harmonia Geométrica):**
+    * *Ação:* Alinhar a altura da Coluna de Texto (Título + Bio + Cards + Botão) com a altura da Coluna da Foto.
+    * *Objetivo:* Fazer com que o topo do título "Perfil Profissional" e a base do botão "Agendar" coincidam exatamente com as extremidades da foto ao lado, criando uma linha invisível sólida (igual fizemos no Contato).
+
+### 🚀 Finalização
+1.  **Lighthouse Final:** Rodar teste de performance com as novas imagens 3D e efeitos.
 2.  **Imagens do Blog:** Substituir os placeholders pelas capas reais do Instagram da Dra.
 3.  **Domínio Final:** Validar apontamento DNS para lançamento.
