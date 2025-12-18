@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Instagram, ArrowUpRight, Calendar } from "lucide-react";
 
 // --- DADOS DOS POSTS (Simulação do Feed) ---
-// Amanhã no PC podemos trocar as imagens pelas capas reais dos vídeos dela.
 const POSTS = [
   {
     id: 1,
@@ -55,7 +54,6 @@ export function Blog() {
             href="https://www.instagram.com/adv.marianabueno/" 
             target="_blank"
             rel="noopener noreferrer"
-            // bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737]: Gradiente Oficial do Instagram
             className="flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#833AB4] via-[#FD1D1D] to-[#F77737] text-white font-bold text-xs uppercase tracking-widest hover:scale-105 transition-transform shadow-lg group"
           >
             <Instagram size={18} />
@@ -68,7 +66,7 @@ export function Blog() {
         <div className="grid md:grid-cols-3 gap-8">
           {POSTS.map((post) => (
             <a 
-              key={post.id}
+              key={post.id} 
               href={post.link}
               target="_blank"
               rel="noopener noreferrer"
@@ -103,6 +101,7 @@ export function Blog() {
                 <div className="mt-4 flex items-center gap-2 text-white text-xs uppercase tracking-widest font-bold drop-shadow-sm hover:underline decoration-white/50 underline-offset-4">
                   Ver no Instagram <ArrowUpRight size={12} />
                 </div>
+              </div>
             </a>
           ))}
         </div>
