@@ -61,7 +61,7 @@ export function Header() {
               alt="Mariana Bueno Advocacia" 
               width={60}
               height={60}
-              className="object-contain hover:scale-105 transition-transform duration-300" 
+              className="object-contain hover:scale-105 transition-transform duration-300 -mt-2" 
               priority
             />
           </div>
