@@ -98,6 +98,7 @@ export function Blog() {
                   {post.title}
                 </h4>
                 
+                {/* CTA Fixado e Visível */}
                 <div className="mt-4 flex items-center gap-2 text-white text-xs uppercase tracking-widest font-bold drop-shadow-sm hover:underline decoration-white/50 underline-offset-4">
                   Ver no Instagram <ArrowUpRight size={12} />
                 </div>
