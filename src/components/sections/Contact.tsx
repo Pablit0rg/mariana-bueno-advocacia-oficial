@@ -101,7 +101,7 @@ export function Contact() {
           </div>
 
           {/* COLUNA 2: Formulário Funcional (Direita) */}
-          <div className="bg-rich-gray/50 backdrop-blur-sm border border-white/5 p-8 md:p-10 rounded-2xl relative h-full flex flex-col justify-center">
+          <div className="bg-rich-gray/50 backdrop-blur-sm border border-white/10 p-8 md:p-10 rounded-2xl relative h-full flex flex-col justify-center">
             
             <form onSubmit={handleSubmit} className="space-y-5">
               
