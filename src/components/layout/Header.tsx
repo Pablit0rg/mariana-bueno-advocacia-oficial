@@ -59,8 +59,8 @@ export function Header() {
             <Image 
               src="/logo-header.png-removebg-preview.png"
               alt="Mariana Bueno Advocacia" 
-              width={60}
-              height={60}
+              width={65}
+              height={65}
               className="object-contain hover:scale-105 transition-transform duration-300 -mt-2" 
               priority
             />
