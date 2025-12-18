@@ -8,7 +8,7 @@ const POSTS = [
     title: "Pensão Alimentícia: Mitos e Verdades que você precisa saber",
     date: "12 DEZ 2024",
     category: "Direito de Família",
-    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=800",
+    image: "/post1.jpg",
     link: "https://www.instagram.com/adv.marianabueno/"
   },
   {
