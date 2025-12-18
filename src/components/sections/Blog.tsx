@@ -92,16 +92,15 @@ export function Blog() {
 
               {/* Conteúdo */}
               <div className="p-6">
-                <div className="flex items-center gap-2 text-gray-500 text-xs mb-3">
+                <div className="flex items-center gap-2 text-white/90 text-xs mb-3 font-medium">
                   <Calendar size={12} />
                   {post.date}
                 </div>
-                <h4 className="text-white font-serif text-lg leading-snug group-hover:text-[#E1306C] transition-colors">
+                <h4 className="text-white font-serif text-lg leading-snug font-bold drop-shadow-sm">
                   {post.title}
                 </h4>
                 
-                {/* Link "Ler no Instagram" também com cor oficial no hover */}
-                <div className="mt-4 flex items-center gap-2 text-[#E1306C] text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 font-bold">
+                <div className="mt-4 flex items-center gap-2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 font-bold drop-shadow-sm">
                   Ler no Instagram <ArrowUpRight size={12} />
                 </div>
               </div>
