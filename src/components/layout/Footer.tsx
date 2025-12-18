@@ -36,13 +36,13 @@ export function Footer() {
     <footer className="bg-rich-black border-t border-gold-primary/20 relative pt-16 pb-8">
       
       {/* --- BOTÃO SCROLL TO TOP (ANCORADO NA LINHA) --- */}
-      {/* Posicionado: absolute -top-5 (sobe metade da altura) left-1/2 (centro) */}
+      {/* CORRIGIDO: Dourado Fixo, Maior (p-3) e Centralizado */}
       <button 
         onClick={scrollToTop}
-        className="absolute -top-5 left-1/2 -translate-x-1/2 bg-rich-black border border-gold-primary text-gold-primary hover:bg-gold-primary hover:text-rich-black transition-all duration-300 p-2 rounded-full shadow-[0_0_15px_rgba(212,175,55,0.3)] z-20 group"
+        className="absolute -top-6 left-1/2 -translate-x-1/2 bg-gold-primary text-rich-black p-3 rounded-full shadow-[0_0_20px_rgba(212,175,55,0.4)] z-20 hover:scale-110 transition-transform duration-300"
         aria-label="Voltar ao topo"
       >
-        <ArrowUp size={20} className="group-hover:-translate-y-1 transition-transform" />
+        <ArrowUp size={20} />
       </button>
 
       <div className="container mx-auto px-4 md:px-8">
