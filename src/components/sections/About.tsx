@@ -52,32 +52,31 @@ export function About() {
                 priority
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 w-full h-full border border-gold-primary/30 rounded-lg -z-10 hidden md:block" />
-          </div>
-
-          {/* COLUNA 2: O CONTEÚDO (Texto Original Restaurado) */}
-          <div className="space-y-8">
+            {/* COLUNA 1: A FOTO (Limpa, sem bordas por enquanto) */}
+          <div className="relative w-full h-full min-h-[500px] flex flex-col">
             
-            <div className="space-y-4">
-              {/* Tag Superior */}
-              <h2 className="text-gold-primary font-bold uppercase tracking-widest text-sm flex items-center gap-2">
-                <span className="w-8 h-[1px] bg-gold-primary"></span>
-                Perfil Profissional
-              </h2>
+            {/* CONTAINER DA IMAGEM (Sem borda, sem padding) */}
+            <div className="relative flex-1 rounded-lg group transition-all duration-500">
               
-              {/* Título de Impacto (Restaurado) */}
-              <h3 className="font-serif text-3xl md:text-4xl text-white leading-tight">
-                Advocacia não é apenas leis. <br/>
-                <span className="text-gold-gradient">É sobre vidas.</span>
-              </h3>
-              
-              {/* Parágrafo Humanizado (Restaurado) */}
-              <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light text-justify md:text-left">
-                Com foco absoluto em <strong className="text-white font-medium">Direito de Família</strong>, minha missão é conduzir processos delicados com a firmeza necessária e a humanidade indispensável.
-                <br /><br />
-                Atuo de forma estratégica para garantir que seus direitos sejam preservados, sem expor desnecessariamente a sua história. Uma advocacia moderna, ágil e livre de burocracias antigas.
-              </p>
+              {/* Container Interno da Imagem */}
+              <div className="relative w-full h-full overflow-hidden rounded-sm bg-rich-gray">
+                 
+                 {/* Overlay Gradiente Suave */}
+                 <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                 
+                 <Image
+                  src="/hero.webp" 
+                  alt="Dra. Mariana Bueno"
+                  fill
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+              </div>
+
+              {/* REMOVIDO: Linhas de borda e cantos decorativos */}
             </div>
+          </div>
 
             {/* GRID DE MINI-CARDS */}
             <div className="grid grid-cols-2 gap-4">
