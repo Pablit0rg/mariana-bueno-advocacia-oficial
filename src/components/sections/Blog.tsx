@@ -100,10 +100,9 @@ export function Blog() {
                   {post.title}
                 </h4>
                 
-                <div className="mt-4 flex items-center gap-2 text-white text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0 font-bold drop-shadow-sm">
-                  Ler no Instagram <ArrowUpRight size={12} />
+                <div className="mt-4 flex items-center gap-2 text-white text-xs uppercase tracking-widest font-bold drop-shadow-sm hover:underline decoration-white/50 underline-offset-4">
+                  Ver no Instagram <ArrowUpRight size={12} />
                 </div>
-              </div>
             </a>
           ))}
         </div>
