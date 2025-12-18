@@ -52,7 +52,7 @@ export function About() {
                 priority
               />
             </div>
-            <div className="absolute -bottom-4 -right-4 w-full h-full border border-gold-primary/30 rounded-lg -z-10 hidden md:block" />
+            
           </div>
 
           {/* COLUNA 2: O CONTEÚDO (Texto Original Restaurado) */}
