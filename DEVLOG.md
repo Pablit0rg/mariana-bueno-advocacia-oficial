@@ -29,60 +29,40 @@
 
 ## 💎 Fase Final: Refinamento "High Ticket" (Status Atual)
 
+### 🧠 Backend & Lógica (Intelligence Update)
+- [x] **Schema Markup (JSON-LD):** Componente `src/components/seo/SchemaMarkup.tsx` criado. O Google agora entende: Endereço, Telefone e Área de Atuação.
+- [x] **Server Actions (Contato):** Formulário de contato agora é funcional. Valida dados no servidor e simula envio com feedback visual (Loader/Sucesso).
+- [x] **Server Actions (Login):** Estrutura de login server-side criada (`src/actions/auth.ts`) usando Cookies HttpOnly.
+- [x] **Middleware Blindado:** `middleware.ts` configurado com headers de segurança (X-Frame-Options, XSS-Protection).
+- [x] **Otimização de Fontes:** `fonts.ts` ajustado com `display: swap` para evitar CLS (Layout Shift).
+
 ### 🎨 UI & Layout (Visual & Harmonia)
-- [x] **Header Dinâmico:**
-    * Topo: Exibe apenas texto "MARIANA BUENO" (Formatação Limpa).
-    * Scroll: Exibe Logo 3D Oficial na Navbar.
-    * Correção: Linha inferior (borda) fixa em todas as posições.
+- [x] **Header Dinâmico:** Texto limpo no topo -> Logo 3D no scroll.
 - [x] **Hero Imponente:**
-    * Nome da Dra. com efeito **Shimmer (Reflexo Dourado)** isolado.
-    * Botão "Iniciar Atendimento" sólido com sombra.
-    * Tamanhos originais preservados.
-- [x] **Seção Contato (Pixel Perfect):**
-    * Alinhamento matemático entre cards da esquerda e formulário da direita (`flex stretch`).
-- [x] **Cookie Banner (Full Width):**
-    * Barra estendida 100% no rodapé desktop.
-- [x] **Imagens (Dra. Mariana):**
-    * Removido zoom no hover (estático e nítido).
-- [x] **Perfil Profissional (Estrutura):**
-    * Transformado em Mini-cards estruturados.
-- [x] **Footer:**
-    * Espaçamento de colunas ajustado.
-
-### ✨ Interatividade & Branding (UX)
-- [x] **Padrão CTA "Solid Gold":**
-    * Todos os botões de ação agora são Dourado Sólido (`bg-gold-primary`) sem transparência.
-    * Efeito "Shimmer" (brilho branco passando) aplicado em todos.
-- [x] **Botão Instagram:**
-    * Cores Oficiais (Gradiente) para maior reconhecimento.
-- [x] **Botão "Voltar ao Topo":**
-    * Restaurado com z-index alto e cor Dourada Sólida.
-- [x] **WhatsApp Button 3.0:**
-    * Ícone vetorizado + Radar 5s + Mensagem "Olá Dra. Mariana...".
-
-### 🔐 Funcionalidade & Segurança
-- [x] **Protocolo de Login Oculto:**
-    * Duplo clique no cadeado do Footer -> Gera Token -> Libera rota `/adm`.
-- [x] **Selo de Segurança:**
-    * Texto "Site Seguro" + Cadeado discreto.
-
-### 📱 Conteúdo & Integração
-- [x] **Blog (Mosaico):**
-    * Seção "Atualizações Jurídicas" estruturada (Falta apenas atualizar as imagens finais dos posts).
+    * Nome com efeito **Shimmer (Reflexo Dourado)**.
+    * Imagem `/hero.webp` aplicada (aguardando foto oficial de alta resolução).
+- [x] **Seção Contato:** Alinhamento perfeito e funcionamento backend integrado.
+- [x] **Cookie Banner:** Full width no rodapé.
+- [x] **Perfil Profissional:** Mini-cards estruturados.
 
 ---
 
-## ⏳ BACKLOG PRIORITÁRIO (Para Amanhã/Desktop)
+## ⏳ BACKLOG PRIORITÁRIO (Para Desktop/Amanhã)
 
-### 🛠️ Ajustes de Precisão Visual
-- [ ] **Seção Sobre (Moldura da Foto):**
-    * *Problema:* A borda fina atual está deslocada (design antigo) e o ajuste rápido "quebrou" a imagem.
-    * *Ação:* Refazer o CSS do container da imagem para que a borda fina (`border-gold-primary`) fique perfeitamente alinhada (encaixada) na foto, criando uma moldura simétrica.
-- [ ] **Seção Sobre (Harmonia Geométrica):**
-    * *Ação:* Alinhar a altura da Coluna de Texto (Título + Bio + Cards + Botão) com a altura da Coluna da Foto.
-    * *Objetivo:* Fazer com que o topo do título "Perfil Profissional" e a base do botão "Agendar" coincidam exatamente com as extremidades da foto ao lado, criando uma linha invisível sólida (igual fizemos no Contato).
+### 🚨 Bugs Críticos (A Resolver)
+1.  **Bug do Login (/adm):**
+    * *Sintoma:* Ao acessar `/adm`, o usuário vê um alerta/mensagem e é redirecionado para a Home automaticamente, impedindo a digitação da senha.
+    * *Suspeita:* Resquício de cache ou código client-side antigo entrando em conflito com o novo Middleware/Server Component.
+    * *Ação:* Revisão profunda do fluxo de redirecionamento no Desktop.
+
+2.  **Seção Sobre (Moldura da Foto):**
+    * *Problema:* A borda fina não está alinhada perfeitamente com a foto nova.
+    * *Ação:* Ajustar CSS do container da imagem para criar moldura simétrica.
+
+3.  **Seção Sobre (Alinhamento):**
+    * *Ação:* Sincronizar altura da coluna de texto com a coluna da foto (efeito "bloco sólido").
 
 ### 🚀 Finalização
-1.  **Lighthouse Final:** Rodar teste de performance com as novas imagens 3D e efeitos.
-2.  **Imagens do Blog:** Substituir os placeholders pelas capas reais do Instagram da Dra.
-3.  **Domínio Final:** Validar apontamento DNS para lançamento.
+1.  **Imagens do Blog:** Substituir placeholders pelas capas reais.
+2.  **Lighthouse Final:** Teste de carga máxima.
+3.  **Domínio:** Apontamento DNS.
