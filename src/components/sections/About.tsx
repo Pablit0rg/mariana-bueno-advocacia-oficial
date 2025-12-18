@@ -41,7 +41,7 @@ export function About() {
           
           {/* COLUNA 1: A FOTO (Estática e Elegante) */}
           <div className="relative group">
-            <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg border border-white/10 shadow-2xl">
+            className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg shadow-2xl
               <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-transparent to-transparent z-10 opacity-60" />
               <Image
                 src="/hero.webp"
