@@ -46,7 +46,13 @@ export default async function AdmPage() {
           </div>
           <h1 className="text-2xl font-serif text-white">Área Restrita</h1>
         </div>
-        <form action={loginAction} className="space-y-6">
+        <form 
+  action={async (formData) => {
+    "use server";
+    await loginAction(formData);
+  }} 
+  className="space-y-6"
+>
           <div className="space-y-2">
             <label className="text-[10px] text-gold-primary uppercase tracking-widest font-bold ml-1">Token de Segurança</label>
             <input type="password" name="token" placeholder="••••••••••••••••" className="w-full bg-rich-black border border-white/20 rounded-lg px-4 py-4 text-center text-white focus:border-gold-primary outline-none text-lg" required />
