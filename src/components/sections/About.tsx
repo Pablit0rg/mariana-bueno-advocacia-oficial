@@ -39,9 +39,10 @@ export function About() {
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           
-          {/* COLUNA 1: A FOTO (Estática e Elegante) */}
+          {/* COLUNA 1: A FOTO (CORRIGIDA - SEM BORDAS) */}
           <div className="relative group">
-            className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg shadow-2xl
+            {/* AQUI ESTAVA O ERRO: Recriei a div de abertura corretamente */}
+            <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-transparent to-transparent z-10 opacity-60" />
               <Image
                 src="/hero.webp"
@@ -52,26 +53,23 @@ export function About() {
                 priority
               />
             </div>
-            
+            {/* Removi a div de borda decorativa que ficava aqui */}
           </div>
 
-          {/* COLUNA 2: O CONTEÚDO (Texto Original Restaurado) */}
+          {/* COLUNA 2: O CONTEÚDO (Mantido) */}
           <div className="space-y-8">
             
             <div className="space-y-4">
-              {/* Tag Superior */}
               <h2 className="text-gold-primary font-bold uppercase tracking-widest text-sm flex items-center gap-2">
                 <span className="w-8 h-[1px] bg-gold-primary"></span>
                 Perfil Profissional
               </h2>
               
-              {/* Título de Impacto (Restaurado) */}
               <h3 className="font-serif text-3xl md:text-4xl text-white leading-tight">
                 Advocacia não é apenas leis. <br/>
                 <span className="text-gold-gradient">É sobre vidas.</span>
               </h3>
               
-              {/* Parágrafo Humanizado (Restaurado) */}
               <p className="text-gray-400 text-base md:text-lg leading-relaxed font-light text-justify md:text-left">
                 Com foco absoluto em <strong className="text-white font-medium">Direito de Família</strong>, minha missão é conduzir processos delicados com a firmeza necessária e a humanidade indispensável.
                 <br /><br />
