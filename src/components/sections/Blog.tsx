@@ -72,7 +72,7 @@ export function Blog() {
               href={post.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block bg-white/5 border border-white/5 hover:border-[#E1306C]/50 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2"
+              className="group block bg-gradient-to-tr from-[#833AB4] via-[#FD1D1D] to-[#F77737] border border-white/10 rounded-lg overflow-hidden transition-all duration-500 hover:-translate-y-2 shadow-xl"
             >
               {/* Imagem do Post */}
               <div className="relative h-64 w-full overflow-hidden">
