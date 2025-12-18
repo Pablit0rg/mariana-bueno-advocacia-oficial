@@ -1,127 +1,127 @@
 "use client";
 
-import { Facebook, Instagram, Linkedin, ShieldCheck, Lock } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Facebook, Instagram, Linkedin, ArrowUp } from "lucide-react";
+
+const footerLinks = {
+  institucional: [
+    { name: "Início", href: "/" },
+    { name: "Sobre a Dra.", href: "#sobre" },
+    { name: "Áreas de Atuação", href: "#atuacao" },
+    { name: "Depoimentos", href: "#depoimentos" },
+  ],
+  legal: [
+    { name: "Termos de Uso", href: "/termos" },
+    { name: "Política de Privacidade", href: "/privacidade" },
+    { name: "Aviso Legal", href: "/aviso-legal" },
+  ],
+  contato: [
+    { name: "WhatsApp: (41) 99999-9999", href: "https://wa.me/5541999999999" },
+    { name: "contato@advmarianabueno.com.br", href: "mailto:contato@advmarianabueno.com.br" },
+    { name: "Curitiba - PR", href: "#" },
+  ]
+};
 
 export function Footer() {
-  const router = useRouter();
-
-  const handleSecurityAccess = () => {
-    // 1. Gera um token aleatório de 6 dígitos
-    const token = Math.random().toString(36).slice(2, 8).toUpperCase();
-    
-    // 2. Salva na memória
-    sessionStorage.setItem("adm_token", token);
-    
-    // 3. Mostra o token (Simulação de Modal)
-    alert(`🔐 MODO DE SEGURANÇA ATIVADO\n\nSeu Token de Acesso Temporário é:\n👉 ${token}\n\nCopie este código para acessar a área restrita.`);
-    
-    // 4. Redireciona
-    router.push("/adm");
+  
+  // Função de Rolar ao Topo (Integrada)
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
-    <footer className="bg-rich-black border-t border-gold-primary/20 pt-20 pb-10 relative overflow-hidden">
+    <footer className="bg-rich-black border-t border-gold-primary/20 relative pt-16 pb-8">
       
-      {/* Luz de Fundo (Efeito Premium) */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gold-primary/5 blur-[120px] rounded-full pointer-events-none" />
+      {/* --- BOTÃO SCROLL TO TOP (ANCORADO NA LINHA) --- */}
+      {/* Posicionado: absolute -top-5 (sobe metade da altura) left-1/2 (centro) */}
+      <button 
+        onClick={scrollToTop}
+        className="absolute -top-5 left-1/2 -translate-x-1/2 bg-rich-black border border-gold-primary text-gold-primary hover:bg-gold-primary hover:text-rich-black transition-all duration-300 p-2 rounded-full shadow-[0_0_15px_rgba(212,175,55,0.3)] z-20 group"
+        aria-label="Voltar ao topo"
+      >
+        <ArrowUp size={20} className="group-hover:-translate-y-1 transition-transform" />
+      </button>
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
-        
-        {/* GRID PRINCIPAL (Ajuste Matemático) */}
-        {/* grid-cols-1 no mobile, grid-cols-12 no desktop para controle total da largura das colunas */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-16">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           
-          {/* Coluna 1: Marca (Ocupa 4 espaços de 12) */}
-          <div className="md:col-span-4 space-y-6">
-            <h2 className="font-serif text-2xl text-white">MARIANA BUENO</h2>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
-              Advocacia artesanal e estratégica. Foco em resultados que preservam o patrimônio e as relações familiares.
+          {/* Coluna 1: Marca */}
+          <div className="space-y-4">
+            <h3 className="font-serif text-2xl text-white">Mariana Bueno</h3>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Advocacia artesanal e estratégica, focada na proteção do seu patrimônio e da sua família.
             </p>
-            <div className="flex gap-4">
-              <a href="https://instagram.com/adv.marianabueno" target="_blank" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-gold-primary hover:bg-gold-primary hover:text-rich-black transition-all" aria-label="Instagram">
-                <Instagram size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-gold-primary hover:bg-gold-primary hover:text-rich-black transition-all" aria-label="Facebook">
-                <Facebook size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-gold-primary hover:bg-gold-primary hover:text-rich-black transition-all" aria-label="LinkedIn">
-                <Linkedin size={18} />
-              </a>
+            <div className="flex gap-4 pt-2">
+              <a href="#" className="text-gold-primary hover:text-white transition-colors"><Instagram size={20} /></a>
+              <a href="#" className="text-gold-primary hover:text-white transition-colors"><Linkedin size={20} /></a>
+              <a href="#" className="text-gold-primary hover:text-white transition-colors"><Facebook size={20} /></a>
             </div>
           </div>
 
-          {/* ESPAÇADOR (Ocupa 1 espaço) - Cria o "respiro" matemático */}
-          <div className="hidden md:block md:col-span-1" />
-
-          {/* Coluna 2: Navegação (Ocupa 2 espaços) */}
-          <div className="md:col-span-2">
-            <h3 className="text-gold-primary font-bold uppercase tracking-widest text-xs mb-6">Navegação</h3>
+          {/* Coluna 2: Institucional */}
+          <div>
+            <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6">Institucional</h4>
             <ul className="space-y-3">
-              <li><Link href="#hero" className="text-gray-400 hover:text-gold-primary text-sm transition-colors">Início</Link></li>
-              <li><Link href="#sobre" className="text-gray-400 hover:text-gold-primary text-sm transition-colors">Sobre a Dra.</Link></li>
-              <li><Link href="#atuacao" className="text-gray-400 hover:text-gold-primary text-sm transition-colors">Áreas de Atuação</Link></li>
-              <li><Link href="#depoimentos" className="text-gray-400 hover:text-gold-primary text-sm transition-colors">Depoimentos</Link></li>
+              {footerLinks.institucional.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-gray-400 hover:text-gold-primary text-sm transition-colors">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Coluna 3: Áreas (Ocupa 2 espaços) */}
-          <div className="md:col-span-2">
-            <h3 className="text-gold-primary font-bold uppercase tracking-widest text-xs mb-6">Áreas</h3>
+          {/* Coluna 3: Legal */}
+          <div>
+            <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6">Legal</h4>
             <ul className="space-y-3">
-              <li><span className="text-gray-400 text-sm cursor-default hover:text-white transition-colors">Direito de Família</span></li>
-              <li><span className="text-gray-400 text-sm cursor-default hover:text-white transition-colors">Direito das Sucessões</span></li>
-              <li><span className="text-gray-400 text-sm cursor-default hover:text-white transition-colors">Direito Civil</span></li>
-              <li><span className="text-gray-400 text-sm cursor-default hover:text-white transition-colors">Direito do Trabalho</span></li>
+              {footerLinks.legal.map((link) => (
+                <li key={link.name}>
+                  <Link href={link.href} className="text-gray-400 hover:text-gold-primary text-sm transition-colors">
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Coluna 4: Contato (Ocupa 3 espaços) */}
-          <div className="md:col-span-3">
-            <h3 className="text-gold-primary font-bold uppercase tracking-widest text-xs mb-6">Contato</h3>
-            <ul className="space-y-4">
-              <li className="flex gap-3 items-start">
-                <span className="text-white text-sm">Curitiba - PR<br/><span className="text-xs opacity-60">Atendimento Online para todo o Brasil</span></span>
-              </li>
-              <li>
-                <a href="mailto:contato@advmarianabueno.com.br" className="text-gray-400 hover:text-gold-primary text-sm transition-colors block truncate">
-                  contato@advmarianabueno.com.br
-                </a>
-              </li>
-              <li>
-                <a href="https://wa.me/5541999999999" target="_blank" className="text-xl text-white font-serif hover:text-gold-primary transition-colors">
-                  (41) 99999-9999
-                </a>
-              </li>
+          {/* Coluna 4: Contato */}
+          <div>
+            <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6">Contato</h4>
+            <ul className="space-y-3">
+              {footerLinks.contato.map((link) => (
+                <li key={link.name}>
+                  <a href={link.href} target="_blank" className="text-gray-400 hover:text-gold-primary text-sm transition-colors flex items-center gap-2">
+                    {link.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
-
         </div>
 
-        {/* Linha Divisória & Copyright */}
+        {/* Rodapé Inferior */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-600 text-xs text-center md:text-left">
-            © 2025 Mariana Bueno Advocacia. Todos os direitos reservados.
+          <p className="text-gray-500 text-xs text-center md:text-left">
+            © {new Date().getFullYear()} Mariana Bueno Advocacia. Todos os direitos reservados.
           </p>
           
-          {/* ÁREA DE SEGURANÇA (SELO + CADEADO OCULTO) */}
-          <div className="flex items-center gap-2 group/security relative">
-            <ShieldCheck size={14} className="text-green-500/80" />
-            <span className="text-gray-600 text-[10px] uppercase tracking-wider font-medium cursor-default">
-              Site Seguro & Protegido
-            </span>
-            
-            {/* O CADEADO MÁGICO (Gatilho) */}
-            {/* Posicionado discretamente ao lado do texto */}
-            <button 
-              onDoubleClick={handleSecurityAccess} 
-              className="text-gray-800 hover:text-rich-black transition-colors cursor-default p-1 opacity-50 hover:opacity-100"
-              title="Verificação de Segurança"
-              aria-label="Área Administrativa"
-            >
-              <Lock size={10} />
-            </button>
+          <div className="flex items-center gap-2">
+             {/* Acesso Restrito (Login Oculto) */}
+             <Link href="/adm" className="text-gray-600 hover:text-gold-primary transition-colors p-2">
+                <span className="sr-only">Área Restrita</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+             </Link>
+             <p className="text-gray-600 text-[10px] uppercase tracking-wider">
+                Desenvolvido com excelência
+             </p>
           </div>
         </div>
       </div>
