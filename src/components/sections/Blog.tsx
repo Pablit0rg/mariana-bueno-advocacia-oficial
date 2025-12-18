@@ -8,7 +8,7 @@ const POSTS = [
     title: "Pensão Alimentícia: Mitos e Verdades que você precisa saber",
     date: "12 DEZ 2024",
     category: "Direito de Família",
-    image: "/post1.jpg",
+    image: "/post1.jpg", // Imagem 1
     link: "https://www.instagram.com/adv.marianabueno/"
   },
   {
@@ -16,7 +16,7 @@ const POSTS = [
     title: "Divórcio com Filhos Menores: Como fica a guarda?",
     date: "05 DEZ 2024",
     category: "Guarda e Visitas",
-    image: "https://images.unsplash.com/photo-1633613286991-611fe299c4be?auto=format&fit=crop&q=80&w=800",
+    image: "/post2.png", // Imagem 2 (PNG)
     link: "https://www.instagram.com/adv.marianabueno/"
   },
   {
@@ -24,7 +24,7 @@ const POSTS = [
     title: "Partilha de Bens: O regime de comunhão parcial explicado",
     date: "28 NOV 2024",
     category: "Direito Patrimonial",
-    image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800",
+    image: "/post3.jpg", // Imagem 3
     link: "https://www.instagram.com/adv.marianabueno/"
   }
 ];
