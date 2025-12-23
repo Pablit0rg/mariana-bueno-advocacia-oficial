@@ -1,28 +1,14 @@
-import dynamic from "next/dynamic";
-import { Hero } from "../components/sections/Hero";
-
-// --- IMPORTS DINÂMICOS (Otimização High Ticket) ---
-// Carrega as seções pesadas apenas quando necessário para manter o site rápido.
-const About = dynamic(() => import("../components/sections/About").then(mod => mod.About));
-const PracticeAreas = dynamic(() => import("../components/sections/PracticeAreas").then(mod => mod.PracticeAreas));
-const Testimonials = dynamic(() => import("../components/sections/Testimonials").then(mod => mod.Testimonials));
-const Blog = dynamic(() => import("../components/sections/Blog").then(mod => mod.Blog)); // <--- Novo Componente
-const Contact = dynamic(() => import("../components/sections/Contact").then(mod => mod.Contact));
-
+// src/app/page.tsx
 export default function Home() {
   return (
-    <main className="min-h-screen bg-rich-black selection:bg-gold-primary/30">
-      
-      {/* Hero carrega estático para ser imediato (LCP) */}
-      <Hero />
-      
-      {/* As outras seções carregam otimizadas */}
-      <About />
-      <PracticeAreas />
-      <Testimonials />
-      <Blog />
-      <Contact />
-      
-    </main>
+    <div className="min-h-screen flex items-center justify-center bg-black text-white">
+      <h1 className="text-4xl font-bold text-yellow-500">
+        O Site Está Vivo! 🚀
+      </h1>
+      <p className="mt-4 text-gray-400">
+        Se você está vendo isso, a configuração da Vercel está perfeita.
+        Agora podemos trazer os componentes de volta.
+      </p>
+    </div>
   );
 }
