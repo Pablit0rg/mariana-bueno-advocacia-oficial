@@ -111,3 +111,21 @@ Polimento: Verificar espaçamentos, responsividade mobile e animações do Frame
 Mensagem de Entrega: Ajudar a redigir o texto de entrega para a Dra. Mariana, reforçando o profissionalismo e explicando a questão da foto.
 
 Deploy: Preparar o terreno para colocar no ar (Vercel/Netlify).
+
+
+## 🚀 Próximas Atualizações (Front-end & UX)
+
+### Otimização do Rodapé (Footer)
+- [ ] **Limpeza Visual (Declutter):** Remover as colunas "Institucional" e "Contato" para eliminar redundância, já que a Navbar fixa supre essa navegação.
+- [ ] **Integração Phygital (Desktop Focus):**
+    - Manter o botão flutuante do WhatsApp inalterado (Mobile/PC).
+    - Na **coluna 1 do rodapé**, substituir o texto ("Advocacia artesanal...") por um **QR Code Moderno** de alta definição.
+    - Design do QR Code deve seguir padrões multinacionais (clean, bordas suavizadas, alto contraste) para facilitar o scan via Desktop.
+- [ ] **Reorganização Social:** Manter e alinhar os ícones (Instagram, LinkedIn, Facebook) para compor harmonicamente com o novo QR Code.
+
+### Melhoria de Navegação (Páginas Legais)
+- [ ] **UX "Modal-Like":** Implementar um botão de fechar ("X") visível e fixo nas páginas de texto denso:
+    - Termos de Uso
+    - Política de Privacidade
+    - Aviso Legal
+- [ ] **Objetivo:** Permitir saída rápida ("Escape Hatch") dessas leituras sem que o usuário precise rolar de volta ao topo ou clicar na logo, mantendo a fluidez da navegação.
