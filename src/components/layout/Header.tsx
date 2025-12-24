@@ -140,7 +140,7 @@ export function Header() {
             <div className="w-16 h-[1px] bg-white/10 my-4" />
 
             <a 
-              href="https://wa.me/5541997606069"
+              href="https://wa.me/5541997606069?text=Ol%C3%A1%2C%20Dra.%20Mariana.%20Gostaria%20de%20agendar%20um%20atendimento."
               target="_blank"
               className="px-8 py-4 bg-gold-primary text-rich-black font-bold rounded uppercase tracking-widest text-sm shadow-lg"
             >
