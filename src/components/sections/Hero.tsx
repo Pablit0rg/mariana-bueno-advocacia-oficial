@@ -32,8 +32,8 @@ export function Hero() {
           {/* 2. TEXTO COM EFEITO DEGRADÊ CORRIGIDO */}
           <div className="space-y-4 max-w-4xl mx-auto">
             
-            {/* Título Principal com o Ouro Metálico */}
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#BF953F] bg-clip-text text-transparent tracking-wide uppercase drop-shadow-sm">
+            {/* Título Principal com o Ouro Metálico e BRILHO INTENSO (Shine Animation) */}
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-[#BF953F] via-white to-[#BF953F] bg-[length:200%_auto] animate-shine bg-clip-text text-transparent tracking-wide uppercase drop-shadow-sm">
               Mariana Bueno
             </h1>
 
