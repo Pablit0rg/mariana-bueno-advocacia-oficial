@@ -29,20 +29,24 @@ export function Hero() {
             />
           </div>
 
-          {/* 2. TEXTO */}
+          {/* 2. TEXTO COM EFEITO DEGRADÊ CORRIGIDO */}
           <div className="space-y-4 max-w-4xl mx-auto">
+            
+            {/* Título Principal com o Ouro Metálico */}
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#BF953F] bg-clip-text text-transparent tracking-wide uppercase drop-shadow-sm">
-  Mariana Bueno
-</h1>
               Mariana Bueno
             </h1>
+
+            {/* Linha Divisória */}
             <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-gold-primary to-transparent mx-auto opacity-70" />
+            
+            {/* Subtítulo */}
             <p className="font-sans text-gold-primary text-xs md:text-sm tracking-[0.4em] uppercase font-light">
               Advocacia & Consultoria Especializada
             </p>
           </div>
 
-          {/* 3. BOTÃO DE AÇÃO (CTA) - CORRIGIDO */}
+          {/* 3. BOTÃO DE AÇÃO (CTA) */}
           <div className="pt-8">
             <a 
               href="https://wa.me/5541997606069?text=Ol%C3%A1%2C%20Dra.%20Mariana.%20Gostaria%20de%20agendar%20um%20atendimento."
