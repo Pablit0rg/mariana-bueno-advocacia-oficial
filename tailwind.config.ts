@@ -24,6 +24,16 @@ export default {
         sans: ["var(--font-inter)", "sans-serif"],
         serif: ["var(--font-inter)", "serif"], 
       },
+      // --- A MÁGICA DO BRILHO (SHINE) ---
+      animation: {
+        shine: "shine 2.5s linear infinite", // Velocidade ajustada para passar rápido (2.5s)
+      },
+      keyframes: {
+        shine: {
+          "0%": { backgroundPosition: "200% center" },
+          "100%": { backgroundPosition: "-200% center" },
+        },
+      },
     },
   },
   plugins: [],
