@@ -66,3 +66,48 @@
 1.  **Imagens do Blog:** Substituir placeholders pelas capas reais.
 2.  **Lighthouse Final:** Teste de carga máxima.
 3.  **Domínio:** Apontamento DNS.
+
+
+📂 MASTERLOG DE TRANSIÇÃO: PROJETO ADVOCACIA (MARIANA BUENO)
+Data: 24/12/2025 | Deadline de Entrega: Hoje às 22:00h Dev: Pablo Rosa Gomes (Full-Stack Autodidata) | Assistente: Gemini
+
+1. Contexto & Objetivo
+O Projeto: Site institucional elegante para a advogada Mariana Bueno.
+
+A Troca: Trabalho pro bono em troca de crédito no rodapé para portfólio ("Desenvolvido por..."). Objetivo é abrir portas para o mercado profissional em 2026.
+
+Status Atual: Migração completa de Vanilla JS para Next.js + React. O site está estruturalmente pronto, faltando apenas polimento fino e deploy.
+
+2. Tech Stack (A "Armadura")
+Core: Next.js 14+ (App Router), React, TypeScript.
+
+Estilização: Tailwind CSS (foco em design responsivo e moderno).
+
+Animação: Framer Motion (para transições suaves e elegantes).
+
+Ícones: Lucide React.
+
+Estrutura de Componentes: Arquitetura modular (Header, Hero, About, Services/Areas, Footer, WhatsApp Button).
+
+3. Identidade Visual (Design System)
+Vibe: "Soberania Jurídica", Minimalismo de Alto Padrão.
+
+Paleta: Fundo escuro/neutro (Cinza chumbo/Preto suave), detalhes em Dourado/Gold (para passar autoridade), tipografia branca/off-white para leitura.
+
+Tipografia: Fontes sérias e modernas (ex: Playfair Display para títulos, Inter/Roboto para corpo).
+
+4. A Missão Imediata (O "Soco" Final)
+Precisamos entregar uma versão funcional e visualmente impactante até as 22h de hoje (24/12).
+
+Pendência Crítica: A foto profissional da advogada para a Hero Section ainda não foi enviada.
+
+Ação: Deixar um placeholder (espaço reservado) elegante ou uma imagem genérica de alta classe, e instruir o Pablo sobre como explicar para a cliente que a "cereja do bolo" (a foto dela) será inserida assim que ela enviar o arquivo original.
+
+5. Próximos Passos (Para a Gemini do Novo Chat)
+Revisão de Código: Analisar o código atual (que o Pablo vai colar).
+
+Polimento: Verificar espaçamentos, responsividade mobile e animações do Framer Motion.
+
+Mensagem de Entrega: Ajudar a redigir o texto de entrega para a Dra. Mariana, reforçando o profissionalismo e explicando a questão da foto.
+
+Deploy: Preparar o terreno para colocar no ar (Vercel/Netlify).
