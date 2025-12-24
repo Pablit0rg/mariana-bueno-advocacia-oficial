@@ -11,7 +11,6 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        // Mantendo suas cores de luxo
         "rich-black": "#050505",
         "rich-gray": "#0a0a0a",
         "gold-primary": "#D4AF37",
@@ -19,14 +18,14 @@ export default {
         "gold-dark": "#AA8C2C",
       },
       fontFamily: {
-        // Truque: Mapeamos AMBAS para a Inter. 
-        // Assim, os títulos (serif) ficam retos como você queria.
         sans: ["var(--font-inter)", "sans-serif"],
         serif: ["var(--font-inter)", "serif"], 
       },
-      // --- A MÁGICA DO BRILHO (SHINE) ---
       animation: {
-        shine: "shine 2.5s linear infinite", // Velocidade ajustada para passar rápido (2.5s)
+        // Shine rápido para o Texto do Hero
+        shine: "shine 2.5s linear infinite",
+        // Shine LENTO para o Botão (NOVO)
+        "shine-slow": "shine 5s linear infinite",
       },
       keyframes: {
         shine: {
