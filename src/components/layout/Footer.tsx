@@ -104,16 +104,20 @@ export function Footer() {
           </p>
           
           <div className="flex items-center gap-3">
-             <Link href="/adm" className="text-gray-700 hover:text-gold-primary transition-colors">
-                <span className="sr-only">Área Restrita</span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+             {/* 1. FRASE DE SEGURANÇA (Agora vem primeiro) */}
+             <p className="text-gray-700 text-[10px] uppercase tracking-widest flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500/50 inline-block"></span>
+                Site Protegido e Criptografado
+             </p>
+
+             {/* 2. CADEADO (Agora por último/à direita, servindo como login oculto) */}
+             <Link href="/adm" className="text-gray-800 hover:text-gold-primary transition-colors p-1" title="Área Restrita">
+                <span className="sr-only">Login Administrativo</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-50 hover:opacity-100">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                 </svg>
              </Link>
-             <p className="text-gray-700 text-[10px] uppercase tracking-widest">
-                Excellence in Code
-             </p>
           </div>
         </div>
       </div>
