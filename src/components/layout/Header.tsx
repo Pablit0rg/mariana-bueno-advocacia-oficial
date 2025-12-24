@@ -3,152 +3,133 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Phone, Instagram, Linkedin, Mail } from "lucide-react";
+
+const navigation = [
+  { name: "Início", href: "#hero" },
+  { name: "Áreas de Atuação", href: "#areas" },
+  { name: "Sobre", href: "#sobre" },
+  { name: "Depoimentos", href: "#depoimentos" },
+  { name: "Contato", href: "#contato" },
+];
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Ativa a transição logo após sair do topo (100px)
-      setScrolled(window.scrollY > 100);
+      // AJUSTE CRÍTICO: Ativa o fundo preto logo no início (10px) 
+      // para evitar que a logo do Hero apareça por trás.
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const menuItems = [
-    { name: "Início", href: "#hero" },
-    { name: "Sobre a Dra.", href: "#sobre" },
-    { name: "Áreas de Atuação", href: "#atuacao" },
-    { name: "Depoimentos", href: "#depoimentos" },
-  ];
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b border-gold-primary/20 ${
-        scrolled 
-          ? "bg-rich-black/90 backdrop-blur-md py-2 shadow-xl" 
-          : "bg-transparent py-6"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
+        isScrolled
+          ? "bg-rich-black/95 backdrop-blur-md border-gold-primary/20 py-2 shadow-lg" // Fundo preto rápido e sólido
+          : "bg-transparent border-transparent py-6" // Transparente apenas no topo absoluto
       }`}
     >
-      <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-        
-        {/* --- BRANDING DINÂMICO --- */}
-        <Link href="/" className="group relative z-50 flex items-center h-12" aria-label="Ir para página inicial">
+      <div className="container mx-auto px-4 md:px-8">
+        <nav className="flex items-center justify-between relative">
           
-          {/* ESTADO 1: TEXTO LIMPO (Aparece no Topo) */}
-          {/* Formatação original restaurada: Flex Column, alinhamento simples */}
-          <div className={`flex flex-col justify-center transition-all duration-500 absolute left-0 ${
-            scrolled ? "opacity-0 -translate-y-4 pointer-events-none" : "opacity-100 translate-y-0"
-          }`}>
-            <h1 className="font-serif text-xl md:text-2xl font-bold text-white tracking-wider group-hover:text-gold-primary transition-colors uppercase whitespace-nowrap">
-              MARIANA BUENO
-            </h1>
-            <span className="text-[10px] md:text-xs font-sans text-gold-primary font-light tracking-[0.3em] uppercase">
-              Advocacia Especializada
-            </span>
-          </div>
-
-          {/* ESTADO 2: LOGO 3D (Aparece no Scroll) */}
-          <div className={`relative w-40 md:w-48 h-full transition-all duration-500 ${
-            scrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}>
-            <Image 
-              src="/logo-header.png-removebg-preview.png"
-              alt="Mariana Bueno Advocacia" 
-              width={70}
-              height={70}
-              className="object-contain hover:scale-105 transition-transform duration-300 -mt-2" 
-              priority
-            />
-          </div>
-
-        </Link>
-
-        {/* --- MENU DESKTOP --- */}
-        <nav className="hidden md:flex items-center gap-8" aria-label="Menu Principal">
-          {menuItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="relative group text-sm font-medium text-white/80 hover:text-white transition-colors uppercase tracking-wide"
-            >
-              {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold-primary transition-all duration-300 group-hover:w-full shadow-[0_0_10px_#D4AF37]" />
-            </Link>
-          ))}
-          
-          {/* BOTÃO PREMIUM (SOLID GOLD) */}
-          <a 
-            href="https://wa.me/5541999999999"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative inline-flex items-center gap-2 px-6 py-3 bg-gold-primary text-rich-black rounded overflow-hidden group hover:bg-white transition-colors shadow-[0_0_15px_rgba(212,175,55,0.2)]"
-          >
-            <div className="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out skew-x-12" />
-            <span className="text-xs font-bold uppercase tracking-widest relative z-10">
-              Falar com a Advogada
-            </span>
-            <ArrowRight size={14} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-          </a>
-        </nav>
-
-        {/* --- BOTÃO MOBILE --- */}
-        <button
-          className="md:hidden text-white hover:text-gold-primary transition-colors relative z-50 p-2"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-
-      {/* --- MENU MOBILE --- */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-rich-black/98 backdrop-blur-xl z-40 md:hidden flex flex-col justify-center items-center gap-8"
-          >
-            <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold-primary/10 blur-[100px] rounded-full pointer-events-none" />
-
-            <div className="relative w-48 h-16 mb-4 opacity-80">
-               <Image 
-                  src="/logo-header.png-removebg-preview.png"
-                  alt="Logo"
-                  fill
-                  className="object-contain"
-                />
+          {/* LOGO ESQUERDA (Muda com Scroll) */}
+          <Link href="/" className="relative z-50 group">
+            <div className={`transition-all duration-500 ease-in-out ${isScrolled ? "scale-90" : "scale-100"}`}>
+              {isScrolled ? (
+                // Logo Pequena (Menu Fixo)
+                <div className="flex items-center gap-3 animate-in fade-in slide-in-from-left-4 duration-500">
+                  <div className="relative w-10 h-10 overflow-hidden rounded-full border border-gold-primary/30">
+                    <Image
+                      src="/logo-header.png-removebg-preview.png"
+                      alt="Logo Compacta"
+                      fill
+                      className="object-contain p-1"
+                    />
+                  </div>
+                  <span className="font-serif text-lg text-white tracking-widest uppercase">
+                    Mariana <span className="text-gold-primary">Bueno</span>
+                  </span>
+                </div>
+              ) : (
+                // Logo Grande (Topo) - Oculta aqui para não competir com o Hero, ou mantém discreta
+                <span className="font-serif text-xl md:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-gold-primary via-white to-gold-primary bg-[length:200%_auto] animate-shine tracking-widest uppercase opacity-0 lg:opacity-100 transition-opacity">
+                  {/* Texto visível apenas em telas grandes antes do scroll se desejar, ou deixe vazio */}
+                </span>
+              )}
             </div>
+          </Link>
 
-            {menuItems.map((item) => (
+          {/* DESKTOP MENU */}
+          <div className="hidden lg:flex items-center gap-8">
+            {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="text-2xl font-serif text-white hover:text-gold-primary transition-colors relative group"
+                className="text-sm uppercase tracking-widest text-gray-300 hover:text-gold-primary transition-colors relative group"
               >
                 {item.name}
+                <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-gold-primary transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
 
-            <div className="w-16 h-[1px] bg-white/10 my-4" />
-
-            <a 
-              href="https://wa.me/5541999999999"
+            {/* Botão de Ação Rápida */}
+            <a
+              href="https://wa.me/5541997606069?text=Ol%C3%A1%2C%20Dra.%20Mariana.%20Gostaria%20de%20agendar%20um%20atendimento."
               target="_blank"
-              className="px-8 py-4 bg-gold-primary text-rich-black font-bold rounded uppercase tracking-widest text-sm shadow-lg"
+              className={`px-6 py-2 border border-gold-primary text-gold-primary text-xs uppercase tracking-widest hover:bg-gold-primary hover:text-rich-black transition-all duration-300 rounded-sm ${
+                isScrolled ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
             >
-              Agendar Consulta
+              Agendar
             </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+
+          {/* MOBILE MENU BUTTON */}
+          <button
+            className="lg:hidden text-gold-primary p-2 z-50 relative"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+
+          {/* MOBILE OVERLAY */}
+          {isOpen && (
+            <div className="fixed inset-0 bg-rich-black/98 z-40 flex items-center justify-center animate-in fade-in duration-300">
+              <div className="flex flex-col items-center gap-8 text-center">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="text-2xl font-serif text-white hover:text-gold-primary transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                
+                <div className="w-16 h-[1px] bg-gold-primary/30 my-4"></div>
+
+                <div className="flex gap-6">
+                  <a href="#" className="text-gray-400 hover:text-gold-primary transition-colors"><Instagram size={24} /></a>
+                  <a href="#" className="text-gray-400 hover:text-gold-primary transition-colors"><Linkedin size={24} /></a>
+                  <a href="#" className="text-gray-400 hover:text-gold-primary transition-colors"><Mail size={24} /></a>
+                </div>
+              </div>
+            </div>
+          )}
+        </nav>
+      </div>
     </header>
   );
 }
