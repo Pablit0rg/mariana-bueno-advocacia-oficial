@@ -46,16 +46,20 @@ export function Hero() {
             </p>
           </div>
 
-          {/* 3. BOTÃO DE AÇÃO (CTA) */}
-          <div className="pt-8">
+          {/* 3. BOTÃO DE AÇÃO (CTA) - ATUALIZADO */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 pt-8 animate-fade-in-up delay-300">
             <a 
               href="https://wa.me/5541997606069?text=Ol%C3%A1%2C%20Dra.%20Mariana.%20Gostaria%20de%20agendar%20um%20atendimento."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white uppercase transition-all duration-300 rounded-sm bg-gradient-to-r from-gold-600 to-gold-400 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:-translate-y-1"
+              className="px-8 py-4 bg-gold-primary text-rich-black font-bold text-sm uppercase tracking-widest rounded hover:bg-white transition-all duration-300 hover:scale-105 shadow-[0_0_20px_rgba(212,175,55,0.3)] w-full sm:w-auto text-center"
             >
               Agendar Consultoria
             </a>
+            
+            <p className="text-gray-400 text-xs uppercase tracking-wider hidden sm:block opacity-80">
+              * Atendimento exclusivo
+            </p>
           </div>
 
         </div>
