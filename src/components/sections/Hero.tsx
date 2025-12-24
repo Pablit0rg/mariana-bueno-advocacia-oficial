@@ -46,7 +46,7 @@ export function Hero() {
             </p>
           </div>
 
-          {/* 3. BOTÃO DE AÇÃO (CTA) - ATUALIZADO */}
+          {/* 3. BOTÃO DE AÇÃO (CTA) - COM STATUS ONLINE */}
           <div className="flex flex-col sm:flex-row items-center gap-4 pt-8 animate-fade-in-up delay-300">
             <a 
               href="https://wa.me/5541997606069?text=Ol%C3%A1%2C%20Dra.%20Mariana.%20Gostaria%20de%20agendar%20um%20atendimento."
@@ -57,9 +57,15 @@ export function Hero() {
               Agendar Consultoria
             </a>
             
-            <p className="text-gray-400 text-xs uppercase tracking-wider hidden sm:block opacity-80">
-              * Atendimento exclusivo
-            </p>
+            {/* STATUS ONLINE (Green Dot Effect) */}
+            <div className="hidden sm:flex items-center gap-2 text-gray-400 text-xs uppercase tracking-wider opacity-90">
+              {/* O Ponto de Luz */}
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)]"></span>
+              </span>
+              Atendimento exclusivo
+            </div>
           </div>
 
         </div>
