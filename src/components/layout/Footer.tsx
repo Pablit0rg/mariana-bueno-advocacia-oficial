@@ -98,7 +98,7 @@ export function Footer() {
         </div>
 
         {/* Rodapé Inferior: Copyright & Créditos */}
-        <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-gold-primary/20 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-600 text-[10px] text-center md:text-left uppercase tracking-widest">
             © {new Date().getFullYear()} Mariana Bueno Advocacia.
           </p>
