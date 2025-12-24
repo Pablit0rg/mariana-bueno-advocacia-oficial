@@ -13,7 +13,7 @@ export function Header() {
   useEffect(() => {
     const handleScroll = () => {
       // Ativa a transição logo após sair do topo (100px)
-      setScrolled(window.scrollY > 10);
+      setScrolled(window.scrollY > 05);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
