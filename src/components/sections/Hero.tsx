@@ -52,18 +52,13 @@ export function Hero() {
           <div className="pt-8">
             <a 
               <a 
-  href="https://wa.me/5541997606069"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative inline-flex items-center gap-3 px-10 py-4 bg-gold-primary text-rich-black rounded overflow-hidden group hover:bg-white transition-colors shadow-[0_0_20px_rgba(212,175,55,0.2)]"
-            >
-              <div className="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out skew-x-12" />
-              
-              <span className="text-xs font-bold uppercase tracking-widest relative z-10">
-                Iniciar Atendimento
-              </span>
-              <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-            </a>
+  href="https://wa.me/5541997606069?text=Ol%C3%A1%2C%20Dra.%20Mariana.%20Gostaria%20de%20agendar%20um%20atendimento."
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white uppercase transition-all duration-300 rounded-sm bg-gradient-to-r from-gold-600 to-gold-400 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:-translate-y-1"
+>
+  Agendar Consultoria
+</a>
           </div>
 
         </div>
