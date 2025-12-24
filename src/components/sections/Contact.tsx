@@ -66,7 +66,9 @@ export function Contact() {
               <div>
                 <h4 className="text-white font-serif text-lg">Telefone & WhatsApp</h4>
                 <p className="text-gray-400 text-sm mb-2">Atendimento ágil e direto.</p>
-                <a href="https://wa.me/5541999999999" target="_blank" className="text-white hover:text-gold-primary transition-colors font-medium text-lg">
+                <a href="https://wa.me/5541997606069" target="_blank" className="...">
+  (41) 99760-6069
+</a>
                   (41) 99999-9999
                 </a>
               </div>
