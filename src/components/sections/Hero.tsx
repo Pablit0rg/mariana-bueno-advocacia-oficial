@@ -31,7 +31,9 @@ export function Hero() {
 
           {/* 2. TEXTO */}
           <div className="space-y-4 max-w-4xl mx-auto">
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-white tracking-wide uppercase">
+            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#BF953F] bg-clip-text text-transparent tracking-wide uppercase drop-shadow-sm">
+  Mariana Bueno
+</h1>
               Mariana Bueno
             </h1>
             <div className="w-24 h-[2px] bg-gradient-to-r from-transparent via-gold-primary to-transparent mx-auto opacity-70" />
