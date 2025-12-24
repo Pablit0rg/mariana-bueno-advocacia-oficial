@@ -16,7 +16,7 @@ const footerLinks = {
     { name: "Aviso Legal", href: "/aviso-legal" },
   ],
   contato: [
-    { name: "WhatsApp: (41) 99999-9999", href: "https://wa.me/5541999999999" },
+    { name: "WhatsApp: (41) 99760-6069", href: "https://wa.me/5541997606069" },
     { name: "contato@advmarianabueno.com.br", href: "mailto:contato@advmarianabueno.com.br" },
     { name: "Curitiba - PR", href: "#" },
   ]
