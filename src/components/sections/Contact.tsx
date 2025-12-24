@@ -2,28 +2,25 @@
 
 import { useState } from "react";
 import { Mail, MapPin, Phone, Send, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
-import { sendContactEmail } from "@/actions/contact"; // Importa a Server Action
+import { sendContactEmail } from "@/actions/contact"; 
 
 export function Contact() {
   const [isPending, setIsPending] = useState(false);
   const [feedback, setFeedback] = useState<{ type: 'success' | 'error' | null, message: string }>({ type: null, message: '' });
 
-  // Função que gerencia o envio
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault(); // Evita o reload da página
+    event.preventDefault();
     setIsPending(true);
     setFeedback({ type: null, message: '' });
 
     const formData = new FormData(event.currentTarget);
-    
-    // Chama a Server Action
     const result = await sendContactEmail(formData);
 
     setIsPending(false);
 
     if (result.success) {
       setFeedback({ type: 'success', message: result.message });
-      (event.target as HTMLFormElement).reset(); // Limpa o form
+      (event.target as HTMLFormElement).reset(); 
     } else {
       setFeedback({ type: 'error', message: result.message });
     }
@@ -37,7 +34,6 @@ export function Contact() {
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         
-        {/* Cabeçalho */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 className="text-gold-primary font-bold uppercase tracking-widest text-sm flex items-center justify-center gap-2">
             <span className="w-8 h-[1px] bg-gold-primary"></span>
@@ -52,13 +48,11 @@ export function Contact() {
           </p>
         </div>
 
-        {/* O LAYOUT */}
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
           
-          {/* COLUNA 1: Informações (Esquerda) */}
+          {/* Informações de Contato */}
           <div className="flex flex-col justify-between gap-6 h-full">
             
-            {/* Cards de Contato (Visualização Apenas) */}
             <div className="flex items-start gap-4 p-6 bg-white/5 border border-white/10 hover:border-gold-primary/30 transition-colors rounded-lg group flex-1">
               <div className="p-3 bg-rich-black rounded-full border border-gold-primary/20 text-gold-primary group-hover:scale-110 transition-transform mt-1">
                 <Phone size={20} />
@@ -66,10 +60,13 @@ export function Contact() {
               <div>
                 <h4 className="text-white font-serif text-lg">Telefone & WhatsApp</h4>
                 <p className="text-gray-400 text-sm mb-2">Atendimento ágil e direto.</p>
-                <a href="https://wa.me/5541997606069" target="_blank" className="...">
-  (41) 99760-6069
-</a>
-                  (41) 99999-9999
+                {/* LINK CORRIGIDO AQUI */}
+                <a 
+                  href="https://wa.me/5541997606069?text=Ol%C3%A1%2C%20Dra.%20Mariana.%20Gostaria%20de%20agendar%20um%20atendimento."
+                  target="_blank"
+                  className="text-white hover:text-gold-primary transition-colors font-medium text-lg"
+                >
+                  (41) 99760-6069
                 </a>
               </div>
             </div>
@@ -102,12 +99,11 @@ export function Contact() {
 
           </div>
 
-          {/* COLUNA 2: Formulário Funcional (Direita) */}
+          {/* Formulário */}
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-10 rounded-2xl relative h-full flex flex-col justify-center">
             
             <form onSubmit={handleSubmit} className="space-y-5">
               
-              {/* Feedback Visual (Sucesso/Erro) */}
               {feedback.type && (
                 <div className={`p-4 rounded-lg flex items-center gap-3 text-sm animate-in fade-in slide-in-from-top-2 ${
                   feedback.type === 'success' 
@@ -140,7 +136,6 @@ export function Contact() {
                 <textarea name="message" required rows={5} placeholder="Descreva brevemente sua necessidade..." className="w-full bg-rich-black border border-white/10 focus:border-gold-primary/50 text-white rounded-lg px-4 py-3 outline-none transition-all placeholder:text-gray-600 resize-none disabled:opacity-50" disabled={isPending} />
               </div>
 
-              {/* Botão de Envio com Estado de Loading */}
               <button 
                 type="submit"
                 disabled={isPending}
