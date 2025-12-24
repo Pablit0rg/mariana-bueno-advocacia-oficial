@@ -39,29 +39,24 @@ export function About() {
       <div className="container mx-auto px-4 md:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           
-          {/* COLUNA 1: A FOTO (ESTRUTURA CORRIGIDA) */}
+          {/* COLUNA 1: A FOTO (CORRIGIDA - SEM BORDAS) */}
           <div className="relative group">
-            
-            {/* FOTO COM MOLDURA DE LUXO (Estilo Hero Line) */}
-            {/* Nota: Removi o container 'aspect-ratio' antigo para não conflitar com a altura fixa desta moldura */}
-            <div className="relative h-[500px] lg:h-[600px] w-full border border-gold-primary shadow-[0_0_20px_rgba(212,175,55,0.1)] overflow-hidden">
-              
-              {/* Gradiente sobre a foto (Mantido para legibilidade e estilo) */}
+            {/* AQUI ESTAVA O ERRO: Recriei a div de abertura corretamente */}
+            <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-transparent to-transparent z-10 opacity-60" />
-              
               <Image
-                src="/hero.jpg"
+                src="/hero.webp"
                 alt="Dra. Mariana Bueno"
                 fill
-                className="object-cover"
-                quality={100}
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 priority
               />
             </div>
-            
+            {/* Removi a div de borda decorativa que ficava aqui */}
           </div>
 
-          {/* COLUNA 2: O CONTEÚDO */}
+          {/* COLUNA 2: O CONTEÚDO (Mantido) */}
           <div className="space-y-8">
             
             <div className="space-y-4">
