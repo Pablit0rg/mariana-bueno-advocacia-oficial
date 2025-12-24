@@ -1,19 +1,31 @@
 // src/app/page.tsx
-import React from 'react';
+import { Hero } from '@/components/sections/Hero';
+import { PracticeAreas } from '@/components/sections/PracticeAreas';
+import { About } from '@/components/sections/About';
+import { Testimonials } from '@/components/sections/Testimonials';
+import { Blog } from '@/components/sections/Blog';
+import { Contact } from '@/components/sections/Contact';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white p-5 text-center">
-      <h1 className="text-5xl font-bold text-yellow-600 mb-4">
-        VITÓRIA! 🚀
-      </h1>
-      <p className="text-xl text-gray-300">
-        Pablo, o sistema foi restaurado com sucesso.
-      </p>
-      <div className="mt-8 p-4 border border-gray-700 rounded bg-gray-900">
-        <p className="text-sm text-gray-400">Status do Projeto:</p>
-        <p className="text-green-400 font-mono">ONLINE e SEGURO</p>
-      </div>
-    </div>
+    <main className="bg-rich-black min-h-screen">
+      {/* 1. Seção Principal (Capa) */}
+      <Hero />
+      
+      {/* 2. Áreas de Atuação */}
+      <PracticeAreas />
+      
+      {/* 3. Sobre a Dra. Mariana */}
+      <About />
+      
+      {/* 4. Depoimentos de Clientes */}
+      <Testimonials />
+
+      {/* 5. Artigos Recentes (Blog) */}
+      <Blog />
+      
+      {/* 6. Contato e Localização */}
+      <Contact />
+    </main>
   );
 }
