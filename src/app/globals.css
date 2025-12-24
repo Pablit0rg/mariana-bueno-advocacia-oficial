@@ -1,36 +1,29 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
+@layer base {
   /* Cores Personalizadas (Brand Colors) */
-  --color-rich-black: #050505;
-  --color-rich-gray: #0a0a0a;
-  --color-gold-primary: #D4AF37;
-  --color-gold-light: #F4DF8D;
-  --color-gold-dark: #AA8C2C;
+  :root {
+    --color-rich-black: #050505;
+    --color-rich-gray: #0a0a0a;
+    --color-gold-primary: #D4AF37;
+    --color-gold-light: #F4DF8D;
+    --color-gold-dark: #AA8C2C;
+  }
 
-  /* AGORA SIM: Mapeando tudo para a INTER */
-  /* Onde o site pedir "Serif" (Títulos), ele vai entregar Inter (Reta) */
-  --font-serif: var(--font-inter);
-  --font-sans: var(--font-inter);
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-rich-black);
+    color: white;
+    overflow-x: hidden;
+  }
 }
-
-/* =========================================
-   RESET E CONFIGURAÇÕES GLOBAIS
-   ========================================= */
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  background-color: var(--color-rich-black);
-  color: white;
-  overflow-x: hidden;
-  font-family: var(--font-inter), sans-serif; /* Força bruta para garantir */
-}
-
-/* ... (Mantenha o resto do arquivo da barra de rolagem para baixo igual) ... */
 
 /* =========================================
    BARRA DE ROLAGEM PERSONALIZADA (LUXO)
@@ -38,7 +31,7 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
-/* ... (pode manter o restante do código da barra de rolagem e animações) */
+
 ::-webkit-scrollbar-track {
   background: #050505;
 }
@@ -53,25 +46,27 @@ body {
   background: #F4DF8D;
 }
 
-.text-gold-gradient {
-  background: linear-gradient(to right, #D4AF37, #F4DF8D, #D4AF37);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  background-size: 200% auto;
-  animation: shine 5s linear infinite;
+@layer utilities {
+  .text-gold-gradient {
+    background: linear-gradient(to right, #D4AF37, #F4DF8D, #D4AF37);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-size: 200% auto;
+    animation: shine 5s linear infinite;
+  }
+
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
 }
 
 @keyframes shine {
   to {
     background-position: 200% center;
   }
-}
-
-.gpu-accelerated {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
 }
 
 ::selection {
