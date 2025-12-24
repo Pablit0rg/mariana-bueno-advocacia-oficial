@@ -4,7 +4,7 @@ import { MessageCircle } from "lucide-react";
 
 export function WhatsAppButton() {
   // --- CONFIGURAÇÃO DE MENSAGEM (COPYWRITING) ---
-  const phoneNumber = "5541999999999"; // Substituir pelo número real depois
+  const phoneNumber = "5541997606069";
   const message = "Olá Dra. Mariana, gostaria de agendar um atendimento."; // Mensagem acolhedora e direta
   
   // Codifica a mensagem para URL (transforma espaços em %20)
