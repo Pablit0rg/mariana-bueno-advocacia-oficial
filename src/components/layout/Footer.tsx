@@ -49,7 +49,8 @@ export function Footer() {
             <h3 className="font-serif text-2xl text-white tracking-wide">Mariana Bueno</h3>
             
             {/* QR CODE - PHYGITAL EXPERIENCE */}
-            <div className="hidden md:flex flex-row items-center gap-4">
+            {/* QR CODE - PHYGITAL EXPERIENCE (Visível em Mobile e Desktop) */}
+            <div className="flex flex-row items-center gap-4">
               <div className="bg-white p-1.5 w-fit rounded shadow-[0_0_15px_rgba(212,175,55,0.1)] border border-gold-primary/20">
                 <img 
                   src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https://wa.me/5541997606069" 
@@ -57,6 +58,21 @@ export function Footer() {
                   className="w-[80px] h-[80px] object-contain"
                 />
               </div>
+              
+              <div className="flex flex-col gap-2">
+                {/* CTA NOVA: Simples, Direta e Tecnológica */}
+                <span className="text-gold-primary text-[10px] uppercase tracking-[0.2em] font-bold border-l-2 border-gold-primary pl-3">
+                  Atendimento<br/>Digital
+                </span>
+                
+                {/* Redes Sociais Alinhadas ao QR Code */}
+                <div className="flex gap-4 pl-3">
+                  <a href="#" className="text-gray-400 hover:text-gold-primary transition-colors hover:scale-110"><Instagram size={18} /></a>
+                  <a href="#" className="text-gray-400 hover:text-gold-primary transition-colors hover:scale-110"><Linkedin size={18} /></a>
+                  <a href="#" className="text-gray-400 hover:text-gold-primary transition-colors hover:scale-110"><Facebook size={18} /></a>
+                </div>
+              </div>
+            </div>
               
               <div className="flex flex-col gap-2">
                 {/* CTA NOVA: Simples, Direta e Tecnológica */}
