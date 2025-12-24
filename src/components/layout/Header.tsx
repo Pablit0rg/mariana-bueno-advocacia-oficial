@@ -83,7 +83,7 @@ export function Header() {
           
           {/* BOTÃO PREMIUM (SOLID GOLD) */}
           <a 
-            href="https://wa.me/5541997606069"
+            href="https://wa.me/5541997606069?text=Ol%C3%A1%2C%20Dra.%20Mariana.%20Gostaria%20de%20agendar%20um%20atendimento."
             target="_blank"
             rel="noopener noreferrer"
             className="relative inline-flex items-center gap-2 px-6 py-3 bg-gold-primary text-rich-black rounded overflow-hidden group hover:bg-white transition-colors shadow-[0_0_15px_rgba(212,175,55,0.2)]"
