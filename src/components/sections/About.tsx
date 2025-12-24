@@ -44,15 +44,17 @@ export function About() {
             {/* AQUI ESTAVA O ERRO: Recriei a div de abertura corretamente */}
             <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-transparent to-transparent z-10 opacity-60" />
-              <Image
-                src="/hero.webp"
-                alt="Dra. Mariana Bueno"
-                fill
-                className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                priority
-              />
-            </div>
+              {/* FOTO COM MOLDURA DE LUXO (Estilo Hero Line) */}
+          <div className="relative h-[500px] lg:h-[600px] w-full border border-gold-primary shadow-[0_0_20px_rgba(212,175,55,0.1)]">
+            <Image
+              src="/hero.jpg"
+              alt="Dra. Mariana Bueno"
+              fill
+              className="object-cover"
+              quality={100}
+              priority
+            />
+          </div>
             {/* Removi a div de borda decorativa que ficava aqui */}
           </div>
 
