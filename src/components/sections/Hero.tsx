@@ -51,7 +51,8 @@ export function Hero() {
           {/* 3. BOTÃO DE AÇÃO (CTA) */}
           <div className="pt-8">
             <a 
-              href="https://wa.me/5541999999999"
+              <a 
+  href="https://wa.me/5541997606069"
               target="_blank"
               rel="noopener noreferrer"
               className="relative inline-flex items-center gap-3 px-10 py-4 bg-gold-primary text-rich-black rounded overflow-hidden group hover:bg-white transition-colors shadow-[0_0_20px_rgba(212,175,55,0.2)]"
