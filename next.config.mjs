@@ -1,21 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Ignora erros chatos de lint/types para garantir que o site suba
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  // Otimização de imagens
-  images: {
-    remotePatterns: [
+  rewrites: async () => {
+    return [
       {
-        protocol: 'https',
-        hostname: '**',
+        source: "/api/:path*",
+        destination: "http://127.0.0.1:8000/api/:path*", // Redireciona para o Python
       },
-    ],
-    unoptimized: true, // Garante que as imagens carreguem mesmo sem servidor pro
+    ];
   },
 };
 
