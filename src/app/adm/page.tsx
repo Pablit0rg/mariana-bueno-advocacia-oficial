@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Lock, ArrowRight, Loader2 } from "lucide-react";
 
 export default function Login() {
   const [senha, setSenha] = useState("");
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState("");
+  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,8 +25,7 @@ export default function Login() {
       if (res.ok) {
         const data = await res.json();
         localStorage.setItem("token-advocacia", data.token); // Salva o crachá
-        alert("🔓 Acesso Permitido! Bem-vinda, Dra. Mariana.");
-        // Aqui futuramente vamos redirecionar para o Dashboard
+        router.push("/dashboard");
       } else {
         setErro("Senha incorreta.");
       }
