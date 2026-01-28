@@ -4,9 +4,9 @@ from sqlmodel import SQLModel, Session, create_engine, select
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
-# Importa nossos modelos
-from .models import Cliente, Usuario, ClienteCreate
-from .auth import verificar_senha # Vamos manter o login simples por enquanto
+# --- CORREÇÃO AQUI (Removemos os pontos antes dos nomes) ---
+from models import Cliente, Usuario, ClienteCreate
+from auth import verificar_senha 
 
 # --- Configuração do Banco de Dados ---
 sqlite_file_name = "database.db"
