@@ -47,7 +47,7 @@ export function About() {
                md:ml-auto: Empurra para a DIREITA no desktop (cola no texto)
                md:mr-0: Garante que não tenha margem na direita
             */}
-            <div className="relative w-full max-w-[500px] mx-auto md:ml-auto md:mr-0 h-[500px] overflow-hidden rounded-lg shadow-2xl">
+            <div className="relative w-full max-w-[500px] mx-auto md:ml-auto md:mr-0 h-[500px] -mt-11 overflow-hidden rounded-lg shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-transparent to-transparent z-10 opacity-60" />
               <Image
                 src="/hero-nova.png"
