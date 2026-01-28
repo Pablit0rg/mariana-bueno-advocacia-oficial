@@ -37,15 +37,20 @@ export function About() {
       <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-gold-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        {/* Voltei para gap-6 ou gap-8 para ter um respiro mínimo elegante */}
+        <div className="grid md:grid-cols-2 gap-8 items-center">
           
-          {/* COLUNA 1: A FOTO (CORRIGIDA - SEM BORDAS) */}
+          {/* COLUNA 1: A FOTO */}
           <div className="relative group">
-            {/* AQUI ESTAVA O ERRO: Recriei a div de abertura corretamente */}
-            <div className="relative w-full aspect-[3/4] md:aspect-[4/5] overflow-hidden rounded-lg shadow-2xl">
+            {/* AQUI ESTÁ O TRUQUE DO ALINHAMENTO:
+               mx-auto: Centraliza no mobile
+               md:ml-auto: Empurra para a DIREITA no desktop (cola no texto)
+               md:mr-0: Garante que não tenha margem na direita
+            */}
+            <div className="relative w-full max-w-[500px] mx-auto md:ml-auto md:mr-0 h-[500px] overflow-hidden rounded-lg shadow-2xl">
               <div className="absolute inset-0 bg-gradient-to-t from-rich-black/80 via-transparent to-transparent z-10 opacity-60" />
               <Image
-                src="/hero.webp"
+                src="/hero-nova.png"
                 alt="Dra. Mariana Bueno"
                 fill
                 className="object-cover object-top"
@@ -53,10 +58,9 @@ export function About() {
                 priority
               />
             </div>
-            {/* Removi a div de borda decorativa que ficava aqui */}
           </div>
 
-          {/* COLUNA 2: O CONTEÚDO (Mantido) */}
+          {/* COLUNA 2: O CONTEÚDO */}
           <div className="space-y-8">
             
             <div className="space-y-4">
