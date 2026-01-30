@@ -1,26 +1,18 @@
-from contextlib import asynccontextmanager
-from fastapi import FastAPI, HTTPException, Depends
-from sqlmodel import SQLModel, Session, create_engine, select
+from fastapi import FastAPI, Depends, HTTPException, status
+from sqlmodel import Session, select
+from models import Usuario, Post, engine
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
-from models import Cliente, Usuario, ClienteCreate, Post, PostCreate
-from auth import verificar_senha
+from auth import get_password_hash, verificar_senha
 
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
+# Configuração do App e Banco
+def get_session():
+    with Session(engine) as session:
+        yield session
 
-engine = create_engine(sqlite_url, connect_args={"check_same_thread": False})
+app = FastAPI()
 
-def create_db_and_tables():
-    SQLModel.metadata.create_all(engine)
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    create_db_and_tables()
-    yield
-
-app = FastAPI(lifespan=lifespan)
-
+# Configuração CORS (Permite que o Next.js fale com o Python)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -29,63 +21,72 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-def get_session():
-    with Session(engine) as session:
-        yield session
-
+# Modelos de Dados (Pydantic)
 class LoginData(BaseModel):
     senha: str
 
-@app.get("/")
-def read_root():
-    return {"message": "API Conectada e Pronta! 🚀"}
+class PostCreate(BaseModel):
+    title: str
+    image_url: str
+    instagram_link: str
+    order: int = 0
 
-# --- LOGIN CORRIGIDO ---
+# --- ROTAS DE AUTENTICAÇÃO ---
 @app.post("/api/login")
 def login(data: LoginData, session: Session = Depends(get_session)):
-    # 1. Busca o usuário "mariana.admin" no banco
-    statement = select(Usuario).where(Usuario.username == "mariana.admin")
-    user = session.exec(statement).first()
-
-    # 2. Se não achar usuário OU a senha não bater, erro
-    if not user or not verificar_senha(data.senha, user.senha_hash):
-        raise HTTPException(status_code=401, detail="Senha incorreta")
+    user = session.exec(select(Usuario).where(Usuario.username == "mariana.admin")).first()
+    if not user:
+        raise HTTPException(status_code=401, detail="Usuário não encontrado")
     
-    return {"token": "acesso-liberado-vip-mariana", "status": "ok"}
+    if verificar_senha(data.senha, user.senha_hash):
+        return {"message": "Login realizado com sucesso", "user": user.username}
+    else:
+        raise HTTPException(status_code=401, detail="Senha incorreta")
 
-# --- ROTAS DE CLIENTES ---
-@app.post("/api/clientes")
-def criar_cliente(cliente: ClienteCreate, session: Session = Depends(get_session)):
-    novo_cliente = Cliente.model_validate(cliente)
-    session.add(novo_cliente)
-    session.commit()
-    session.refresh(novo_cliente)
-    return novo_cliente
+# --- ROTAS DE POSTS ---
 
-@app.get("/api/clientes")
-def listar_clientes(session: Session = Depends(get_session)):
-    clientes = session.exec(select(Cliente).order_by(Cliente.data_cadastro.desc())).all()
-    return clientes
-
-# --- ROTAS DE POSTS (BLOG) ---
+# 1. Listar Posts (GET)
 @app.get("/api/posts")
-def listar_posts(session: Session = Depends(get_session)):
-    posts = session.exec(select(Post).order_by(Post.order)).all()
+def list_posts(session: Session = Depends(get_session)):
+    posts = session.exec(select(Post).order_by(Post.id.desc())).all()
     return posts
 
+# 2. Criar Post (POST)
 @app.post("/api/posts")
-def criar_post(post: PostCreate, session: Session = Depends(get_session)):
-    novo_post = Post.model_validate(post)
-    session.add(novo_post)
+def create_post(post_data: PostCreate, session: Session = Depends(get_session)):
+    new_post = Post(
+        title=post_data.title,
+        image_url=post_data.image_url,
+        instagram_link=post_data.instagram_link,
+        order=post_data.order
+    )
+    session.add(new_post)
     session.commit()
-    session.refresh(novo_post)
-    return novo_post
+    session.refresh(new_post)
+    return new_post
 
+# 3. Editar Post (PUT) - NOVO!
+@app.put("/api/posts/{post_id}")
+def update_post(post_id: int, post_data: PostCreate, session: Session = Depends(get_session)):
+    post = session.get(Post, post_id)
+    if not post:
+        raise HTTPException(status_code=404, detail="Post não encontrado")
+    
+    post.title = post_data.title
+    post.image_url = post_data.image_url
+    post.instagram_link = post_data.instagram_link
+    
+    session.add(post)
+    session.commit()
+    session.refresh(post)
+    return post
+
+# 4. Deletar Post (DELETE)
 @app.delete("/api/posts/{post_id}")
-def deletar_post(post_id: int, session: Session = Depends(get_session)):
+def delete_post(post_id: int, session: Session = Depends(get_session)):
     post = session.get(Post, post_id)
     if not post:
         raise HTTPException(status_code=404, detail="Post não encontrado")
     session.delete(post)
     session.commit()
-    return {"ok": True}
+    return {"message": "Post deletado"}
