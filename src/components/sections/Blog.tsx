@@ -1,121 +1,116 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ArrowRight, Instagram } from "lucide-react";
+import { Instagram, ExternalLink, ArrowRight } from "lucide-react";
 
-// Definição do Tipo do Post
 interface Post {
   id: number;
   title: string;
   image_url: string;
   instagram_link: string;
-  position_class?: string;
-  order: number;
+  is_active: boolean; // Agora o Blog sabe o que é isso
 }
 
-export function Blog() {
-  // Estado para guardar os posts
+export default function Blog() {
   const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // A MÁGICA: Busca os posts através do Túnel /api
-    // (Não usa mais localhost:8000 direto para evitar erro de segurança)
-    fetch("/api/posts")
+    // Busca os posts do Python
+    fetch("http://127.0.0.1:8000/api/posts")
       .then((res) => res.json())
       .then((data) => {
-        setPosts(data);
-        setLoading(false);
+        // --- A MÁGICA DO FILTRO AQUI ---
+        // Só deixa passar quem tem is_active == true
+        const postsAtivos = data.filter((post: Post) => post.is_active === true);
+        
+        // Pega só os 3 primeiros posts ATIVOS para exibir
+        setPosts(postsAtivos.slice(0, 3));
       })
-      .catch((err) => {
-        console.error("Erro ao buscar posts:", err);
-        setLoading(false);
-      });
+      .catch((err) => console.error("Erro ao carregar posts:", err));
   }, []);
 
   return (
     <section id="blog" className="py-24 bg-rich-black relative overflow-hidden">
-      
-      {/* Background Decorativo */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gold-primary/5 blur-[120px] rounded-full pointer-events-none" />
+      {/* Elementos Decorativos de Fundo */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold-primary/30 to-transparent" />
+      <div className="absolute -left-64 top-1/2 w-96 h-96 bg-gold-primary/5 rounded-full blur-3xl" />
 
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
+      <div className="container mx-auto px-4 relative z-10">
         
-        {/* Cabeçalho */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-          <div className="space-y-4 animate-fade-in-up">
-            <h2 className="text-gold-primary font-bold uppercase tracking-widest text-sm flex items-center gap-2">
-              <span className="w-8 h-[1px] bg-gold-primary"></span>
-              Atualizações & Artigos
-            </h2>
-            <h3 className="font-serif text-3xl md:text-5xl text-white leading-tight">
-              Conteúdo Jurídico <br />
-              <span className="text-gold-gradient">Exclusivo</span>
-            </h3>
-          </div>
-
-          <a 
-            href="https://www.instagram.com/mariana_bueno_/" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="group flex items-center gap-3 px-6 py-3 border border-white/10 rounded-full hover:bg-white/5 transition-all duration-300"
-          >
-            <Instagram size={20} className="text-gold-primary" />
-            <span className="text-white font-medium">Siga no Instagram</span>
-            <ArrowRight size={16} className="text-gold-primary group-hover:translate-x-1 transition-transform" />
-          </a>
+        {/* Cabeçalho da Seção */}
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="text-3xl md:text-4xl font-serif text-white">
+            Atualizações & <span className="text-gold-primary">Artigos</span>
+          </h2>
+          <div className="w-24 h-1 bg-gold-primary mx-auto rounded-full" />
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Acompanhe nossas últimas publicações no Instagram sobre Direito Civil, 
+            Família e Sucessões. Informação jurídica descomplicada para você.
+          </p>
         </div>
 
-        {/* GRID DE POSTS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          
-          {loading ? (
-             // SKELETON (Carregando...)
-             [1, 2, 3].map((i) => (
-                <div key={i} className="h-[400px] bg-white/5 rounded-xl animate-pulse" />
-             ))
-          ) : posts.length === 0 ? (
-             // ESTADO VAZIO
-             <div className="col-span-full text-center py-12 border border-white/10 rounded-xl bg-white/5">
-                <p className="text-gray-400">Nenhum post publicado ainda.</p>
-             </div>
-          ) : (
-             // POSTS REAIS DO BANCO
-             posts.map((post) => (
-              <a 
-                key={post.id}
-                href={post.instagram_link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative aspect-[4/5] rounded-xl overflow-hidden cursor-pointer bg-black/40"
+        {/* Grid de Posts */}
+        {posts.length > 0 ? (
+          <div className="grid md:grid-cols-3 gap-8">
+            {posts.map((post) => (
+              <article 
+                key={post.id} 
+                className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-gold-primary/50 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold-primary/10"
               >
-                <Image
-                  src={post.image_url}
-                  alt={post.title}
-                  fill
-                  className={`object-cover transition-transform duration-700 group-hover:scale-110 ${post.position_class || 'object-center'}`}
-                />
-                
-                {/* Overlay Degradê */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-                
-                {/* Texto */}
-                <div className="absolute bottom-0 left-0 w-full p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <div className="h-1 w-12 bg-gold-primary mb-4 rounded-full" />
-                  <h4 className="text-xl font-serif text-white font-medium leading-snug group-hover:text-gold-primary transition-colors">
-                    {post.title}
-                  </h4>
-                  <div className="flex items-center gap-2 mt-4 text-xs font-bold text-gold-primary uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity delay-100">
-                    Ler no Instagram <ArrowRight size={14} />
+                {/* Imagem do Post */}
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={post.image_url}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-rich-black/90 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                  
+                  {/* Ícone do Instagram Flutuante */}
+                  <div className="absolute top-4 right-4 bg-white/10 backdrop-blur-md p-2 rounded-full border border-white/20 text-white group-hover:bg-gold-primary group-hover:text-rich-black transition-colors">
+                    <Instagram size={20} />
                   </div>
                 </div>
 
-                {/* Borda Dourada */}
-                <div className="absolute inset-0 border-2 border-gold-primary/0 group-hover:border-gold-primary/50 rounded-xl transition-all duration-300 pointer-events-none" />
-              </a>
-            ))
-          )}
+                {/* Conteúdo do Card */}
+                <div className="p-6 space-y-4">
+                  <h3 className="text-xl font-bold text-white line-clamp-2 group-hover:text-gold-primary transition-colors">
+                    {post.title}
+                  </h3>
+                  
+                  <a 
+                    href={post.instagram_link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors group/link"
+                  >
+                    Ler no Instagram 
+                    <ArrowRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          /* Estado Vazio (Sem posts ativos) */
+          <div className="text-center py-12 border border-dashed border-white/10 rounded-2xl bg-white/5">
+            <p className="text-gray-500">Nenhuma publicação recente disponível no momento.</p>
+          </div>
+        )}
 
+        {/* Botão Ver Mais */}
+        <div className="text-center mt-12">
+          <a
+            href="https://instagram.com/dramarianabueno"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-transparent border border-gold-primary text-gold-primary hover:bg-gold-primary hover:text-rich-black rounded-lg font-bold transition-all duration-300 uppercase tracking-wider text-sm"
+          >
+            <Instagram size={20} />
+            Siga no Instagram
+          </a>
         </div>
       </div>
     </section>

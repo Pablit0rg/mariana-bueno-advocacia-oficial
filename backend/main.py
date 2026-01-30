@@ -27,7 +27,7 @@ class PostCreate(BaseModel):
     image_url: str
     instagram_link: str
     order: int = 0
-    # is_edited não entra aqui, o backend controla isso
+    is_active: bool = True # Padrão é nascer visível
 
 # --- ROTAS ---
 @app.post("/api/login")
@@ -43,6 +43,7 @@ def login(data: LoginData, session: Session = Depends(get_session)):
 
 @app.get("/api/posts")
 def list_posts(session: Session = Depends(get_session)):
+    # Retorna TODOS (o frontend que decide o que mostrar)
     posts = session.exec(select(Post).order_by(Post.id.desc())).all()
     return posts
 
@@ -53,7 +54,8 @@ def create_post(post_data: PostCreate, session: Session = Depends(get_session)):
         image_url=post_data.image_url,
         instagram_link=post_data.instagram_link,
         order=post_data.order,
-        is_edited=False # Nasce falso
+        is_edited=False,
+        is_active=True
     )
     session.add(new_post)
     session.commit()
@@ -66,10 +68,15 @@ def update_post(post_id: int, post_data: PostCreate, session: Session = Depends(
     if not post:
         raise HTTPException(status_code=404, detail="Post não encontrado")
     
+    # Atualiza dados
     post.title = post_data.title
     post.image_url = post_data.image_url
     post.instagram_link = post_data.instagram_link
-    post.is_edited = True # <--- AQUI A MÁGICA: Marcou como editado!
+    post.is_active = post_data.is_active # Atualiza o status de visibilidade
+    
+    # Só marca como "Editado" se o título ou imagem mudarem (arquivar não conta como edição de conteúdo)
+    if post.title != post_data.title or post.image_url != post_data.image_url:
+        post.is_edited = True 
     
     session.add(post)
     session.commit()

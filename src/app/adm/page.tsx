@@ -1,29 +1,26 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, Key, Plus, Trash2, Instagram, LogOut, Pencil, CheckCircle, Save, Filter } from "lucide-react";
+import { Lock, Key, Plus, Trash2, Instagram, LogOut, Pencil, CheckCircle, Save, Filter, Eye, EyeOff } from "lucide-react";
 
 export default function AdminPage() {
   const router = useRouter();
   
-  // Estados de Autenticação
+  // Estados
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  
-  // Estados de Dados
   const [posts, setPosts] = useState<any[]>([]);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [successMsg, setSuccessMsg] = useState("");
-  
-  // Estado do Filtro
   const [filterType, setFilterType] = useState("recentes");
 
   const [formData, setFormData] = useState({
     title: "",
     image_url: "",
     instagram_link: "",
-    order: 0
+    order: 0,
+    is_active: true // Padrão
   });
 
   const showSuccess = (msg: string) => {
@@ -75,10 +72,26 @@ export default function AdminPage() {
       body: JSON.stringify(formData),
     });
 
-    setFormData({ title: "", image_url: "", instagram_link: "", order: 0 });
+    setFormData({ title: "", image_url: "", instagram_link: "", order: 0, is_active: true });
     setEditingId(null);
     fetchPosts();
     showSuccess(editingId ? "Post atualizado com sucesso! ✨" : "Post criado com sucesso! 🚀");
+  };
+
+  // --- NOVA FUNÇÃO: Alternar Visibilidade ---
+  const handleToggleVisibility = async (post: any) => {
+    // Inverte o status atual
+    const novoStatus = !post.is_active;
+    
+    await fetch(`/api/posts/${post.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      // Manda todos os dados antigos, mas muda o is_active
+      body: JSON.stringify({ ...post, is_active: novoStatus }),
+    });
+
+    fetchPosts();
+    showSuccess(novoStatus ? "Post visível no site! 👁️" : "Post arquivado (oculto)! 🙈");
   };
 
   const handleEditClick = (post: any) => {
@@ -87,14 +100,15 @@ export default function AdminPage() {
       title: post.title,
       image_url: post.image_url,
       instagram_link: post.instagram_link,
-      order: post.order
+      order: post.order,
+      is_active: post.is_active
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCancelEdit = () => {
     setEditingId(null);
-    setFormData({ title: "", image_url: "", instagram_link: "", order: 0 });
+    setFormData({ title: "", image_url: "", instagram_link: "", order: 0, is_active: true });
   };
 
   const handleDeletePost = async (id: number) => {
@@ -165,23 +179,18 @@ export default function AdminPage() {
           <h1 className="text-3xl font-serif text-white">
             Gerenciar Blog <span className="text-gold-primary">Instagram</span>
           </h1>
-          <p className="text-gray-400 text-sm mt-2">Adicione ou edite os destaques do seu Instagram.</p>
+          <p className="text-gray-400 text-sm mt-2">Adicione, edite ou oculte os destaques do seu Instagram.</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           
           {/* === COLUNA ESQUERDA (Formulário) === */}
           <div>
-            
-            {/* --- CABEÇALHO FANTASMA (Spacer) --- */}
-            {/* Esse bloco é invisível, mas tem a mesma altura do cabeçalho da direita.
-                Isso empurra o card para baixo para alinhar perfeitamente. */}
             <div className="flex flex-col sm:flex-row justify-between items-end sm:items-center gap-4 mb-6 opacity-0 pointer-events-none select-none">
                 <h2 className="text-xl font-bold py-2">Spacer</h2>
                 <div className="h-9 w-20"></div>
             </div>
 
-            {/* O CARD DO FORMULÁRIO */}
             <div className={`border p-8 rounded-2xl h-fit shadow-xl transition-all ${editingId ? 'bg-gold-primary/5 border-gold-primary/30' : 'bg-white/5 border-white/10'}`}>
               <h2 className={`text-xl font-bold mb-6 flex items-center gap-2 ${editingId ? 'text-gold-primary' : 'text-white'}`}>
                 {editingId ? <Pencil size={20} /> : <Plus size={20} />} 
@@ -222,7 +231,6 @@ export default function AdminPage() {
           {/* === COLUNA DIREITA (Lista) === */}
           <div className="space-y-4">
             
-            {/* CABEÇALHO REAL */}
             <div className="flex flex-col sm:flex-row justify-between items-end sm:items-center gap-4 mb-6">
                <h2 className="text-xl text-white font-bold flex items-center gap-2 py-2">
                  Posts ({posts.length})
@@ -259,12 +267,26 @@ export default function AdminPage() {
             )}
 
             {getSortedPosts().map((post) => (
-              <div key={post.id} className={`flex items-center gap-4 p-4 rounded-lg border transition-all ${editingId === post.id ? 'bg-gold-primary/10 border-gold-primary' : 'bg-white/5 border-white/5 hover:border-gold-primary/30'}`}>
+              <div key={post.id} className={`flex items-center gap-4 p-4 rounded-lg border transition-all 
+                ${editingId === post.id ? 'bg-gold-primary/10 border-gold-primary' : 'bg-white/5 border-white/5 hover:border-gold-primary/30'}
+                ${!post.is_active ? 'opacity-60 grayscale' : ''} 
+              `}>
+                
+                {/* Imagem (Se estiver oculto, fica preto e branco) */}
                 <img src={post.image_url} alt="" className="h-16 w-16 object-cover rounded" />
                 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
-                    <h3 className="text-white font-medium truncate">{post.title}</h3>
+                    <h3 className={`font-medium truncate ${post.is_active ? 'text-white' : 'text-gray-400 line-through'}`}>
+                      {post.title}
+                    </h3>
+                    
+                    {/* ETIQUETAS */}
+                    {!post.is_active && (
+                      <span className="text-[10px] text-red-300 bg-red-400/10 border border-red-400/20 px-1 rounded">
+                        (Oculto)
+                      </span>
+                    )}
                     {post.is_edited && (
                       <span className="text-[10px] text-gray-500 font-normal border border-white/10 px-1 rounded">
                         (Editado)
@@ -278,10 +300,20 @@ export default function AdminPage() {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <button onClick={() => handleEditClick(post)} className="p-2 text-blue-400 hover:bg-blue-400/10 rounded">
+                  
+                  {/* --- BOTÃO OLHO (ARQUIVAR) --- */}
+                  <button 
+                    onClick={() => handleToggleVisibility(post)} 
+                    className={`p-2 rounded transition-colors ${post.is_active ? 'text-green-400 hover:bg-green-400/10' : 'text-gray-400 hover:bg-white/10'}`}
+                    title={post.is_active ? "Ocultar do site" : "Mostrar no site"}
+                  >
+                    {post.is_active ? <Eye size={18} /> : <EyeOff size={18} />}
+                  </button>
+
+                  <button onClick={() => handleEditClick(post)} className="p-2 text-blue-400 hover:bg-blue-400/10 rounded" title="Editar">
                     <Pencil size={18} />
                   </button>
-                  <button onClick={() => handleDeletePost(post.id)} className="p-2 text-red-400 hover:bg-red-400/10 rounded">
+                  <button onClick={() => handleDeletePost(post.id)} className="p-2 text-red-400 hover:bg-red-400/10 rounded" title="Excluir Definitivamente">
                     <Trash2 size={18} />
                   </button>
                 </div>

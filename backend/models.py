@@ -26,4 +26,5 @@ class Post(SQLModel, table=True):
     image_url: str
     instagram_link: str
     order: int = 0
-    is_edited: bool = Field(default=False) # <--- NOVO CAMPO
+    is_edited: bool = Field(default=False)
+    is_active: bool = Field(default=True) # <--- NOVO: Define se aparece no site ou não

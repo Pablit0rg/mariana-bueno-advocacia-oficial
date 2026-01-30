@@ -3,7 +3,7 @@ import { Hero } from '@/components/sections/Hero';
 import { PracticeAreas } from '@/components/sections/PracticeAreas';
 import { About } from '@/components/sections/About';
 import { Testimonials } from '@/components/sections/Testimonials';
-import { Blog } from '@/components/sections/Blog';
+import Blog from '@/components/sections/Blog'; // <--- ESSE É SEM CHAVES (Default)
 import { Contact } from '@/components/sections/Contact';
 
 export default function Home() {
