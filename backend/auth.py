@@ -1,14 +1,9 @@
-from pydantic import BaseModel
+from passlib.context import CryptContext
 
-# Modelo de dados
-class LoginRequest(BaseModel):
-    senha: str
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# Configuração
-SENHA_MESTRA = "advocacia2026"
+def verificar_senha(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
 
-def verificar_senha(senha_digitada: str) -> bool:
-    return senha_digitada == SENHA_MESTRA
-
-def gerar_token_simples():
-    return {"token": "acesso-liberado-vip-gold", "tipo": "admin"}
+def get_password_hash(password):
+    return pwd_context.hash(password)

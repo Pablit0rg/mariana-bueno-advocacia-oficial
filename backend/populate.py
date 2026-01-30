@@ -1,60 +1,28 @@
-from sqlmodel import Session, select
-from .models import Cliente, Usuario
-from .main import engine, create_db_and_tables
-from passlib.context import CryptContext
+from sqlmodel import Session, create_engine, select, SQLModel
+from models import Usuario, Cliente, Post 
+from auth import get_password_hash
 
-# Configuração de senha
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+sqlite_file_name = "database.db"
+sqlite_url = f"sqlite:///{sqlite_file_name}"
+engine = create_engine(sqlite_url)
 
-def popular_banco():
-    # Garante que as tabelas existem
-    create_db_and_tables()
-
+def create_admin():
+    print("🔨 Criando tabelas no Banco de Dados...")
+    SQLModel.metadata.create_all(engine)
+    
     with Session(engine) as session:
-        # 1. Verifica se já tem clientes
-        if session.exec(select(Cliente)).first():
-            print("⚠️ O banco de dados já tem dados! Pulando criação.")
-            return
-
-        # 2. Criar Clientes Fictícios
-        clientes = [
-            Cliente(
-                nome="João da Silva", 
-                email="joao@email.com", 
-                telefone="(41) 99999-0001", 
-                area_atuacao="Trabalhista",
-                status_processo="Em Andamento",
-                observacoes="Audiência marcada para dia 15."
-            ),
-            Cliente(
-                nome="Maria Oliveira", 
-                email="maria@email.com", 
-                telefone="(41) 99999-0002", 
-                area_atuacao="Família",
-                status_processo="Aguardando Documentos",
-                observacoes="Divórcio consensual."
-            ),
-            Cliente(
-                nome="Empresa X Ltda", 
-                email="contato@x.com", 
-                telefone="(41) 3333-0000", 
-                area_atuacao="Empresarial",
-                status_processo="Concluído",
-                observacoes="Contrato revisado."
-            )
-        ]
-
-        # 3. Criar Usuário Admin (Futuro)
-        admin = Usuario(
-            username="mariana",
-            senha_hash=pwd_context.hash("advocacia2026")
-        )
-
-        # Salvar tudo
-        session.add_all(clientes)
-        session.add(admin)
-        session.commit()
-        print("✅ Banco de dados populado com sucesso! 3 Clientes criados.")
+        statement = select(Usuario).where(Usuario.username == "mariana.admin")
+        user = session.exec(statement).first()
+        
+        if not user:
+            print("☕ Criando usuário admin...")
+            hashed_pwd = get_password_hash("123456")
+            admin_user = Usuario(username="mariana.admin", senha_hash=hashed_pwd)
+            session.add(admin_user)
+            session.commit()
+            print("✅ SUCESSO! Usuário criado: mariana.admin / 123456")
+        else:
+            print("⚠️ Usuário já existe.")
 
 if __name__ == "__main__":
-    popular_banco()
+    create_admin()
