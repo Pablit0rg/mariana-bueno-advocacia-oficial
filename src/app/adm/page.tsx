@@ -1,20 +1,23 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Lock, Key, Plus, Trash2, Instagram, LogOut, Pencil, CheckCircle, Save } from "lucide-react";
+import { Lock, Key, Plus, Trash2, Instagram, LogOut, Pencil, CheckCircle, Save, Filter } from "lucide-react";
 
 export default function AdminPage() {
   const router = useRouter();
   
-  // Estados
+  // Estados de Autenticação
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   
-  // Estados de Gerenciamento
+  // Estados de Dados
   const [posts, setPosts] = useState<any[]>([]);
-  const [editingId, setEditingId] = useState<number | null>(null); // Id do post sendo editado
-  const [successMsg, setSuccessMsg] = useState(""); // Mensagem de sucesso (Toast)
+  const [editingId, setEditingId] = useState<number | null>(null);
+  const [successMsg, setSuccessMsg] = useState("");
+  
+  // Estado do Filtro
+  const [filterType, setFilterType] = useState("recentes");
 
   const [formData, setFormData] = useState({
     title: "",
@@ -23,13 +26,11 @@ export default function AdminPage() {
     order: 0
   });
 
-  // Função para mostrar mensagem temporária
   const showSuccess = (msg: string) => {
     setSuccessMsg(msg);
-    setTimeout(() => setSuccessMsg(""), 3000); // Some depois de 3 segundos
+    setTimeout(() => setSuccessMsg(""), 3000);
   };
 
-  // 1. Login
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -51,7 +52,6 @@ export default function AdminPage() {
     }
   };
 
-  // 2. Buscar Posts
   const fetchPosts = async () => {
     try {
       const res = await fetch("/api/posts");
@@ -62,12 +62,10 @@ export default function AdminPage() {
     }
   };
 
-  // 3. Salvar (Criar OU Editar)
   const handleSavePost = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.title || !formData.image_url) return alert("Preencha título e imagem!");
 
-    // Se tiver editingId, é EDIÇÃO via PUT. Se não, é CRIAÇÃO via POST.
     const url = editingId ? `/api/posts/${editingId}` : "/api/posts";
     const method = editingId ? "PUT" : "POST";
 
@@ -77,16 +75,12 @@ export default function AdminPage() {
       body: JSON.stringify(formData),
     });
 
-    // Resetar formulário
     setFormData({ title: "", image_url: "", instagram_link: "", order: 0 });
     setEditingId(null);
     fetchPosts();
-    
-    // Mensagem bonita em vez de alert()
     showSuccess(editingId ? "Post atualizado com sucesso! ✨" : "Post criado com sucesso! 🚀");
   };
 
-  // 4. Preencher formulário para editar
   const handleEditClick = (post: any) => {
     setEditingId(post.id);
     setFormData({
@@ -95,17 +89,14 @@ export default function AdminPage() {
       instagram_link: post.instagram_link,
       order: post.order
     });
-    // Rola a tela para o topo suavemente
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // 5. Cancelar Edição
   const handleCancelEdit = () => {
     setEditingId(null);
     setFormData({ title: "", image_url: "", instagram_link: "", order: 0 });
   };
 
-  // 6. Deletar Post
   const handleDeletePost = async (id: number) => {
     if (!confirm("Tem certeza que quer apagar este post?")) return;
     await fetch(`/api/posts/${id}`, { method: "DELETE" });
@@ -113,7 +104,20 @@ export default function AdminPage() {
     showSuccess("Post removido.");
   };
 
-  // --- TELA DE LOGIN ---
+  const getSortedPosts = () => {
+    const sorted = [...posts];
+    if (filterType === "recentes") {
+      return sorted.sort((a, b) => b.id - a.id);
+    }
+    if (filterType === "antigos") {
+      return sorted.sort((a, b) => a.id - b.id);
+    }
+    if (filterType === "az") {
+      return sorted.sort((a, b) => a.title.localeCompare(b.title));
+    }
+    return sorted;
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-rich-black flex items-center justify-center p-4">
@@ -145,21 +149,18 @@ export default function AdminPage() {
     );
   }
 
-  // --- DASHBOARD (Logado) ---
   return (
-    <div className="min-h-screen bg-rich-black p-8 pt-32">
+    <div className="min-h-screen bg-rich-black p-8 pt-32 relative">
       
-      {/* NOTIFICAÇÃO (TOAST) FLUTUANTE */}
+      {/* Notificação Centralizada */}
       {successMsg && (
-        <div className="fixed top-24 right-8 bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 animate-fade-in-up z-50">
-          <CheckCircle size={24} />
-          <span className="font-bold">{successMsg}</span>
+        <div className="fixed top-24 left-1/2 -translate-x-1/2 bg-green-500 text-white px-8 py-4 rounded-full shadow-[0_0_20px_rgba(34,197,94,0.5)] flex items-center gap-3 animate-fade-in-up z-[100] border border-white/20">
+          <CheckCircle size={24} className="text-white drop-shadow-md" />
+          <span className="font-bold text-lg tracking-wide drop-shadow-md">{successMsg}</span>
         </div>
       )}
 
       <div className="max-w-6xl mx-auto">
-        
-        {/* Título Principal */}
         <div className="mb-12 border-b border-white/10 pb-4">
           <h1 className="text-3xl font-serif text-white">
             Gerenciar Blog <span className="text-gold-primary">Instagram</span>
@@ -167,71 +168,88 @@ export default function AdminPage() {
           <p className="text-gray-400 text-sm mt-2">Adicione ou edite os destaques do seu Instagram.</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           
-          {/* COLUNA ESQUERDA: Formulário (Muda de cor se estiver editando) */}
-          <div className={`border p-8 rounded-2xl h-fit shadow-xl transition-all ${editingId ? 'bg-gold-primary/5 border-gold-primary/30' : 'bg-white/5 border-white/10'}`}>
-            <h2 className={`text-xl font-bold mb-6 flex items-center gap-2 ${editingId ? 'text-gold-primary' : 'text-white'}`}>
-              {editingId ? <Pencil size={20} /> : <Plus size={20} />} 
-              {editingId ? "Editando Post" : "Novo Post"}
-            </h2>
+          {/* === COLUNA ESQUERDA (Formulário) === */}
+          <div>
             
-            <form onSubmit={handleSavePost} className="space-y-4">
-              <div>
-                <label className="text-xs text-gray-500 uppercase tracking-wider mb-1 block">Título</label>
+            {/* --- CABEÇALHO FANTASMA (Spacer) --- */}
+            {/* Esse bloco é invisível, mas tem a mesma altura do cabeçalho da direita.
+                Isso empurra o card para baixo para alinhar perfeitamente. */}
+            <div className="flex flex-col sm:flex-row justify-between items-end sm:items-center gap-4 mb-6 opacity-0 pointer-events-none select-none">
+                <h2 className="text-xl font-bold py-2">Spacer</h2>
+                <div className="h-9 w-20"></div>
+            </div>
+
+            {/* O CARD DO FORMULÁRIO */}
+            <div className={`border p-8 rounded-2xl h-fit shadow-xl transition-all ${editingId ? 'bg-gold-primary/5 border-gold-primary/30' : 'bg-white/5 border-white/10'}`}>
+              <h2 className={`text-xl font-bold mb-6 flex items-center gap-2 ${editingId ? 'text-gold-primary' : 'text-white'}`}>
+                {editingId ? <Pencil size={20} /> : <Plus size={20} />} 
+                {editingId ? "Editando Post" : "Novo Post"}
+              </h2>
+              <form onSubmit={handleSavePost} className="space-y-4">
                 <input 
                   className="w-full bg-black/50 border border-white/10 rounded p-3 text-white focus:border-gold-primary outline-none"
-                  placeholder="Ex: Contratos Inteligentes"
+                  placeholder="Título do Post"
                   value={formData.title}
                   onChange={e => setFormData({...formData, title: e.target.value})}
                 />
-              </div>
-
-              <div>
-                <label className="text-xs text-gray-500 uppercase tracking-wider mb-1 block">Imagem (URL)</label>
                 <input 
                   className="w-full bg-black/50 border border-white/10 rounded p-3 text-white focus:border-gold-primary outline-none"
-                  placeholder="https://..."
+                  placeholder="Link da Imagem (URL)"
                   value={formData.image_url}
                   onChange={e => setFormData({...formData, image_url: e.target.value})}
                 />
-              </div>
-
-              <div>
-                <label className="text-xs text-gray-500 uppercase tracking-wider mb-1 block">Link do Instagram</label>
                 <input 
                   className="w-full bg-black/50 border border-white/10 rounded p-3 text-white focus:border-gold-primary outline-none"
-                  placeholder="https://instagram.com/p/..."
+                  placeholder="Link do Instagram"
                   value={formData.instagram_link}
                   onChange={e => setFormData({...formData, instagram_link: e.target.value})}
                 />
-              </div>
-
-              <button type="submit" className="w-full bg-gold-primary text-rich-black font-bold py-3 rounded hover:bg-white transition-colors flex justify-center items-center gap-2">
-                {editingId ? <Save size={18}/> : <Plus size={18}/>}
-                {editingId ? "Salvar Alterações" : "Publicar no Site"}
-              </button>
-
-              {editingId && (
-                <button type="button" onClick={handleCancelEdit} className="w-full text-gray-400 hover:text-white py-2 text-sm underline">
-                  Cancelar Edição
+                <button type="submit" className="w-full bg-gold-primary text-rich-black font-bold py-3 rounded hover:bg-white transition-colors flex justify-center items-center gap-2">
+                  {editingId ? <Save size={18}/> : <Plus size={18}/>}
+                  {editingId ? "Salvar Alterações" : "Publicar no Site"}
                 </button>
-              )}
-            </form>
+                {editingId && (
+                  <button type="button" onClick={handleCancelEdit} className="w-full text-gray-400 hover:text-white py-2 text-sm underline text-center block">
+                    Cancelar Edição
+                  </button>
+                )}
+              </form>
+            </div>
           </div>
 
-          {/* COLUNA DIREITA: Lista de Posts */}
+          {/* === COLUNA DIREITA (Lista) === */}
           <div className="space-y-4">
-            <div className="flex justify-between items-end mb-6">
-               <h2 className="text-xl text-white font-bold">
-                 Posts Ativos ({posts.length})
+            
+            {/* CABEÇALHO REAL */}
+            <div className="flex flex-col sm:flex-row justify-between items-end sm:items-center gap-4 mb-6">
+               <h2 className="text-xl text-white font-bold flex items-center gap-2 py-2">
+                 Posts ({posts.length})
                </h2>
-               <button 
-                 onClick={() => setIsAuthenticated(false)} 
-                 className="text-red-400 hover:text-red-300 border border-red-400/30 hover:bg-red-400/10 px-3 py-1 text-sm rounded flex items-center gap-2 transition-all"
-               >
-                 <LogOut size={14}/> Sair do Painel
-               </button>
+               
+               <div className="flex items-center gap-3">
+                 <div className="relative group">
+                    <select 
+                      value={filterType}
+                      onChange={(e) => setFilterType(e.target.value)}
+                      className="bg-black/50 border border-white/20 text-white text-sm rounded-lg px-3 py-2 outline-none focus:border-gold-primary appearance-none pr-8 cursor-pointer"
+                    >
+                      <option value="recentes">Mais Recentes</option>
+                      <option value="antigos">Mais Antigos</option>
+                      <option value="az">Nome (A-Z)</option>
+                    </select>
+                    <Filter size={14} className="absolute right-2 top-3 text-gold-primary pointer-events-none"/>
+                 </div>
+
+                 <button 
+                   onClick={() => setIsAuthenticated(false)} 
+                   className="text-red-400 hover:bg-red-400/10 px-3 py-2 text-sm rounded border border-red-400/30 transition-all"
+                   title="Sair"
+                 >
+                   <LogOut size={16}/>
+                 </button>
+               </div>
             </div>
 
             {posts.length === 0 && (
@@ -240,36 +258,33 @@ export default function AdminPage() {
               </div>
             )}
 
-            {posts.map((post) => (
+            {getSortedPosts().map((post) => (
               <div key={post.id} className={`flex items-center gap-4 p-4 rounded-lg border transition-all ${editingId === post.id ? 'bg-gold-primary/10 border-gold-primary' : 'bg-white/5 border-white/5 hover:border-gold-primary/30'}`}>
                 <img src={post.image_url} alt="" className="h-16 w-16 object-cover rounded" />
                 
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-medium truncate">{post.title}</h3>
-                  <a href={post.instagram_link} target="_blank" className="text-gold-primary text-xs hover:underline flex items-center gap-1">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-white font-medium truncate">{post.title}</h3>
+                    {post.is_edited && (
+                      <span className="text-[10px] text-gray-500 font-normal border border-white/10 px-1 rounded">
+                        (Editado)
+                      </span>
+                    )}
+                  </div>
+                  
+                  <a href={post.instagram_link} target="_blank" className="text-gold-primary text-xs hover:underline flex items-center gap-1 mt-1">
                     <Instagram size={12} /> Ver no Insta
                   </a>
                 </div>
 
-                {/* AQUI ESTÃO OS BOTÕES DE AÇÃO */}
                 <div className="flex items-center gap-2">
-                  <button 
-                    onClick={() => handleEditClick(post)} 
-                    className="p-2 text-blue-400 hover:bg-blue-400/10 rounded" 
-                    title="Editar Post"
-                  >
+                  <button onClick={() => handleEditClick(post)} className="p-2 text-blue-400 hover:bg-blue-400/10 rounded">
                     <Pencil size={18} />
                   </button>
-                  
-                  <button 
-                    onClick={() => handleDeletePost(post.id)} 
-                    className="p-2 text-red-400 hover:bg-red-400/10 rounded" 
-                    title="Excluir Post"
-                  >
+                  <button onClick={() => handleDeletePost(post.id)} className="p-2 text-red-400 hover:bg-red-400/10 rounded">
                     <Trash2 size={18} />
                   </button>
                 </div>
-
               </div>
             ))}
           </div>

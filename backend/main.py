@@ -5,14 +5,12 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from auth import get_password_hash, verificar_senha
 
-# Configuração do App e Banco
 def get_session():
     with Session(engine) as session:
         yield session
 
 app = FastAPI()
 
-# Configuração CORS (Permite que o Next.js fale com o Python)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -21,7 +19,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Modelos de Dados (Pydantic)
 class LoginData(BaseModel):
     senha: str
 
@@ -30,8 +27,9 @@ class PostCreate(BaseModel):
     image_url: str
     instagram_link: str
     order: int = 0
+    # is_edited não entra aqui, o backend controla isso
 
-# --- ROTAS DE AUTENTICAÇÃO ---
+# --- ROTAS ---
 @app.post("/api/login")
 def login(data: LoginData, session: Session = Depends(get_session)):
     user = session.exec(select(Usuario).where(Usuario.username == "mariana.admin")).first()
@@ -43,29 +41,25 @@ def login(data: LoginData, session: Session = Depends(get_session)):
     else:
         raise HTTPException(status_code=401, detail="Senha incorreta")
 
-# --- ROTAS DE POSTS ---
-
-# 1. Listar Posts (GET)
 @app.get("/api/posts")
 def list_posts(session: Session = Depends(get_session)):
     posts = session.exec(select(Post).order_by(Post.id.desc())).all()
     return posts
 
-# 2. Criar Post (POST)
 @app.post("/api/posts")
 def create_post(post_data: PostCreate, session: Session = Depends(get_session)):
     new_post = Post(
         title=post_data.title,
         image_url=post_data.image_url,
         instagram_link=post_data.instagram_link,
-        order=post_data.order
+        order=post_data.order,
+        is_edited=False # Nasce falso
     )
     session.add(new_post)
     session.commit()
     session.refresh(new_post)
     return new_post
 
-# 3. Editar Post (PUT) - NOVO!
 @app.put("/api/posts/{post_id}")
 def update_post(post_id: int, post_data: PostCreate, session: Session = Depends(get_session)):
     post = session.get(Post, post_id)
@@ -75,13 +69,13 @@ def update_post(post_id: int, post_data: PostCreate, session: Session = Depends(
     post.title = post_data.title
     post.image_url = post_data.image_url
     post.instagram_link = post_data.instagram_link
+    post.is_edited = True # <--- AQUI A MÁGICA: Marcou como editado!
     
     session.add(post)
     session.commit()
     session.refresh(post)
     return post
 
-# 4. Deletar Post (DELETE)
 @app.delete("/api/posts/{post_id}")
 def delete_post(post_id: int, session: Session = Depends(get_session)):
     post = session.get(Post, post_id)

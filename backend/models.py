@@ -5,7 +5,6 @@ from typing import Optional
 sqlite_file_name = "database.db"
 sqlite_url = f"sqlite:///{sqlite_file_name}"
 
-# O "motor" que conecta o código ao arquivo .db
 engine = create_engine(sqlite_url)
 
 # 2. Tabelas
@@ -27,3 +26,4 @@ class Post(SQLModel, table=True):
     image_url: str
     instagram_link: str
     order: int = 0
+    is_edited: bool = Field(default=False) # <--- NOVO CAMPO
